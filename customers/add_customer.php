@@ -9,7 +9,14 @@ include('../session.php');
 
 
 <?php if ($db) : ?>
-<div class="panel-body">
+
+ <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" align="center">
+                            <h4>Cadastro de Cliente</h4>
+                        </div>
+                        <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
 
@@ -42,6 +49,13 @@ include('../session.php');
                                         </div>
                                          <div class="form-group">
                                             <label>Telefone</label>
+                                            <input type="text" class="form-control" name="customer['telefone']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                             <div class="help-block with-errors"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Data de Nascimento</label>
                                             <input type="text" class="form-control" name="customer['telefone']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                              <div class="help-block with-errors"></div>
 
@@ -93,7 +107,14 @@ include('../session.php');
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
-
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
 <?php else : ?>
      <div class="alert alert-danger" role="alert">
                 <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
