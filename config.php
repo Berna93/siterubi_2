@@ -13,8 +13,16 @@ if ( !defined('ABSPATH') )
 
 /** caminho no server para o sistema **/
 if ( !defined('BASEURL') )
-    define('BASEURL', '/siterubi_2/');
+    define('BASEURL', '/siterubi_2/siterubi_2/');
 
 /** caminho do arquivo de banco de dados **/
 if ( !defined('DBAPI') )
     define('DBAPI', ABSPATH . 'inc/database.php');
+
+/** caminho do arquivo de banco de dados **/
+if ( !defined('DBAPI') )
+    define('DBAPI', ABSPATH . 'inc/database.php');
+
+/** caminhos dos templates de header e footer **/
+define('HEADER_TEMPLATE', ABSPATH . 'inc/header.php');
+define('FOOTER_TEMPLATE', ABSPATH . 'inc/footer.php');
