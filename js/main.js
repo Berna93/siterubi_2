@@ -7,3 +7,7 @@ $(function(){
         $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
     });
 })
+
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
