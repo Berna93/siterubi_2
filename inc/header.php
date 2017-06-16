@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CRUD com Bootstrap</title>
+    <title>Mansão Rubi</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,24 +56,27 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                  <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-user-plus"></i>  Dashboard</a>
+                    <a href="<?php echo BASEURL; ?>index.php"><i class="fa fa-fw fa-bar-chart"></i>  Dashboard</a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i> Cursos <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-graduation-cap"></i> Cursos <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-1" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Cadastrar curso</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Visualizar curso</a></li>
+                        <li><a href="<?php echo BASEURL; ?>courses/add_course.php"><i class="fa fa-angle-double-right"></i> Cadastrar curso</a></li>
+                        <li><a href="<?php echo BASEURL; ?>courses/view_course.php"><i class="fa fa-angle-double-right"></i> Visualizar curso</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Clientes <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-group"></i>  Clientes <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-2" class="collapse">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Cadastrar cliente</a></li>
-                        <li><a href="customers/view_customer.php"><i class="fa fa-angle-double-right"></i> Visualizar cliente</a></li>
+                        <li><a href="<?php echo BASEURL; ?>customers/add_customer.php"><i class="fa fa-angle-double-right"></i> Cadastrar cliente</a></li>
+                        <li><a href="<?php echo BASEURL; ?>customers/view_customer.php"><i class="fa fa-angle-double-right"></i> Visualizar cliente</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-user-plus"></i>  Financeiro</a>
+                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-dollar"></i> Financeiro</a>
+                </li>
+                 <li>
+                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-envelope"></i>  MailChimp</a>
                 </li>
 
             </ul>
