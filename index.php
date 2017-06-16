@@ -7,6 +7,52 @@ include('session.php');
 <?php include(HEADER_TEMPLATE); ?>
 <?php $db = open_database(); ?>
 
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var jsonData = $.ajax({
+          url: "charts/getData.php",
+          dataType:"json",
+          async: false
+          }).responseText;
+
+      var jsonData2 = $.ajax({
+          url: "charts/getData2.php",
+          dataType:"json",
+          async: false
+          }).responseText;
+
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+       var options = {'title':'Os 10 cursos mais procurados na Mansão Rubi',
+                     'width':800,
+                     'height':400};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+
+      // Create our data table out of JSON data loaded from server.
+      var data2 = new google.visualization.DataTable(jsonData2);
+       var options2 = {'title':'Maiores clientes',
+                     'width':800,
+                     'height':400};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+      chart2.draw(data2, options2);
+    }
+
+    </script>
 
 <?php if ($db) : ?>
 
@@ -106,10 +152,20 @@ include('session.php');
 
                 </div>
             </div>
+             <div class="row">
+                    <div class="col-sm-12 col-md-10 well">
+                        <div id="chart_div"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-10 well">
+                        <div id="chart_div2"></div>
+                    </div>
+            </div>
+
         </div>
         <!-- /.container -->
     </section>
     </div>
+
 
 <?php else : ?>
     <div class="alert alert-danger" role="alert">
