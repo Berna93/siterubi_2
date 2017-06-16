@@ -76,7 +76,7 @@
                     <a href="investigaciones/favoritas"><i class="fa fa-fw fa-dollar"></i> Financeiro</a>
                 </li>
                  <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-envelope"></i>  MailChimp</a>
+                    <a href="https://mailchimp.com/" target="_blank"><i class="fa fa-fw fa-envelope"></i>  MailChimp</a>
                 </li>
 
             </ul>
