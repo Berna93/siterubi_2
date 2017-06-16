@@ -71,6 +71,44 @@ include('session.php');
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
+
+        <a class="anchor" id="a-competencies"></a>
+    <!-- /.row -->
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sectionTitle">Preenchimento dos cursos</div>
+                    <div id="skillgraph" class="panel panel-default row">
+                        <div class='panel-title text-Left '></div>
+                        <div class='row skill-row'>
+                            <span class='skillLabel'>Astrologia</span>
+                            <span class='skillData-Wrapper'>
+                        <span class='skillData bg-blue text-center' data-percent='80'>80%</span></span>
+
+                        </div>
+                        <div class='row skill-row'>
+                            <span class='skillLabel'>Kabbalah </span>
+                            <span class='skillData-Wrapper'>
+                            <span class='skillData bg-rust' data-percent='60'>60%</span></span>
+                        </div>
+                        <div class='row skill-row'>
+                            <span class='skillLabel'>Reiki</span>
+                            <span class='skillData-Wrapper'>
+                            <span class='skillData bg-blue' data-percent='40'>40%</span></span>
+                        </div>
+                        <div class='row skill-row'>
+                            <span class='skillLabel'>Runas</span>
+                            <span class='skillData-Wrapper'>
+                            <span class='skillData bg-rust' data-percent='20'>20%</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </section>
     </div>
 
 <?php else : ?>
