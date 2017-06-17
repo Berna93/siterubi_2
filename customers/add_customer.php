@@ -1,7 +1,10 @@
 <?php
 include('../session.php');
 ?>
-<?php require_once '../config.php'; ?>
+<?php
+  require_once('functions.php');
+  add();
+?>
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
@@ -20,43 +23,43 @@ include('../session.php');
                             <div class="row">
                                 <div class="col-lg-6">
 
-                                    <form role="form" action="cadastroCliente.php" data-toggle="validator" method="post">
+                                    <form role="form" action="add_customer.php" data-toggle="validator" method="post">
                                         <div class="form-group">
                                             <label>Nome</label>
-                                            <input type="text" class="form-control" name="customer['nome']" data-error="Por favor, informe um nome válido." required>
+                                            <input type="text" class="form-control" name="customer['name_var']" data-error="Por favor, informe um nome válido." required>
                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>Endereço</label>
-                                            <input type="text" class="form-control" name="customer['endereco']" data-error="Por favor, informe um endereço válido."  required>
+                                            <input type="text" class="form-control" name="customer['address_var']" data-error="Por favor, informe um endereço válido."  required>
                                              <div class="help-block with-errors"></div>
                                         </div>
                                          <div class="form-group">
                                             <label>RG</label>
-                                            <input type="text" class="form-control" name="customer['rg']" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
+                                            <input type="text" class="form-control" name="customer['rg_var']" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>CPF</label>
-                                            <input type="text" class="form-control" name="customer['cpf']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                            <input type="text" class="form-control" name="customer['cpf_var']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>E-mail</label>
-                                            <input type="email" class="form-control" name="customer['email']" placeholder="Digite um e-mail válido..." data-error="Formato de email incorreto."  required>
+                                            <input type="email" class="form-control" name="customer['email_var']" placeholder="Digite um e-mail válido..." data-error="Formato de email incorreto."  required>
                                             <p class="help-block">Por exemplo: email@email.com</p>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                          <div class="form-group">
                                             <label>Telefone</label>
-                                            <input type="text" class="form-control" name="customer['telefone']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                            <input type="text" class="form-control" name="customer['telefone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                              <div class="help-block with-errors"></div>
 
                                         </div>
 
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input type="text" class="form-control" name="customer['telefone']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                            <input type="text" class="form-control" name="customer['telefone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                              <div class="help-block with-errors"></div>
 
                                         </div>
@@ -65,32 +68,32 @@ include('../session.php');
                                             <label>Interesses</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="customer['tarot']">Tarot
+                                                    <input type="checkbox" value="1" name="customer['tarot_tni']">Tarot
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                   <input type="checkbox" value="1" name="customer['cabala']">Kabbalah
+                                                   <input type="checkbox" value="1" name="customer['cabala_tni']">Kabbalah
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="customer['astrologia']">Astrologia
+                                                    <input type="checkbox" value="1" name="customer['astrologia_tni']">Astrologia
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="customer['umbanda']">Umbanda
+                                                    <input type="checkbox" value="1" name="customer['umbanda_tni']">Umbanda
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="customer['hermetismo']">Hermetismo
+                                                    <input type="checkbox" value="1" name="customer['hermetismo_tni']">Hermetismo
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="customer['reiki']">Reiki
+                                                    <input type="checkbox" value="1" name="customer['reiki_tni']">Reiki
                                                 </label>
                                             </div>
                                         </div>

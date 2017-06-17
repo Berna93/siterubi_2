@@ -1,0 +1,1 @@
+UPDATE tbl_customers SET name_var='Matheus',address_var='Rua Primeiro de Maio, 33',rg_var='4848484213',cpf_var='41141414',email_var='matheuzmoraes@gmail.com',phone_var='343331945555',cabala_tni='1',astrologia_tni='1',hermetismo_tni='1',modification_date_dt='2017-06-16 22:24:48' WHERE id=1;
