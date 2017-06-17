@@ -11,6 +11,11 @@ function index() {
     $customers = find_all('tbl_customers');
 }
 
+function search($id = null) {
+    global $customers;
+    $customers = find('tbl_customers', $id);
+}
+
 
 /**
  *  Cadastro de Clientes

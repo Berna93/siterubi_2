@@ -24,6 +24,7 @@ function find( $table = null, $id = null ) {
 
     $database = open_database();
     $found = null;
+
     try {
       if ($id) {
         $sql = "SELECT * FROM " . $table . " WHERE id = " . $id;
@@ -109,14 +110,15 @@ function update($table = null, $id = 0, $data = null) {
   $sql .= " SET $items";
   $sql .= " WHERE id=" . $id . ";";
 
-ob_start();
-echo $sql;
+  // GRAVAR SAIDA EM ARQUIVO
+  // ob_start();
+  // echo $sql;
 
-$content = ob_get_contents();
+  // $content = ob_get_contents();
 
-$f = fopen("file.txt", "w");
-fwrite($f, $content);
-fclose($f);
+  // $f = fopen("file.txt", "w");
+  // fwrite($f, $content);
+  // fclose($f);
 
 
   try {
