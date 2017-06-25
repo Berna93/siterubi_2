@@ -13,28 +13,15 @@ include('../session.php');
 
 <?php if ($db) : ?>
 
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Cadastro de Clientes</h1>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-
-        <div>
-            <br><br><br>
-
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Dados básicos
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6">
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" align="center">
+                            <h4>Edição de Cliente</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
                                 <form role="form" action="edit_customer.php?id=<?php echo $customer['id']; ?>" data-toggle="validator" method="post">
                                     <div class="form-group">
                                         <label>Nome</label>
