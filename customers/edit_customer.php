@@ -15,11 +15,11 @@ include('../session.php');
 
 <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" align="center">
+                    <div class="panel panel-default" align="center">
+                        <div class="panel-heading">
                             <h4>Edição de Cliente</h4>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" align="left">
                             <div class="row">
                                 <div class="col-lg-6">
                                 <form role="form" action="edit_customer.php?id=<?php echo $customer['id']; ?>" data-toggle="validator" method="post">

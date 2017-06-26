@@ -37,7 +37,7 @@
     <div class="row login_box">
         <div class="col-md-6 col-xs-6" align="center">
             <div class="line"><h3><?php date_default_timezone_set('America/Sao_Paulo'); echo date("H:i"); ?></h3></div>
-            <div class="outter"><img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="image-circle"/></div>
+            <div class="outter"><img src="imgs/logo.jpg" class="image-circle"/></div>
             <h1>Seja bem vindo (a)</h1>
             <span>Mansão Rubi - Desenvolvimento Humano e Sustentável</span>
         </div>

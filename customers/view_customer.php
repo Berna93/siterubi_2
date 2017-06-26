@@ -65,8 +65,18 @@ include('../session.php');
             </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('#tableCustomers').DataTable();
+$(document).ready( function() {
+  $('#tableCustomers').dataTable( {
+    "oLanguage": {
+      "sSearch": "Buscar clientes:",
+      "sLengthMenu": "Mostrar _MENU_ clientes",
+      "sInfo": "Mostrando _START_ até _END_ em um total de _TOTAL_ entradas.",
+      "oPaginate": {
+        "sNext": "Próximo",
+        "sPrevious": "Anterior"
+      }
+    }
+  } );
 } );
 
 </script>

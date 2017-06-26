@@ -28,6 +28,7 @@
 <div id="noty-holder"></div>
 <div id="wrapper">
     <!-- Navigation -->
+    <!-- style="background-color: #e3f2fd;" -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -38,7 +39,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-                <img src="http://placehold.it/200x50&text=LOGO" alt="LOGO"">
+                <img src="<?php echo BASEURL; ?>imgs/logoIndex.jpg" alt="LOGO"">
             </a>
         </div>
         <!-- Top Menu Items -->
@@ -58,7 +59,8 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                  <li>
-                    <a href="<?php echo BASEURL; ?>index.php"><i class="fa fa-fw fa-bar-chart"></i>  Dashboard</a>
+                 <!-- <a href="<?php ?>index.php"><i class="fa fa-fw fa-bar-chart" style="color:green">-->
+                    <a href="<?php echo BASEURL; ?>index.php"><i class="fa fa-fw fa-bar-chart"></i> Dashboard </a>
                 </li>
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-graduation-cap"></i> Cursos <i class="fa fa-fw fa-angle-down pull-right"></i></a>
