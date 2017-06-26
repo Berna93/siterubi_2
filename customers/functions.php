@@ -53,3 +53,12 @@ function edit() {
     //header('location: add_customer.php');
   }
 }
+
+/**
+ *  Exclusão de um Cliente
+ */
+function delete($id = null) {
+  global $customer;
+  $customer = remove('tbl_customers', $id);
+  header('location: view_customer.php');
+}

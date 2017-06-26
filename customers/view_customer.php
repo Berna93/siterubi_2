@@ -70,6 +70,6 @@ include('../session.php');
 } );
 
 </script>
-
+<?php include('modal.php'); ?>
 <?php include(FOOTER_TEMPLATE); ?>
 

@@ -84,14 +84,14 @@ function save($table = null, $data = null) {
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
   // GRAVAR SAIDA EM ARQUIVO
-  ob_start();
-  echo $sql;
+  // ob_start();
+  // echo $sql;
 
-  $content = ob_get_contents();
+  // $content = ob_get_contents();
 
-  $f = fopen("file.txt", "w");
-  fwrite($f, $content);
-  fclose($f);
+  // $f = fopen("file.txt", "w");
+  // fwrite($f, $content);
+  // fclose($f);
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
@@ -127,6 +127,28 @@ function update($table = null, $id = 0, $data = null) {
     $_SESSION['type'] = 'success';
   } catch (Exception $e) {
     $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
+    $_SESSION['type'] = 'danger';
+  }
+  close_database($database);
+}
+
+/**
+ *  Remove uma linha de uma tabela pelo ID do registro
+ */
+function remove( $table = null, $id = null ) {
+  $database = open_database();
+
+  try {
+    if ($id) {
+      $sql = "DELETE FROM " . $table . " WHERE id = " . $id;
+      $result = $database->query($sql);
+      if ($result = $database->query($sql)) {
+        $_SESSION['message'] = "Registro Removido com Sucesso.";
+        $_SESSION['type'] = 'success';
+      }
+    }
+  } catch (Exception $e) {
+    $_SESSION['message'] = $e->GetMessage();
     $_SESSION['type'] = 'danger';
   }
   close_database($database);
