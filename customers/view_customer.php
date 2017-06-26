@@ -3,7 +3,7 @@ include('../session.php');
 ?>
 <?php
     require_once('functions.php');
-    search($customer['id']);
+    index();
 ?>
 
 <?php include(HEADER_TEMPLATE); ?>
@@ -39,7 +39,7 @@ include('../session.php');
 <?php if ($customers) : ?>
 <?php foreach ($customers as $customer) : ?>
     <tr>
-        <td><?php echo $customer['id']; ?></td>
+        <td><?php if(isset($customer['id'])) { echo $customer['id']; }  ?></td>
         <td><?php echo $customer['name_var']; ?></td>
         <td><?php echo $customer['cpf_var']; ?></td>
         <td><?php echo $customer['email_var']; ?></td>
