@@ -1,11 +1,12 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
 @media(min-width:768px) {
     body {
         margin-top: 50px;
     }
     /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
 }
-
+/* CSS para o layout do Sidebar */
 #wrapper {
     padding-left: 0;
 }
@@ -142,12 +143,14 @@
     padding: 5px 15px;
 }
 
+/* CSS para os widgets da pagina principal */
 .hero-widget { text-align: center; padding-top: 20px; padding-bottom: 20px; background-color: #fff}
 .hero-widget .icon { display: block; font-size: 50px; line-height: 50px; margin-bottom: 10px; text-align: center; }
 .hero-widget var { display: block; height: 30px; font-size: 30px; line-height: 30px; font-style: normal; }
 .hero-widget label { font-size: 17px; }
 .hero-widget .options { margin-top: 10px; }
 
+ /* CSS para o Google Graphs */
 .bg-lightgray, .skillData-Wrapper {
     background-color: #ddd;
 }
@@ -237,3 +240,5 @@
 section {
     font-size: 1.8rem;
 }
+
+

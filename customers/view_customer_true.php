@@ -20,12 +20,8 @@ include('../session.php');
 
     </div>
 </header>
-<br><br><br>
-<div class="container">
-        <div class="row">
-            <div class="col-lg-12">
 
-<table id="tableCustomers" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
        <thead>
     <tr>
         <th>ID</th>
@@ -59,17 +55,11 @@ include('../session.php');
 <?php endif; ?>
 </tbody>
 </table>
-</div>
-
-                </div>
-            </div>
-
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('#tableCustomers').DataTable();
+  $(document).ready(function() {
+    $('#example').DataTable();
 } );
 
 </script>
 
-<?php include(FOOTER_TEMPLATE); ?>
-
+        <?php include(FOOTER_TEMPLATE); ?>

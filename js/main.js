@@ -8,9 +8,6 @@ $(function(){
     });
 })
 
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
 
 function loadSkillgraph() {
 $(".skillData").each(function(index, element) {
@@ -33,4 +30,7 @@ $(".skillData").each(function(index, element) {
 
 }
 
+//Carregamento dos graficos no Dashboard
 loadSkillgraph();
+
+//DataTable para Visualizacao de Cliente

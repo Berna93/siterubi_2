@@ -16,6 +16,10 @@
     </style>
     <link rel="stylesheet" href="<?php echo BASEURL; ?>css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/af-2.2.0/b-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/af-2.2.0/b-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/kt-2.2.1/r-2.1.1/rg-1.0.0/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+
 
 </head>
 <body>
@@ -73,7 +77,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-dollar"></i> Financeiro</a>
+                    <a href="#"><i class="fa fa-fw fa-dollar"></i> Financeiro</a>
                 </li>
                  <li>
                     <a href="https://mailchimp.com/" target="_blank"><i class="fa fa-fw fa-envelope"></i>  MailChimp</a>
