@@ -26,7 +26,7 @@ function add() {
     $today =
       date_create('now', new DateTimeZone('America/Sao_Paulo'));
     $customer = $_POST['customer'];
-    $customer['modification_date_dt'] = $customer['created'] = $today->format("Y-m-d H:i:s");
+    $customer['modification_date_dt'] = $customer['creation_date_dt'] = $today->format("Y-m-d H:i:s");
 
     save('tbl_customers', $customer);
     header('location: add_customer.php');

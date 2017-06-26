@@ -82,6 +82,16 @@ function save($table = null, $data = null) {
   $values = rtrim($values, ',');
 
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
+
+  // GRAVAR SAIDA EM ARQUIVO
+  ob_start();
+  echo $sql;
+
+  $content = ob_get_contents();
+
+  $f = fopen("file.txt", "w");
+  fwrite($f, $content);
+  fclose($f);
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
@@ -109,16 +119,6 @@ function update($table = null, $id = 0, $data = null) {
   $sql  = "UPDATE " . $table;
   $sql .= " SET $items";
   $sql .= " WHERE id=" . $id . ";";
-
-  // GRAVAR SAIDA EM ARQUIVO
-  // ob_start();
-  // echo $sql;
-
-  // $content = ob_get_contents();
-
-  // $f = fopen("file.txt", "w");
-  // fwrite($f, $content);
-  // fclose($f);
 
 
   try {

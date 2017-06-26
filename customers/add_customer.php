@@ -52,14 +52,14 @@ include('../session.php');
                                         </div>
                                          <div class="form-group">
                                             <label>Telefone</label>
-                                            <input type="text" class="form-control" name="customer['telefone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                            <input type="text" class="form-control" name="customer['phone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                              <div class="help-block with-errors"></div>
 
                                         </div>
 
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input type="text" class="form-control" name="customer['telefone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                            <input type="text" class="form-control" name="customer['birthday_dt']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                              <div class="help-block with-errors"></div>
 
                                         </div>

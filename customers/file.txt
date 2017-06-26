@@ -1,0 +1,1 @@
+INSERT INTO tbl_customers(name_var,address_var,rg_var,cpf_var,email_var,phone_var,birthday_dt,astrologia_tni,umbanda_tni,creation_date_dt,modification_date_dt) VALUES ('22222','2222','2222','2222','email@email.com','3331313','19/06/1992','1','1','2017-06-26 14:10:17','2017-06-26 14:10:17');
