@@ -43,14 +43,12 @@
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
-            <li><a href="#" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
-                </a>
-            </li>
+
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Opções <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-fw fa-user"></i> <?php echo $_SESSION['username'];?></a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> <?php echo $_SESSION['usertype'];?></a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Usuário: <?php echo $_SESSION['username'];?></a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Tipo: <?php echo $_SESSION['usertype'];?></a></li>
                     <li class="divider"></li>
                     <li><a href="<?php echo BASEURL; ?>logout.php"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                 </ul>

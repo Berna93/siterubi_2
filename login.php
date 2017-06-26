@@ -28,79 +28,43 @@
       }
    }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<link rel="stylesheet" href="css/styleLogin.css">
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Por favor, entre com seu login e senha.</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" action="" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="username" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Senha" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Lembrar senha
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <!--<a href="index2.html" class="btn btn-lg btn-success btn-block">Entrar</a>-->
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Entrar"/>
-                            </fieldset>
-                        </form>
-                        <!--<div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>-->
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <div class="row login_box">
+        <div class="col-md-6 col-xs-6" align="center">
+            <div class="line"><h3><?php date_default_timezone_set('America/Sao_Paulo'); echo date("H:i"); ?></h3></div>
+            <div class="outter"><img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="image-circle"/></div>
+            <h1>Seja bem vindo (a)</h1>
+            <span>Mansão Rubi - Desenvolvimento Humano e Sustentável</span>
         </div>
+        <div class="col-md-6 col-xs-6 follow line" align="center">
+            <h3>
+                 125651 <br/> <span>SEGUIDORES</span>
+            </h3>
+        </div>
+
+        <div class="col-md-12 col-xs-12 login_control">
+            <form role="form" action="" method="post">
+                <div class="control">
+                    <div class="label">Usuário</div>
+                    <input type="text" class="form-control" name="username" value="admin"/>
+                </div>
+
+                <div class="control">
+                     <div class="label">Senha</div>
+                    <input type="password" class="form-control" name="password" value="123456"/>
+                </div>
+                <div align="center">
+                     <button class="btn btn-orange">LOGIN</button>
+                </div>
+            </form>
+        </div>
+
+
+
     </div>
-
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>
+</div>
