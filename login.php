@@ -51,7 +51,7 @@
             <form role="form" action="" method="post">
                 <div class="control">
                     <div class="label">Usuário</div>
-                    <input type="text" class="form-control" name="username" value="admin"/>
+                    <input type="text" class="form-control" name="username" value="mansao"/>
                 </div>
 
                 <div class="control">

@@ -24,45 +24,71 @@ include('../session.php');
                                 <div class="col-lg-6">
 
                                     <form role="form" action="add_customer.php" data-toggle="validator" method="post">
-                                        <div class="form-group">
+                                       <div class="form-group">
                                             <label>Nome</label>
-                                            <input type="text" class="form-control" name="customer['name_var']" data-error="Por favor, informe um nome válido." required>
-                                             <div class="help-block with-errors"></div>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
+                                            <input type="text" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
+                                                  data-error="Por favor, informe um nome válido." required>
+                                             </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>Endereço</label>
-                                            <input type="text" class="form-control" name="customer['address_var']" data-error="Por favor, informe um endereço válido."  required>
-                                             <div class="help-block with-errors"></div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label>RG</label>
-                                            <input type="text" class="form-control" name="customer['rg_var']" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-home"></span></span>
+                                            <input type="text" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
+                                                  data-error="Por favor, informe um endereço válido." required>
+                                             </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
-                                         <div class="form-group">
-                                            <label>CPF</label>
-                                            <input type="text" class="form-control" name="customer['cpf_var']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                          <div class="form-group">
+                                            <label>RG</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
+                                            <input type="text" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
+                                                  data-error="Por favor, informe um RG válido." required>
+                                             </div>
                                              <div class="help-block with-errors"></div>
+                                         </div>
+                                          <div class="form-group">
+                                            <label>CPF</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
+                                            <input type="text" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..." type="text"
+                                                  data-error="Por favor, informe um CPF válido." required>
+                                             </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>E-mail</label>
-                                            <input type="email" class="form-control" name="customer['email_var']" placeholder="Digite um e-mail válido..." data-error="Formato de email incorreto."  required>
-                                            <p class="help-block">Por exemplo: email@email.com</p>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-floppy-disk"></span></span>
+                                            <input id="inputEmail" class="form-control" name="customer['email'" placeholder="Digite o e-mail..." type="email"
+                                                  data-error="Por favor, informe um e-mail válido." required>
+
+                                            </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                          <div class="form-group">
                                             <label>Telefone</label>
-                                            <input type="text" class="form-control" name="customer['phone_var']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
-                                             <div class="help-block with-errors"></div>
-
-                                        </div>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-phone"></span></span>
+                                            <input type="text" class="form-control" name="customer['phone_var']" placeholder="Digite o telefone do cliente..." type="text"
+                                                  data-error="Por favor, informe um telefone válido." required>
+                                             </div>
+                                              <div class="help-block with-errors"></div>
+                                         </div>
 
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input type="text" class="form-control" name="customer['birthday_dt']" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input type="text" class="form-control" name="customer['birthday_var']" placeholder="Digite a data de nascimento do cliente..." type="text"
+                                                  data-error="Por favor, informe um telefone válido." required>
+                                             </div>
                                              <div class="help-block with-errors"></div>
-
-                                        </div>
+                                         </div>
 
                                         <div class="form-group">
                                             <label>Interesses</label>
@@ -100,7 +126,7 @@ include('../session.php');
 
 
 
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        <button type="submit" class="btn btn-success">Cadastrar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
                                     </form>
                                 </div>

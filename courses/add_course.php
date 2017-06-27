@@ -6,7 +6,22 @@ include('../session.php');
 
 <?php include(HEADER_TEMPLATE); ?>
 <?php $db = open_database(); ?>
+<!-- Include Bootstrap Datepicker -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+<style type="text/css">
+/**
+ * Override feedback icon position
+ * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
+ */
+#eventForm .form-control-feedback {
+    top: 0;
+    right: -15px;
+}
+</style>
 
 <?php if ($db) : ?>
 
@@ -21,49 +36,63 @@ include('../session.php');
                                 <div class="col-lg-6">
 
                                     <form role="form" action="add_course.php" data-toggle="validator" method="post">
-                                        <div class="form-group">
+                                         <div class="form-group">
                                             <label>Nome do Curso</label>
-                                            <input type="text" class="form-control" name="course['name_var']" data-error="Por favor, informe um nome válido." required>
-                                             <div class="help-block with-errors"></div>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
+                                            <input type="text" class="form-control" name="course['name_var']" required>
+                                             </div>
+                                         </div>
+                                        <div class="form-group">
+                                            <label>Nome do Professor/Palestrante</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
+                                            <input type="text" class="form-control" name="course['professor_var']" required>
+                                             </div>
                                          </div>
                                          <div class="form-group">
-                                            <label>Professor/Palestrante</label>
-                                            <input type="text" class="form-control" name="course['professor_var']" data-error="Por favor, informe um endereço válido."  required>
-                                             <div class="help-block with-errors"></div>
-                                        </div>
-                                         <div class="form-group">
                                             <label>Quantidade de Vagas</label>
-                                            <input type="text" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
-                                             <div class="help-block with-errors"></div>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
+                                            <input type="text" class="form-control" name="course['numSlots_int']" required>
+                                             </div>
                                          </div>
                                          <div class="form-group">
                                             <label>Valor do Curso</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
                                             <input type="text" class="form-control" name="course['price_var']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
-                                             <div class="help-block with-errors"></div>
+                                             </div>
                                          </div>
-                                         <div class="form-group">
-                                            <label>Data do Curso</label>
-                                            <input type="email" class="form-control" name="course['event_date_dt']" placeholder="Digite um e-mail válido..." data-error="Formato de email incorreto."  required>
-                                            <p class="help-block">Por exemplo: email@email.com</p>
-                                            <div class="help-block with-errors"></div>
+
+
+                                        <div class="form-group" >
+                                        <label>Data do Curso</label>
+
+                                        <div class="input-group input-append date" id="datePicker">
+                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input type="text" class="form-control" name="date" />
+
                                         </div>
-                                         <div class="form-group">
+
+                                    </div>
 
                                         <label>Contrato</label>
                                         <textarea class="form-control" rows="30" name="course['contract_var']"  data-error="É preciso informar um contrato padrão para este curso." required></textarea>
                                         <div class="help-block with-errors"></div>
 
+
+
+                                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                                        <button type="reset" class="btn btn-warning">Limpar</button>
+
+
                                     </div>
 
 
-
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-
-                                    </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -82,5 +111,18 @@ include('../session.php');
     </div>
 
 <?php endif; ?>
+
+<script>
+$(document).ready(function() {
+    $('#datePicker')
+        .datepicker({
+            format: 'dd/mm/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#eventForm').formValidation('revalidateField', 'date');
+        });
+});
+</script>
 
 <?php include(FOOTER_TEMPLATE); ?>

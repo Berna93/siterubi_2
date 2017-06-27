@@ -11,7 +11,7 @@ include('../session.php');
 <header>
     <div class="row">
         <div class="col-sm-6">
-            <h2>Visualização de Clientes</h2>
+            <h2>Busca e edição de Clientes</h2>
         </div>
         <div class="col-sm-6 text-right h2">
             <a class="btn btn-primary" href="add_customer.php"><i class="fa fa-plus"></i> Novo Cliente</a>
@@ -70,7 +70,11 @@ $(document).ready( function() {
     "oLanguage": {
       "sSearch": "Buscar clientes:",
       "sLengthMenu": "Mostrar _MENU_ clientes",
-      "sInfo": "Mostrando _START_ até _END_ em um total de _TOTAL_ entradas.",
+      "sInfo": "Mostrando _START_ até _END_ em um total de _TOTAL_ registros.",
+      "sEmptyTable": "Nenhum registro encontrado.",
+      "sInfoEmpty": "Nenhum registro para ser mostrado.",
+      "sInfoFiltered": " - filtrado de um total de _MAX_ registros",
+      "sZeroRecords": "Nenhum registro encontrado.",
       "oPaginate": {
         "sNext": "Próximo",
         "sPrevious": "Anterior"
