@@ -1,4 +1,4 @@
-CREATE TABLE tbl_course_customer (
+CREATE TABLE tbl_course_customers (
   id int UNSIGNED NOT NULL,
   course_id int UNSIGNED NOT NULL,
   customer_id int UNSIGNED NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE tbl_course_customer (
   
 );
 
-ALTER TABLE tbl_course_customer
+ALTER TABLE tbl_course_customers
   ADD PRIMARY KEY (id);
 
-ALTER TABLE tbl_course_customer
+ALTER TABLE tbl_course_customers
   MODIFY id int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

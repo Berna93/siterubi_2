@@ -1,4 +1,4 @@
-CREATE TABLE tbl_course (
+CREATE TABLE tbl_courses (
   id int UNSIGNED NOT NULL,
   name_var varchar(255) NOT NULL,
   professor_var varchar(14) NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE tbl_course (
   modification_date_dt date NOT NULL
 );
 
-ALTER TABLE tbl_course
+ALTER TABLE tbl_courses
   ADD PRIMARY KEY (id);
   
-ALTER TABLE tbl_course
+ALTER TABLE tbl_courses
   MODIFY id int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

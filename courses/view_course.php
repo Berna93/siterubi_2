@@ -1,52 +1,93 @@
 <?php
 include('../session.php');
 ?>
-<?php require_once '../config.php'; ?>
-<?php require_once DBAPI; ?>
+<?php
+    require_once('functions.php');
+    index();
+?>
 
 <?php include(HEADER_TEMPLATE); ?>
-<?php $db = open_database(); ?>
 
-<!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
+<header>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Busca e edição de Cursos</h2>
+        </div>
+        <div class="col-sm-6 text-right h2">
+            <a class="btn btn-primary" href="add_course.php"><i class="fa fa-plus"></i> Novo Curso</a>
+            <a class="btn btn-default" href="view_course.php"><i class="fa fa-refresh"></i> Atualizar</a>
+        </div>
 
-    // Load the Visualization API and the piechart package.
-    google.load('visualization', '1', {'packages':['corechart']});
-
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var jsonData = $.ajax({
-          url: "getData.php",
-          dataType:"json",
-          async: false
-          }).responseText;
-
-      // Create our data table out of JSON data loaded from server.
-      var data = new google.visualization.DataTable(jsonData);
-       var options = {'title':'Os 10 cursos mais procurados na Mansão Rubi',
-                     'width':800,
-                     'height':400};
-
-      // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
-
-    </script>
-
-<?php if ($db) : ?>
-
-     <div id="chart_div" align="center"></div>
-<?php else : ?>
-    <div class="alert alert-danger" role="alert">
-        <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
     </div>
+</header>
+<br><br><br>
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
 
+<table id="tableCourses" class="table table-striped table-bordered" cellspacing="0" width="100%">
+       <thead>
+    <tr>
+        <th>ID</th>
+        <th width="30%">Nome</th>
+        <th>Professor</th>
+        <th>Qtd. Vagas</th>
+        <th>Qtd. Preenchidas</th>
+        <th>Data do Evento</th>
+        <th>Opções</th>
+    </tr>
+</thead>
+<tbody>
+<?php if ($courses) : ?>
+<?php foreach ($courses as $course) : ?>
+    <tr>
+        <td><?php if(isset($course['id'])) { echo $course['id']; }  ?></td>
+        <td><?php echo $course['name_var']; ?></td>
+        <td><?php echo $course['professor_var']; ?></td>
+        <td><?php echo $course['numSlots_int']; ?></td>
+        <td><?php echo $course['numSlotsTaken_int']; ?></td>
+        <td><?php echo $course['event_date_dt']; ?></td>
+        <td class="actions text-right">
+            <a href="edit_course.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
+            <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
+                <i class="fa fa-trash"></i> Excluir
+            </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+<?php else : ?>
+    <tr>
+        <td colspan="6">Nenhum registro encontrado.</td>
+    </tr>
 <?php endif; ?>
+</tbody>
+</table>
+</div>
 
+                </div>
+            </div>
+
+<script type="text/javascript">
+$(document).ready( function() {
+  $('#tableCourses').dataTable( {
+    "oLanguage": {
+      "sSearch": "Buscar clientes:",
+      "sLengthMenu": "Mostrar _MENU_ clientes",
+      "sInfo": "Mostrando _START_ até _END_ em um total de _TOTAL_ registros.",
+      "sEmptyTable": "Nenhum registro encontrado.",
+      "sInfoEmpty": "Nenhum registro para ser mostrado.",
+      "sInfoFiltered": " - filtrado de um total de _MAX_ registros",
+      "sZeroRecords": "Nenhum registro encontrado.",
+      "oPaginate": {
+        "sNext": "Próximo",
+        "sPrevious": "Anterior"
+      }
+    }
+  } );
+} );
+
+</script>
+<?php include('modal.php'); ?>
 <?php include(FOOTER_TEMPLATE); ?>
 
