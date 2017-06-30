@@ -39,17 +39,18 @@ function edit() {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    if (isset($_POST['customer'])) {
-      $course = $_POST['customer'];
+    if (isset($_POST['course'])) {
+      $course = $_POST['course'];
       $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
       update('tbl_courses', $id, $course);
-      //header('location: add_customer.php');
+      header('location: edit_course.php?id=' + $id);
     } else {
       global $course;
       $course = find('tbl_courses', $id);
+      header('location: edit_course.php?id=' + $id);
     }
   } else {
-    //header('location: add_customer.php');
+    header('location: edit_course.php?id=' + $id);
   }
 }
 

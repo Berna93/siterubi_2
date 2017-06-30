@@ -1,1 +1,1 @@
-SELECT * FROM tbl_courses
+UPDATE tbl_courses SET name_var='Astrologia',professor_var='Edivaldo Jr 22',numSlots_int='40',price_var='150',event_date_dt='2017-06-30',contract_var=' dd  ddd',modification_date_dt='2017-06-30 19:49:23' WHERE id=1;
