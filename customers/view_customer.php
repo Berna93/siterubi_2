@@ -5,9 +5,7 @@ include('../session.php');
     require_once('functions.php');
     index();
 ?>
-
 <?php include(HEADER_TEMPLATE); ?>
-
 <header>
     <div class="row">
         <div class="col-sm-6">

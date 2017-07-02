@@ -2,7 +2,7 @@ CREATE TABLE tbl_course_customers (
   id int UNSIGNED NOT NULL,
   course_id int UNSIGNED NOT NULL,
   customer_id int UNSIGNED NOT NULL,
-  customer_nome_var varchar(255) NOT NULL,
+  customer_name_var varchar(255) NOT NULL,
   payment_tni tinyint(1) NOT NULL,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL,

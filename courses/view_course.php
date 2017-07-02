@@ -30,7 +30,6 @@ include('../session.php');
     <tr>
         <th>ID</th>
         <th width="30%">Nome</th>
-        <th>Professor</th>
         <th>Qtd. Vagas</th>
         <th>Qtd. Preenchidas</th>
         <th>Data do Evento</th>
@@ -43,13 +42,13 @@ include('../session.php');
     <tr>
         <td><?php if(isset($course['id'])) { echo $course['id']; }  ?></td>
         <td><?php echo $course['name_var']; ?></td>
-        <td><?php echo $course['professor_var']; ?></td>
         <td><?php echo $course['numSlots_int']; ?></td>
         <td><?php echo $course['numSlotsTaken_int']; ?></td>
         <td><?php echo $course['event_date_dt']; ?></td>
         <td class="actions text-right">
+            <a href="view_course_customers.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Inscrições</a>
             <a href="edit_course.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
-            <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
+             <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
                 <i class="fa fa-trash"></i> Excluir
             </a>
         </td>

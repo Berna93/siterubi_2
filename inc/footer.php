@@ -11,5 +11,6 @@
 
     <script src="<?php echo BASEURL; ?>js/main.js"></script>
     <script src="<?php echo BASEURL; ?>js/validator.min.js"></script>
+
 </body>
 </html>
