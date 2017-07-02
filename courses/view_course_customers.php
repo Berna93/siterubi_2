@@ -28,10 +28,18 @@ $(function() {
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-
+                                <div class="col-lg-4">
                                         <form action='' method='post'>
-                                          <p><label>Incluir Cliente:</label><input type='text' name='incluirCliente' value='' class='auto form-control'></p>
+                                          <label>Incluir Cliente:</label>
+                                          <div class="form-group input-group">
+
+                                            <input type="text" name='incluirCliente' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+
                                         </form>
                                         </div>
                                         </div>
