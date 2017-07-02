@@ -1,13 +1,14 @@
 CREATE TABLE tbl_course_customers (
   id int UNSIGNED NOT NULL,
-  course_id int UNSIGNED NOT NULL,
-  customer_id int UNSIGNED NOT NULL,
-  customer_name_var varchar(255) NOT NULL,
+  tbl_courses_id int UNSIGNED NOT NULL,
+  tbl_courses_name_var varchar(255) NOT NULL,
+  tbl_customers_id int UNSIGNED NOT NULL,
+  tbl_customers_name_var varchar(255) NOT NULL,
   payment_tni tinyint(1) NOT NULL,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL,
-  FOREIGN KEY (course_id) REFERENCES tbl_course(id),
-  FOREIGN KEY (customer_id) REFERENCES tbl_customers(id)
+  FOREIGN KEY (tbl_courses_id) REFERENCES tbl_courses(id),
+  FOREIGN KEY (tbl_customers_id) REFERENCES tbl_customers(id)
   
 );
 

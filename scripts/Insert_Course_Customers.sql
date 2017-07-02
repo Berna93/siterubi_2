@@ -1,0 +1,1 @@
+INSERT INTO `tbl_course_customers`(`tbl_courses_id`, `tbl_courses_name_var`, `tbl_customers_id`, `tbl_customers_name_var`, `payment_tni`, `creation_date_dt`, `modification_date_dt`) VALUES (1, 'Astrologia', 3, 'Cliente 1', 0, NOW(), NOW())

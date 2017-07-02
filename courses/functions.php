@@ -3,12 +3,19 @@ require_once('../config.php');
 require_once(DBAPI);
 $courses = null;
 $course = null;
+$courseCustomers = null;
+$courseCustomer = null;
 /**
  *  Listagem de Clientes
  */
 function index() {
     global $courses;
     $courses = find_all('tbl_courses');
+}
+
+function indexCourseCustomers($column = null, $value = null) {
+  global $courseCustomers;
+  $courseCustomers = findByColumn('tbl_course_customers', $column, $value);
 }
 
 function search($id = null) {
