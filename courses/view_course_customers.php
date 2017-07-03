@@ -55,22 +55,40 @@ $(function() {
         <th>Nome do Inscrito</th>
         <th>Pagamento</th>
         <th>Incluído em</th>
-        <th>Excluir</th>
+        <th>Opções</th>
     </tr>
 </thead>
 <tbody>
+ <form action='payment.php' method='post'>
 <?php if ($courseCustomers) : ?>
 <?php foreach ($courseCustomers as $courseCustomer) : ?>
+
     <tr>
         <td><?php if(isset($courseCustomer['id'])) { echo $courseCustomer['id']; }  ?></td>
         <td><?php echo $courseCustomer['tbl_courses_name_var']; ?></td>
         <td><?php echo $courseCustomer['tbl_customers_name_var']; ?></td>
-        <td><?php echo $courseCustomer['payment_tni']; ?></td>
+        <td>
+         <?php if ($courseCustomer['payment_tni']==0) : ?>
+             <a href="#" class="btn btn-success <?php if ($courseCustomer['payment_tni']==1) echo "disabled"; ?>"" data-toggle="modal" data-target="#payment-modal-customer" data-payment="<?php echo $courseCustomer['payment_tni']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>">
+                                            <i class="fa fa-dollar"></i> Pagar
+              </a>
+        <?php else : ?>
+               <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#payment-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-payment="<?php echo $courseCustomer['payment_tni']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>">
+                                            <i class="fa fa-close"></i> Cancelar Pagamento
+              </a>
+
+        <?php endif; ?>
+
+        </td>
         <td><?php echo $courseCustomer['creation_date_dt']; ?></td>
-        <td> <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='1') echo "disabled"; ?>" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
+        <td> <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
-                                        </a> </td>
+                                        </a>
+
+
+        </td>
     </tr>
+
 <?php endforeach; ?>
 
 <?php else : ?>
@@ -78,6 +96,7 @@ $(function() {
         <td colspan="6">Nenhum registro encontrado.</td>
     </tr>
 <?php endif; ?>
+ </form>
 </tbody>
 </table>
 </div>

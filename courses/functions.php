@@ -29,6 +29,11 @@ function search($id = null) {
     $courses = find('tbl_courses', $id);
 }
 
+function searchById($table = null, $id = null) {
+   global $element;
+   $element = find($table, $id);
+}
+
 /**
  *  Cadastro de Cursos
  */
@@ -82,6 +87,20 @@ function edit() {
   } else {
     header('location: edit_course.php?id=' + $id);
   }
+}
+
+/**
+ *  Atualizacao/Edicao de Cliente
+ */
+function editPayment($courseCustomer = null) {
+  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+  if (!empty($courseCustomer)) {
+      $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+      update('tbl_course_customers', $courseCustomer['id'], $courseCustomer);
+      header('location: view_course_customers.php?id=' . $courseCustomer['tbl_courses_id']);
+    } else {
+
+    }
 }
 
 /**

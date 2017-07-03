@@ -36,6 +36,25 @@
   </div>
 </div> <!-- /.modal -->
 
+<!-- Modal de Delete do Cliente em Curso-->
+<div class="modal fade" id="payment-modal-customer" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Atualização de Pagamento</h4>
+      </div>
+      <div class="modal-body">
+        Deseja realmente atualizar o pagamento?
+      </div>
+      <div class="modal-footer">
+        <a id="confirm" class="btn btn-primary" href="#">Sim</a>
+        <a id="cancel" class="btn btn-default" data-dismiss="modal">N&atilde;o</a>
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
 <script type="text/javascript">
 
 /**
@@ -63,6 +82,27 @@ $('#delete-modal-customer').on('show.bs.modal', function (event) {
   var modal = $(this);
   modal.find('.modal-title').text('Excluir Inscrito #' + id);
   modal.find('#confirm').attr('href', 'deleteCustomer.php?id=' + id + '&courseId=' + courseId);
+})
+
+/**
+ * Passa os dados do cliente para o Modal, e atualiza o link para exclusão
+ */
+$('#payment-modal-customer').on('show.bs.modal', function (event) {
+
+  var button = $(event.relatedTarget);
+   var id = button.data('customer');
+   var payment = button.data('payment');
+
+  var modal = $(this);
+  //se for cancelar o pagamento
+  if(payment==1) {
+    modal.find('.modal-title').text('Cancelar Pagamento #' + id);
+    modal.find('#confirm').attr('href', 'payment.php?id=' + id + '&payment=' + payment);
+  } else {
+    modal.find('.modal-title').text('Realizar Pagamento #' + id);
+    modal.find('#confirm').attr('href', 'payment.php?id=' + id + '&payment=' + payment);
+  }
+
 })
 
 
