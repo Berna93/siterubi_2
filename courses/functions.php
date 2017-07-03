@@ -17,6 +17,7 @@ function index() {
 function indexCourseCustomers($column = null, $value = null) {
   global $courseCustomers;
   $courseCustomers = findByColumn('tbl_course_customers', $column, $value);
+
 }
 
 function findElementByColumn($table = null , $column = null, $value = null) {

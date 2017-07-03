@@ -32,8 +32,9 @@ $(function() {
                                         <form action='include_customer.php' method='post'>
                                           <label>Incluir Cliente:</label>
                                           <div class="form-group input-group">
-                                           <input type="hidden" name="courseId" class="form-control" value="<?php echo $_GET['id']; ?>" required>
-                                            <input type="text" name='incluirCliente' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
+                                           <input type="hidden" name="courseId" class="form-control" value="<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>">
+                                           <input type="hidden" name="courseName" class="form-control" value="<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_name_var']; ?>">
+                                            <input type="text" name='includeCustomer' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>
                                                 </button>
@@ -62,7 +63,6 @@ $(function() {
  <form action='payment.php' method='post'>
 <?php if ($courseCustomers) : ?>
 <?php foreach ($courseCustomers as $courseCustomer) : ?>
-
     <tr>
         <td><?php if(isset($courseCustomer['id'])) { echo $courseCustomer['id']; }  ?></td>
         <td><?php echo $courseCustomer['tbl_courses_name_var']; ?></td>
