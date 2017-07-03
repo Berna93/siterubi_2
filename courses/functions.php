@@ -5,6 +5,7 @@ $courses = null;
 $course = null;
 $courseCustomers = null;
 $courseCustomer = null;
+$element = null;
 /**
  *  Listagem de Clientes
  */
@@ -18,13 +19,18 @@ function indexCourseCustomers($column = null, $value = null) {
   $courseCustomers = findByColumn('tbl_course_customers', $column, $value);
 }
 
+function findElementByColumn($table = null , $column = null, $value = null) {
+  global $element;
+  $element  = findByColumn($table, $column, $value);
+}
+
 function search($id = null) {
     global $courses;
     $courses = find('tbl_courses', $id);
 }
 
 /**
- *  Cadastro de Clientes
+ *  Cadastro de Cursos
  */
 function add() {
   if (!empty($_POST['course'])) {
@@ -38,6 +44,23 @@ function add() {
     header('location: add_course.php');
   }
 }
+
+/**
+ *  Cadastro de Cliente em Curso
+ */
+function addCourseCustomer($customer = null) {
+  if (!empty($customer)) {
+
+    $today =
+      date_create('now', new DateTimeZone('America/Sao_Paulo'));
+    $customer['modification_date_dt'] = $customer['creation_date_dt'] = $today->format("Y-m-d H:i:s");
+
+    save('tbl_course_customers', $customer);
+    header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
+  }
+}
+
+
 
 /**
  *  Atualizacao/Edicao de Cliente
@@ -68,4 +91,13 @@ function delete($id = null) {
   global $course;
   $course = remove('tbl_courses', $id);
   header('location: view_course.php');
+}
+
+/**
+ *  Exclusão de um Cliente
+ */
+function deleteCustomer($id = null, $courseId = null) {
+  global $customer;
+  $customer = remove('tbl_course_customers', $id);
+  header('location: view_course_customers.php?id=' . $courseId);
 }

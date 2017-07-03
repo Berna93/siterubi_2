@@ -29,13 +29,13 @@ $(function() {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-4">
-                                        <form action='' method='post'>
+                                        <form action='include_customer.php' method='post'>
                                           <label>Incluir Cliente:</label>
                                           <div class="form-group input-group">
-
+                                           <input type="hidden" name="courseId" class="form-control" value="<?php echo $_GET['id']; ?>" required>
                                             <input type="text" name='incluirCliente' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
+                                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -55,6 +55,7 @@ $(function() {
         <th>Nome do Inscrito</th>
         <th>Pagamento</th>
         <th>Incluído em</th>
+        <th>Excluir</th>
     </tr>
 </thead>
 <tbody>
@@ -66,6 +67,9 @@ $(function() {
         <td><?php echo $courseCustomer['tbl_customers_name_var']; ?></td>
         <td><?php echo $courseCustomer['payment_tni']; ?></td>
         <td><?php echo $courseCustomer['creation_date_dt']; ?></td>
+        <td> <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='1') echo "disabled"; ?>" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
+                                            <i class="fa fa-trash"></i> Excluir
+                                        </a> </td>
     </tr>
 <?php endforeach; ?>
 

@@ -23,7 +23,7 @@ function findByColumn ($table = null, $column = null, $value = null) {
 
     try {
       if ($value) {
-        $sql = "SELECT * FROM " . $table . " WHERE " . $column . " = " . $value;
+        $sql = "SELECT * FROM " . $table . " WHERE " . $column . " LIKE '%" . $value . "%' ORDER BY " . $column . " ASC LIMIT 1";
         $result = $database->query($sql);
 
         if ($result->num_rows > 0) {
