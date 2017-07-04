@@ -51,6 +51,45 @@ function findByColumn ($table = null, $column = null, $value = null) {
     return $found;
 }
 
+function findByColumnNumber ($table = null, $column = null, $value = null) {
+    $database = open_database();
+    $found = null;
+
+    try {
+      if ($value) {
+        $sql = "SELECT * FROM " . $table . " WHERE " . $column . " = " . $value;
+        $result = $database->query($sql);
+
+        /* Metodo alternativo*/
+        $found = array();
+        while ($row = $result->fetch_assoc()) {
+          array_push($found, $row);
+          }
+
+        // if ($result->num_rows > 0) {
+        //   $found = $result->fetch_assoc();
+        // }
+
+      } else {
+
+        $sql = "SELECT * FROM " . $table;
+        $result = $database->query($sql);
+
+        /* Metodo alternativo*/
+        $found = array();
+        while ($row = $result->fetch_assoc()) {
+          array_push($found, $row);
+          }
+
+      }
+    } catch (Exception $e) {
+      $_SESSION['message'] = $e->GetMessage();
+      $_SESSION['type'] = 'danger';
+  }
+
+    close_database($database);
+    return $found;
+}
 /**
  *  Pesquisa um Registro pelo ID em uma Tabela
  */

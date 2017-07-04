@@ -6,6 +6,7 @@ $course = null;
 $courseCustomers = null;
 $courseCustomer = null;
 $element = null;
+$elements = null;
 /**
  *  Listagem de Clientes
  */
@@ -23,6 +24,11 @@ function indexCourseCustomers($column = null, $value = null) {
 function findElementByColumn($table = null , $column = null, $value = null) {
   global $element;
   $element  = findByColumn($table, $column, $value);
+}
+
+function findElementByColumnNumber($table = null , $column = null, $value = null) {
+  global $elements;
+  $elements  = findByColumnNumber($table, $column, $value);
 }
 
 function search($id = null) {

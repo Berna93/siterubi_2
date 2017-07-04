@@ -43,6 +43,9 @@ $(function() {
 
                                         </form>
                                         </div>
+                                        <div class="col-lg-12" align="right">
+                        <a href="<?php echo BASEURL; ?>download/download.php?courseId=<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
+                    </div>
 
                                         <div class="container">
         <div class="row">
