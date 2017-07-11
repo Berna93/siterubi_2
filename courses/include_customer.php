@@ -15,7 +15,8 @@
     indexCourseCustomers('tbl_courses_id', $customer['tbl_courses_id']);
     $foundKey = array_search($customer['tbl_customers_name_var'],array_column($courseCustomers, 'tbl_customers_name_var'));
 
-    if(!$foundKey) {
+
+    if($foundKey===false) {
        addCourseCustomer($customer);
     } else {
        $_SESSION['message'] = 'Não foi possível realizar esta operação. Cliente já inserido neste curso.';

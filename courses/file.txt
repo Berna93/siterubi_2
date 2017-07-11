@@ -1,1 +1,1 @@
-INSERT INTO tbl_course_customers(tbl_courses_id,tbl_courses_name_var,tbl_customers_id,tbl_customers_name_var,payment_tni,creation_date_dt,modification_date_dt) VALUES ('9','Tarot','4','Cliente 2','0','2017-07-10 22:59:51','2017-07-10 22:59:51');
+INSERT INTO tbl_course_customers(tbl_courses_id,tbl_courses_name_var,tbl_customers_id,tbl_customers_name_var,payment_tni,creation_date_dt,modification_date_dt) VALUES ('6','Kabbalah Hermética','4','Cliente 2','0','2017-07-10 23:21:42','2017-07-10 23:21:42');
