@@ -154,14 +154,14 @@ function save($table = null, $data = null) {
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
   // GRAVAR SAIDA EM ARQUIVO
-  ob_start();
+/*  ob_start();
   echo $sql;
 
   $content = ob_get_contents();
 
   $f = fopen("file.txt", "w");
   fwrite($f, $content);
-  fclose($f);
+  fclose($f);*/
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
@@ -212,6 +212,7 @@ function remove( $table = null, $id = null ) {
       $sql = "DELETE FROM " . $table . " WHERE id = " . $id;
       $result = $database->query($sql);
       if ($result = $database->query($sql)) {
+
         $_SESSION['message'] = "Registro Removido com Sucesso.";
         $_SESSION['type'] = 'success';
       }

@@ -53,6 +53,7 @@ function add() {
 
     save('tbl_courses', $course);
     header('location: add_course.php');
+    die();
   }
 }
 
@@ -84,7 +85,9 @@ function edit() {
       $course = $_POST['course'];
       $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
       update('tbl_courses', $id, $course);
-      header('location: edit_course.php?id=' + $id);
+      //header('location: edit_course.php?id=' + $id);
+      header('location: view_course.php');
+      die();
     } else {
       global $course;
       $course = find('tbl_courses', $id);
