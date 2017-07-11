@@ -30,6 +30,7 @@ function add() {
 
     save('tbl_customers', $customer);
     header('location: add_customer.php');
+    die();
   }
 }
 
@@ -45,6 +46,8 @@ function edit() {
       $customer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
       update('tbl_customers', $id, $customer);
       //header('location: add_customer.php');
+      header('location: view_customer.php');
+      die();
     } else {
       global $customer;
       $customer = find('tbl_customers', $id);
