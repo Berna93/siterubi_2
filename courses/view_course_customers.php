@@ -28,6 +28,14 @@ $(function() {
                         </div>
                         <div class="panel-body">
                             <div class="row">
+
+                            <?php if (!empty($_SESSION['message'])) : ?>
+                              <div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $_SESSION['message']; ?>
+                              </div>
+                              <?php unset($_SESSION['message']); ?>
+                            <?php endif; ?>
                                 <div class="col-lg-4">
                                         <form action='include_customer.php' method='post'>
                                           <label>Incluir Cliente:</label>
