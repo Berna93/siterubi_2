@@ -154,14 +154,14 @@ function save($table = null, $data = null) {
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
   // GRAVAR SAIDA EM ARQUIVO
-  // ob_start();
-  // echo $sql;
+  ob_start();
+  echo $sql;
 
-  // $content = ob_get_contents();
+  $content = ob_get_contents();
 
-  // $f = fopen("file.txt", "w");
-  // fwrite($f, $content);
-  // fclose($f);
+  $f = fopen("file.txt", "w");
+  fwrite($f, $content);
+  fclose($f);
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';

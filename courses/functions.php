@@ -17,8 +17,7 @@ function index() {
 
 function indexCourseCustomers($column = null, $value = null) {
   global $courseCustomers;
-  $courseCustomers = findByColumn('tbl_course_customers', $column, $value);
-
+  $courseCustomers = findByColumnNumber('tbl_course_customers', $column, $value);
 }
 
 function findElementByColumn($table = null , $column = null, $value = null) {
@@ -49,7 +48,7 @@ function add() {
 
     $today =
       date_create('now', new DateTimeZone('America/Sao_Paulo'));
-    $course = $_POST['customer'];
+    $course = $_POST['course'];
     $course['modification_date_dt'] = $course['creation_date_dt'] = $today->format("Y-m-d H:i:s");
 
     save('tbl_courses', $course);

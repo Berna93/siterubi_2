@@ -1,7 +1,10 @@
 <?php
 include('../session.php');
 ?>
-<?php require_once '../config.php'; ?>
+<?php
+  require_once('functions.php');
+  add();
+?>
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>

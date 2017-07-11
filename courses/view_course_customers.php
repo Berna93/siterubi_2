@@ -3,7 +3,7 @@ include('../session.php');
 ?>
 <?php
     require_once('functions.php');
-    indexCourseCustomers('tbl_courses_id', $course['id']);
+    indexCourseCustomers('tbl_courses_id', $_GET['id']);
 ?>
 <?php include(HEADER_TEMPLATE); ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
@@ -32,8 +32,7 @@ $(function() {
                                         <form action='include_customer.php' method='post'>
                                           <label>Incluir Cliente:</label>
                                           <div class="form-group input-group">
-                                           <input type="hidden" name="courseId" class="form-control" value="<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>">
-                                           <input type="hidden" name="courseName" class="form-control" value="<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_name_var']; ?>">
+                                           <input type="hidden" name="courseId" class="form-control" value="<?php echo $_GET['id']; ?>">
                                             <input type="text" name='includeCustomer' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>
