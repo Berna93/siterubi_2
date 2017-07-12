@@ -16,7 +16,6 @@ function search($id = null) {
     $customers = find('tbl_customers', $id);
 }
 
-
 /**
  *  Cadastro de Clientes
  */

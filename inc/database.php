@@ -51,6 +51,32 @@ function findByColumn ($table = null, $column = null, $value = null) {
     return $found;
 }
 
+function findByString ($table = null, $column = null, $value = null) {
+
+   $database = open_database();
+    $found = null;
+
+    try {
+      if ($value) {
+        $sql = "SELECT * FROM " . $table . " WHERE " . $column . " LIKE '%" . $value . "%' ORDER BY " . $column;
+        $result = $database->query($sql);
+
+         $found = array();
+        while ($row = $result->fetch_assoc()) {
+          array_push($found, $row);
+          }
+
+      }
+    } catch (Exception $e) {
+      $_SESSION['message'] = $e->GetMessage();
+      $_SESSION['type'] = 'danger';
+  }
+
+    close_database($database);
+    return $found;
+
+}
+
 function findByColumnNumber ($table = null, $column = null, $value = null) {
     $database = open_database();
     $found = null;

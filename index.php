@@ -1,7 +1,12 @@
 <?php
 include('session.php');
 ?>
-<?php require_once 'config.php'; ?>
+
+<?php
+  require_once('dashboard/functions.php');
+  countCustomers();
+  countCoursesOpen();
+?>
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
@@ -69,7 +74,7 @@ include('session.php');
                      <i class="glyphicon glyphicon-user"></i>
                 </div>
                 <div class="text">
-                    <var>147</var>
+                    <var><?php if(isset($counterCustomers)) { echo $counterCustomers; } else { echo 0;} ?></var>
                     <label class="text-muted">clientes registrados</label>
                 </div>
 
@@ -93,7 +98,7 @@ include('session.php');
                      <i class="fa fa-fw fa-graduation-cap"></i>
                 </div>
                 <div class="text">
-                    <var>3</var>
+                    <var><?php if(isset($coursesOpen)) { echo $coursesOpen; } else { echo 0;} ?></var>
                     <label class="text-muted">cursos em aberto</label>
                 </div>
 
