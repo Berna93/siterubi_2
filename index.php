@@ -4,8 +4,7 @@ include('session.php');
 
 <?php
   require_once('dashboard/functions.php');
-  countCustomers();
-  countCoursesOpen();
+  initFunctions();
 ?>
 <?php require_once DBAPI; ?>
 
@@ -128,34 +127,25 @@ include('session.php');
     <section class="">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-12">
-                    <div class="sectionTitle">Preenchimento dos cursos</div>
+                    <div class="sectionTitle">Preenchimento dos cursos (eventos mais próximos)</div>
                     <div id="skillgraph" class="panel panel-default row">
                         <div class='panel-title text-Left '></div>
+                        <?php if ($coursesFill) : ?>
+                        <?php foreach ($coursesFill as $courseFill) : ?>
                         <div class='row skill-row'>
-                            <span class='skillLabel'>Astrologia</span>
+                            <span class='skillLabel'><?php $date = date_create($courseFill['event_date_dt']); echo $courseFill['name_var'] . " - Data do Evento: " . date_format($date, 'd/m/Y'); ?></span>
                             <span class='skillData-Wrapper'>
-                        <span class='skillData bg-blue text-center' data-percent='80'>80%</span></span>
+                        <span class='skillData bg-blue text-center' data-percent='<?php echo ($courseFill['numSlotsTaken_int']/$courseFill['numSlots_int']*100); ?>'> <?php echo ($courseFill['numSlotsTaken_int']/$courseFill['numSlots_int']*100); ?>%</span></span>
 
                         </div>
-                        <div class='row skill-row'>
-                            <span class='skillLabel'>Kabbalah </span>
-                            <span class='skillData-Wrapper'>
-                            <span class='skillData bg-rust' data-percent='60'>60%</span></span>
-                        </div>
-                        <div class='row skill-row'>
-                            <span class='skillLabel'>Reiki</span>
-                            <span class='skillData-Wrapper'>
-                            <span class='skillData bg-blue' data-percent='40'>40%</span></span>
-                        </div>
-                        <div class='row skill-row'>
-                            <span class='skillLabel'>Runas</span>
-                            <span class='skillData-Wrapper'>
-                            <span class='skillData bg-rust' data-percent='20'>20%</span></span>
-                        </div>
+                         <?php endforeach; ?>
+                      <?php endif; ?>
                     </div>
 
                 </div>
+
             </div>
              <div class="row">
                     <div class="col-sm-12 col-md-10 well">
