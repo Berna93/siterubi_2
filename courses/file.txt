@@ -1,0 +1,1 @@
+UPDATE tbl_courses SET id='18',name_var='Xamanismo',professor_var='João da Silva',numSlots_int='31313',numSlotsTaken_int='4',price_var='131331',event_date_dt='0000-00-00',event_hour_var='',contract_var='asas',status_var='Aberto',creation_date_dt='2017-07-11',modification_date_dt='2017-07-12 00:28:29' WHERE id=18;

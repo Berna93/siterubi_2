@@ -101,6 +101,17 @@ function edit() {
 /**
  *  Atualizacao/Edicao de Cliente
  */
+function editNumSlots($course = null) {
+  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+  if (isset($course)) {
+      $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+      update('tbl_courses', $course['id'], $course);
+  }
+}
+
+/**
+ *  Atualizacao/Edicao de Cliente
+ */
 function editPayment($courseCustomer = null) {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
   if (!empty($courseCustomer)) {
