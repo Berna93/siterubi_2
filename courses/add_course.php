@@ -87,12 +87,6 @@ include('../session.php');
 
                                     </div>
 
-                                        <label>Contrato</label>
-                                        <textarea class="form-control" rows="30" name="course['contract_var']"  data-error="É preciso informar um contrato padrão para este curso." required></textarea>
-                                        <div class="help-block with-errors"></div>
-
-
-
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
 

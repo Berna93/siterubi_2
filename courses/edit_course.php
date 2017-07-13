@@ -46,6 +46,13 @@ include('../session.php');
                                             <input type="text" class="form-control" name="course['name_var']" value="<?php echo $course['name_var']; ?>" required>
                                              </div>
                                          </div>
+                                          <div class="form-group">
+                                            <label>Status</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
+                                            <input type="text" class="form-control" name="course['status_var']" value="<?php echo $course['status_var']; ?>" disabled>
+                                             </div>
+                                         </div>
                                         <div class="form-group">
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
@@ -86,10 +93,6 @@ include('../session.php');
                                         </div>
 
                                     </div>
-
-                                        <label>Contrato</label>
-                                        <textarea class="form-control" rows="30" name="course['contract_var']" data-error="É preciso informar um contrato padrão para este curso." required> <?php echo $course['contract_var']; ?>  </textarea>
-                                        <div class="help-block with-errors"></div>
 
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
