@@ -58,7 +58,7 @@ function findCoursesFill() {
 
     try {
 
-        $sql = "SELECT * FROM tbl_courses WHERE status_var='Aberto' ORDER BY event_date_dt DESC LIMIT 10;";
+        $sql = "SELECT * FROM tbl_courses WHERE status_var='Aberto' ORDER BY event_date_dt ASC LIMIT 10;";
         $result = $database->query($sql);
 
          $found = array();

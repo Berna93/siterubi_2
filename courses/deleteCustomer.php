@@ -5,7 +5,6 @@
     $course = $courses;
     $newSlots = intval($courses['numSlotsTaken_int'])-1;
     $course['numSlotsTaken_int'] = $newSlots;
-
     editNumSlots($course);
     deleteCustomer($_GET['id'],$_GET['courseId']);
   } else {
