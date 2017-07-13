@@ -1,1 +1,0 @@
-UPDATE tbl_courses SET name_var='Tarot',professor_var='Edivaldo jr',numSlots_int='33',price_var='150,00',event_date_dt='0000-00-00',contract_var=' asasas  ',modification_date_dt='2017-07-12 19:54:07' WHERE id=9;

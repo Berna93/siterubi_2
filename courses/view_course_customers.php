@@ -90,7 +90,7 @@ $(function() {
         <?php endif; ?>
 
         </td>
-        <td><?php echo $courseCustomer['creation_date_dt']; ?></td>
+        <td><?php $date = date_create($courseCustomer['creation_date_dt']); echo date_format($date, 'd/m/Y'); ?></td>
         <td> <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
