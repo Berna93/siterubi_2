@@ -133,6 +133,22 @@ function delete($id = null) {
 }
 
 /**
+ *  Fechamento de um Curso
+ */
+function close($id = null) {
+  $course = find('tbl_courses', $id);
+  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+  var_dump($course);
+  if(isset($course)) {
+    $course['status_var'] = 'Fechado';
+    $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+    update('tbl_courses', $course['id'], $course);
+    header('location: view_course.php');
+  }
+
+}
+
+/**
  *  Exclusão de um Cliente
  */
 function deleteCustomer($id = null, $courseId = null) {
