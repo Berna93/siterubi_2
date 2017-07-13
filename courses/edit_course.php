@@ -125,7 +125,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'dd/mm/yyyy'
+            format: 'yyyy-mm-dd'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field
