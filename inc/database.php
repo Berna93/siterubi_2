@@ -242,15 +242,6 @@ function update($table = null, $id = 0, $data = null) {
   $sql .= " SET $items";
   $sql .= " WHERE id=" . $id . ";";
 
-    ob_start();
-  echo $sql;
-
-  $content = ob_get_contents();
-
-  $f = fopen("file.txt", "w");
-  fwrite($f, $content);
-  fclose($f);
-
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro atualizado com sucesso.';

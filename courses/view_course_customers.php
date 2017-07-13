@@ -4,6 +4,7 @@ include('../session.php');
 <?php
     require_once('functions.php');
     indexCourseCustomers('tbl_courses_id', $_GET['id']);
+    search($_GET['id']);
 ?>
 <?php include(HEADER_TEMPLATE); ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
@@ -28,7 +29,9 @@ $(function() {
                         </div>
                         <div class="panel-body">
                             <div class="row">
-
+                              <div class="col-lg-12" align="right">
+                        <a href="<?php echo BASEURL; ?>download/download.php?courseId=<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download Inscritos</a>
+                    </div>
                             <?php if (!empty($_SESSION['message'])) : ?>
                               <div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -49,10 +52,22 @@ $(function() {
                                         </div>
 
                                         </form>
+                                         <div class="form-group">
+                                            <label>Quantidade de Vagas</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
+                                            <input type="text" class="form-control" name="courses['numSlots_int']" value="<?php echo $courses['numSlots_int']; ?>" disabled>
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                            <label>Quantidade de Vagas Preenchidas</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
+                                            <input type="text" class="form-control" name="courses['numSlotsTaken_int']" value="<?php echo $courses['numSlotsTaken_int']; ?>" disabled>
+                                             </div>
+                                         </div>
                                         </div>
-                                        <div class="col-lg-12" align="right">
-                        <a href="<?php echo BASEURL; ?>download/download.php?courseId=<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
-                    </div>
+
 
                                         <div class="container">
         <div class="row">
