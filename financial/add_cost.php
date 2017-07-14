@@ -75,9 +75,10 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="cost[deadline_dt]" />
+                                            <input type="text" class="form-control" name="cost[deadline_dt]" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
 
                                         </div>
+                                        <div class="help-block with-errors"></div>
 
                                     </div>
 

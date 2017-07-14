@@ -50,29 +50,33 @@ include('../session.php');
                                             <label>Nome do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" name="course['name_var']" required>
+                                            <input type="text" class="form-control" name="course['name_var']" placeholder="Digite o nome do curso..." data-error="Por favor, informe um nome de curso válido." required>
                                              </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
                                         <div class="form-group">
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" name="course['professor_var']" required>
+                                            <input type="text" class="form-control" name="course['professor_var']" placeholder="Digite o nome do professor..."  data-error="Por favor, informe um nome válido." required>
                                              </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="text" class="form-control" name="course['numSlots_int']" required>
+                                            <input type="number" class="form-control" name="course['numSlots_int']" placeholder="Digite a quantidade de vagas ..."  data-error="Por favor, informe uma quantidade válida." required>
                                              </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="course['price_int']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                            <input type="number" class="form-control" name="course['price_int']" placeholder="Digite o valor (individual) do curso ..."  data-error="Por favor, informe um valor válido." required>
                                              </div>
+                                              <div class="help-block with-errors"></div>
                                          </div>
 
 
@@ -81,9 +85,9 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="course['event_date_dt']" />
-
+                                            <input type="text" class="form-control" name="course['event_date_dt']" placeholder="Informe a data do curso ..."  data-error="Por favor, informe uma data válida." required/>
                                         </div>
+                                         <div class="help-block with-errors"></div>
 
                                     </div>
 
