@@ -186,7 +186,7 @@ function getCosts() {
 
     try {
 
-        $sql = "SELECT SUM(value_int), MONTH(deadline_dt), YEAR(deadline_dt) FROM tbl_costs GROUP BY MONTH(deadline_dt)";
+        $sql = "SELECT SUM(value_int) as 'value', MONTH(deadline_dt) as 'month', YEAR(deadline_dt) as 'year' FROM tbl_costs GROUP BY MONTH(deadline_dt)";
         $result = $database->query($sql);
 
         /* Metodo alternativo*/
@@ -215,7 +215,10 @@ function getIncomes() {
 
     try {
 
-        $sql = "SELECT SUM(value_int), MONTH(deadline_dt), YEAR(deadline_dt) FROM tbl_costs GROUP BY MONTH(deadline_dt)";
+        $sql = "SELECT SUM(price_int) as 'value', MONTH(payment_date_dt) as 'month', YEAR(payment_date_dt) as 'year' FROM tbl_courses
+          INNER JOIN tbl_course_customers on tbl_courses.id = tbl_course_customers.tbl_courses_id
+          WHERE tbl_course_customers.payment_date_dt is not null and tbl_course_customers.payment_date_dt!='0000-00-00'
+          GROUP BY MONTH(tbl_course_customers.payment_date_dt)";
         $result = $database->query($sql);
 
         /* Metodo alternativo*/
@@ -235,6 +238,28 @@ function getIncomes() {
 
     close_database($database);
     return $found;
+
+}
+
+function deleteCashFlows() {
+
+  $database = open_database();
+
+    try {
+
+        $sql = "DELETE FROM tbl_cash_flow";
+        $result = $database->query($sql);
+
+        // if ($result->num_rows > 0) {
+        //   $found = $result->fetch_assoc();
+        //
+
+    } catch (Exception $e) {
+      $_SESSION['message'] = $e->GetMessage();
+      $_SESSION['type'] = 'danger';
+  }
+
+    close_database($database);
 
 }
 

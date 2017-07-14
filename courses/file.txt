@@ -1,1 +1,0 @@
-INSERT INTO tbl_courses(name_var,professor_var,numSlots_int,price_int,event_date_dt,creation_date_dt,modification_date_dt) VALUES ('das','João da Silva','31313','150','25/07/2017','2017-07-14 12:37:20','2017-07-14 12:37:20');

@@ -1,20 +1,59 @@
 <?php
 require_once('../config.php');
 require_once(DBAPI);
-$groupedCosts = null;
-$groupedIncomes = null;
+
 $cost = null;
+$cash_flow = null;
+$month_flow = null;
 
 function index() {
     global $costs;
     $costs = find_all('tbl_costs');
 }
 
+function getCashFlow() {
+    global $cash_flow;
+    global $month_flow;
+    $cash_flow = find_all('tbl_cash_flow');
+    $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+
+    foreach($cash_flow as $flow) {
+       if($flow['month_int']==intval(date('m')) && $flow['year_int']==date('Y')) {
+            $month_flow = $flow;
+       }
+
+    }
+
+    ob_start();
+  echo var_dump(date('Y'));
+
+  $content = ob_get_contents();
+
+  $f = fopen("file.txt", "w");
+  fwrite($f, $content);
+  fclose($f);
+}
+
 function calculate() {
-    global $groupedCosts;
-    global $groupedIncomes;
     $groupedCosts = getCosts();
     $groupedIncomes = getIncomes();
+
+    deleteCashFlows();
+
+    foreach($groupedCosts as $cost) {
+        foreach($groupedIncomes as $income) {
+            if($cost['month']==$income['month'] && $cost['year']==$income['year']) {
+                 $insert = array(
+                    'month_int' => $cost['month'],
+                    'year_int' =>  $cost['year'],
+                    'costs_int' => $cost['value'],
+                    'income_int' => $income['value'],
+                    'balance_int' => intval($income['value'])-intval($cost['value']),
+                    );
+                 addCashFlow($insert);
+            }
+        }
+    }
 }
 
 /**
@@ -31,6 +70,15 @@ function add() {
     save('tbl_costs', $cost);
     header('location: add_cost.php');
     die();
+  }
+}
+
+function addCashFlow($data = null) {
+
+  if (!empty($data)) {
+    save('tbl_cash_flow', $data);
+    //header('location: add_cost.php');
+    //die();
   }
 }
 

@@ -1,10 +1,10 @@
 CREATE TABLE tbl_cash_flow (
   id int UNSIGNED NOT NULL,
-  month_int INT NULL,
-  year_int INT NULL,
-  costs_int INT NULL,
-  income_int INT NULL,
-  balance_int INT NULL
+  month_int INT DEFAULT 0 NOT NULL,
+  year_int INT DEFAULT 0 NOT NULL,
+  costs_int INT DEFAULT 0 NOT NULL,
+  income_int INT DEFAULT 0 NOT NULL,
+  balance_int INT DEFAULT 0 NULL
   
 );
 
