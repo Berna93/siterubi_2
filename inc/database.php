@@ -206,14 +206,14 @@ function save($table = null, $data = null) {
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
   // GRAVAR SAIDA EM ARQUIVO
-  ob_start();
+ /* ob_start();
   echo $sql;
 
   $content = ob_get_contents();
 
   $f = fopen("file.txt", "w");
   fwrite($f, $content);
-  fclose($f);
+  fclose($f);*/
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
@@ -233,6 +233,7 @@ function save($table = null, $data = null) {
 function update($table = null, $id = 0, $data = null) {
   $database = open_database();
   $items = null;
+
   foreach ($data as $key => $value) {
     $items .= trim($key, "'") . "='$value',";
   }
@@ -241,6 +242,8 @@ function update($table = null, $id = 0, $data = null) {
   $sql  = "UPDATE " . $table;
   $sql .= " SET $items";
   $sql .= " WHERE id=" . $id . ";";
+
+
 
   try {
     $database->query($sql);

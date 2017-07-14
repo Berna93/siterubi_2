@@ -5,6 +5,7 @@ CREATE TABLE tbl_course_customers (
   tbl_customers_id int UNSIGNED NOT NULL,
   tbl_customers_name_var varchar(255) NOT NULL,
   payment_tni tinyint(1) NOT NULL,
+  payment_date_dt date NULL DEFAULT NULl,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL,
   FOREIGN KEY (tbl_courses_id) REFERENCES tbl_courses(id),

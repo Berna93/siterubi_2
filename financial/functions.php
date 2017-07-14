@@ -9,6 +9,11 @@ function index() {
     $costs = find_all('tbl_costs');
 }
 
+function calculate() {
+    global $costs;
+    $costs = find_all('tbl_costs');
+}
+
 /**
  *  Cadastro de Despesa
  */
@@ -38,7 +43,7 @@ function edit() {
       $cost['modification_date_dt'] = $now->format("Y-m-d H:i:s");
       update('tbl_costs', $id, $cost);
       //header('location: edit_course.php?id=' + $id);
-      header('location: view_course.php');
+      header('location: view_cost.php');
       die();
     } else {
       global $cost;

@@ -112,8 +112,9 @@ function editNumSlots($course = null) {
 /**
  *  Atualizacao/Edicao de Cliente
  */
-function editPayment($courseCustomer = null) {
+function editPayment($courseCustomer) {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+
   if (!empty($courseCustomer)) {
       $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
       update('tbl_course_customers', $courseCustomer['id'], $courseCustomer);
