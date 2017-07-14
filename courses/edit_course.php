@@ -78,7 +78,7 @@ include('../session.php');
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="course['price_var']" value="<?php echo $course['price_var']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="text" class="form-control" name="course['price_int']" value="<?php echo $course['price_int']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                          </div>
 

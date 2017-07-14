@@ -71,7 +71,7 @@ include('../session.php');
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="course['price_var']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                            <input type="text" class="form-control" name="course['price_int']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
                                              </div>
                                          </div>
 
@@ -120,7 +120,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'dd/mm/yyyy'
+            format: 'yyyy-mm-dd'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field

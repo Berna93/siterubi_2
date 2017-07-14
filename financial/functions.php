@@ -1,7 +1,8 @@
 <?php
 require_once('../config.php');
 require_once(DBAPI);
-$costs = null;
+$groupedCosts = null;
+$groupedIncomes = null;
 $cost = null;
 
 function index() {
@@ -10,8 +11,10 @@ function index() {
 }
 
 function calculate() {
-    global $costs;
-    $costs = find_all('tbl_costs');
+    global $groupedCosts;
+    global $groupedIncomes;
+    $groupedCosts = getCosts();
+    $groupedIncomes = getIncomes();
 }
 
 /**

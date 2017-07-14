@@ -180,6 +180,64 @@ function find( $table = null, $id = null ) {
     return $found;
 }
 
+function getCosts() {
+    $database = open_database();
+    $found = null;
+
+    try {
+
+        $sql = "SELECT SUM(value_int), MONTH(deadline_dt), YEAR(deadline_dt) FROM tbl_costs GROUP BY MONTH(deadline_dt)";
+        $result = $database->query($sql);
+
+        /* Metodo alternativo*/
+        $found = array();
+        while ($row = $result->fetch_assoc()) {
+          array_push($found, $row);
+          }
+
+        // if ($result->num_rows > 0) {
+        //   $found = $result->fetch_assoc();
+        //
+
+    } catch (Exception $e) {
+      $_SESSION['message'] = $e->GetMessage();
+      $_SESSION['type'] = 'danger';
+  }
+
+    close_database($database);
+    return $found;
+
+}
+
+function getIncomes() {
+    $database = open_database();
+    $found = null;
+
+    try {
+
+        $sql = "SELECT SUM(value_int), MONTH(deadline_dt), YEAR(deadline_dt) FROM tbl_costs GROUP BY MONTH(deadline_dt)";
+        $result = $database->query($sql);
+
+        /* Metodo alternativo*/
+        $found = array();
+        while ($row = $result->fetch_assoc()) {
+          array_push($found, $row);
+          }
+
+        // if ($result->num_rows > 0) {
+        //   $found = $result->fetch_assoc();
+        //
+
+    } catch (Exception $e) {
+      $_SESSION['message'] = $e->GetMessage();
+      $_SESSION['type'] = 'danger';
+  }
+
+    close_database($database);
+    return $found;
+
+}
+
 /**
  *  Pesquisa Todos os Registros de uma Tabela
  */
@@ -206,7 +264,7 @@ function save($table = null, $data = null) {
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
   // GRAVAR SAIDA EM ARQUIVO
- /* ob_start();
+/*  ob_start();
   echo $sql;
 
   $content = ob_get_contents();

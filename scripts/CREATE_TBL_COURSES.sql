@@ -4,7 +4,7 @@ CREATE TABLE tbl_courses (
   professor_var varchar(14) NOT NULL,
   numSlots_int int NOT NULL,
   numSlotsTaken_int int NOT NULL,
-  price_var varchar(15) NULL,
+  price_int int NOT NULL,
   event_date_dt date NOT NULL,
   event_hour_var varchar(10) NOT NULL,
   contract_var varchar(5000) NOT NULL,
