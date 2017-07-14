@@ -81,6 +81,7 @@
                     <ul id="submenu-3" class="collapse">
                         <li><a href="<?php echo BASEURL; ?>financial/cash_flow.php"><i class="fa fa-angle-double-right"></i> Fluxo de Caixa</a></li>
                         <li><a href="<?php echo BASEURL; ?>financial/add_cost.php"><i class="fa fa-angle-double-right"></i> Cadastrar despesa</a></li>
+                         <li><a href="<?php echo BASEURL; ?>financial/view_cost.php"><i class="fa fa-angle-double-right"></i> Visualizar despesa</a></li>
                     </ul>
                 </li>
 

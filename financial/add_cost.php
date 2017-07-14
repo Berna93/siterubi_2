@@ -11,6 +11,11 @@ include('../session.php');
 <?php include(HEADER_TEMPLATE); ?>
 <?php $db = open_database(); ?>
 
+<!-- Include Bootstrap Datepicker -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
 <?php if ($db) : ?>
 
@@ -37,10 +42,10 @@ include('../session.php');
 
                                           <label for="sel1">Selecione o tipo de despesa:</label>
                                           <select class="form-control " id="costType" name="cost['type_var']">
-                                            <option value="professor">Pagamento de Professor</option>
-                                            <option value="materiais">Materiais de Construção</option>
-                                            <option value="energia">Luz e Energia </option>
-                                            <option value="agua"> Água </option>
+                                            <option value="professor">Professor</option>
+                                            <option value="materiais">Materiais</option>
+                                            <option value="energia">Energia </option>
+                                            <option value="agua"> Agua </option>
                                           </select>
 
                                          </div>
@@ -64,6 +69,17 @@ include('../session.php');
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
+
+                                          <div class="form-group" >
+                                        <label>Vencimento da Despesa</label>
+
+                                        <div class="input-group input-append date" id="datePicker">
+                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input type="text" class="form-control" name="cost[deadline_dt]" />
+
+                                        </div>
+
+                                    </div>
 
 
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
@@ -90,5 +106,18 @@ include('../session.php');
             </div>
 
         <?php endif; ?>
+
+        <script>
+$(document).ready(function() {
+    $('#datePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#eventForm').formValidation('revalidateField', 'date');
+        });
+});
+</script>
 
         <?php include(FOOTER_TEMPLATE); ?>

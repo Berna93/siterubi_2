@@ -3,8 +3,9 @@ include('../session.php');
 ?>
 <?php
   require_once('functions.php');
-  add();
+  edit();
 ?>
+
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
@@ -15,28 +16,17 @@ include('../session.php');
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
-<style type="text/css">
-/**
- * Override feedback icon position
- * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
- */
-#eventForm .form-control-feedback {
-    top: 0;
-    right: -15px;
-}
-</style>
-
 <?php if ($db) : ?>
 
-<div class="row">
+ <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" align="center">
-                            <h4>Cadastro de Curso</h4>
+                            <h4>Cadastro de Despesa</h4>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                   <?php if (!empty($_SESSION['message'])) : ?>
+                              <?php if (!empty($_SESSION['message'])) : ?>
                               <div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <?php echo $_SESSION['message']; ?>
@@ -45,58 +35,56 @@ include('../session.php');
                             <?php endif; ?>
                                 <div class="col-lg-6">
 
-                                    <form role="form" action="add_course.php" data-toggle="validator" method="post">
-                                         <div class="form-group">
-                                            <label>Nome do Curso</label>
-                                            <div class="input-group input-append">
-                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" name="course['name_var']" required>
-                                             </div>
+                                    <form role="form" action="edit_cost.php?id=<?php echo $course['id']; ?>"  data-toggle="validator" method="post">
+
+                                       <div class="form-group">
+
+                                          <label for="sel1">Selecione o tipo de despesa:</label>
+                                          <select class="form-control " id="costType" name="cost['type_var']" value="<?php echo $cost['type_var']; ?>">
+                                            <option value="professor">Pagamento de Professor</option>
+                                            <option value="materiais">Materiais de Construção</option>
+                                            <option value="energia">Luz e Energia </option>
+                                            <option value="agua"> Água </option>
+                                          </select>
+
                                          </div>
-                                        <div class="form-group">
-                                            <label>Nome do Professor/Palestrante</label>
-                                            <div class="input-group input-append">
-                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" name="course['professor_var']" required>
-                                             </div>
+
+                                          <div class="form-group">
+
+                                          <label for="sel1">Depesa paga:</label>
+                                          <select class="form-control " id="payment" name="cost['payment_tni']" value="<?php echo $cost['payment_tni']; ?>">
+                                            <option value="1">Pagamento Realizado</option>
+                                            <option value="0">Aguardando Pagamento</option>
+                                          </select>
+
                                          </div>
+
                                          <div class="form-group">
-                                            <label>Quantidade de Vagas</label>
-                                            <div class="input-group input-append">
-                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="text" class="form-control" name="course['numSlots_int']" required>
-                                             </div>
-                                         </div>
-                                         <div class="form-group">
-                                            <label>Valor do Curso</label>
+                                            <label>Valor da Despesa</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="course['price_var']" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                            <input type="text" class="form-control" name="cost['value_int']" value="<?php echo $cost['value_int']; ?>" placeholder="Digite o valor da despesa..." type="text"
+                                                  data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
+                                             <div class="help-block with-errors"></div>
                                          </div>
 
-
-                                        <div class="form-group" >
-                                        <label>Data do Curso</label>
+                                         <div class="form-group" >
+                                        <label>Vencimento da Despesa</label>
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="course['event_date_dt']" />
+                                            <input type="text" class="form-control" name="cost['deadline_dt']" value="<?php echo $cost['deadline_dt']; ?>" />
 
                                         </div>
 
-                                    </div>
-
-                                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                                         <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
-
-
-                                    </div>
-
-
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
+
+
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -108,19 +96,18 @@ include('../session.php');
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
 <?php else : ?>
-    <div class="alert alert-danger" role="alert">
-        <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
-    </div>
+     <div class="alert alert-danger" role="alert">
+                <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
+            </div>
 
-<?php endif; ?>
+        <?php endif; ?>
 
 <script>
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'dd/mm/yyyy'
+            format: 'yyyy-mm-dd'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field
@@ -128,5 +115,4 @@ $(document).ready(function() {
         });
 });
 </script>
-
-<?php include(FOOTER_TEMPLATE); ?>
+        <?php include(FOOTER_TEMPLATE); ?>

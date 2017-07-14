@@ -3,6 +3,7 @@ CREATE TABLE tbl_costs (
   type_var varchar(50) NOT NULL,
   value_int INT NOT NULL ,
   payment_tni tinyint(1) NOT NULL,
+  deadline_dt date NOT NULL,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL
 );
