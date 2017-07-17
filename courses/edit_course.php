@@ -97,10 +97,10 @@ include('../session.php');
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
 
-                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='1') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
+                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
-                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='1') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#close-modal" data-customer="<?php echo $course['id']; ?>">
+                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#close-modal" data-customer="<?php echo $course['id']; ?>">
                                             <i class="fa fa-close"></i> Fechar Curso
                                         </a>
 

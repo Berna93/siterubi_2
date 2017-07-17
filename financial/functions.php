@@ -99,10 +99,9 @@ function edit() {
     } else {
       global $cost;
       $cost = find('tbl_costs', $id);
-      header('location: edit_cost.php?id=' + $id);
     }
   } else {
-    header('location: edit_cost.php?id=' + $id);
+
   }
 }
 

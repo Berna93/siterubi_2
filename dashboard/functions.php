@@ -4,11 +4,13 @@ require_once(DBAPI);
 $coursesOpen = null;
 $counterCustomers = null;
 $coursesFill = null;
+$currentBalance = null;
 
 function initFunctions() {
   countCustomers();
   countCoursesOpen();
   coursesFill();
+  getBalance();
 }
 
 // Conta a quantidade de clientes existentes na base
@@ -35,5 +37,16 @@ function countCoursesOpen() {
 function coursesFill() {
     global $coursesFill;
     $coursesFill = findCoursesFill();
+}
+
+function getBalance() {
+    global $currentBalance;
+    $allBalance = find_all('tbl_cash_flow');
+
+    foreach($allBalance as $balance) {
+        if($balance['month_int']==intval(date('m')) && $balance['year_int']==date('Y')) {
+            $currentBalance = $balance;
+       }
+    }
 }
 ?>

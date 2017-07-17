@@ -91,10 +91,9 @@ function edit() {
     } else {
       global $course;
       $course = find('tbl_courses', $id);
-      header('location: edit_course.php?id=' + $id);
+
     }
   } else {
-    header('location: edit_course.php?id=' + $id);
   }
 }
 

@@ -77,7 +77,7 @@ include('../session.php');
                                             <input type="text" class="form-control" name="cost['deadline_dt']" value="<?php echo $cost['deadline_dt']; ?>" />
 
                                         </div>
-
+                                        <br>
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
                                     </form>

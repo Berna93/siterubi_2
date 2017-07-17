@@ -57,7 +57,7 @@ include('../session.php');
         <td class="actions text-right">
             <a href="view_course_customers.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-primary" <?php if($course['status_var']=='Fechado') echo "disabled"; ?>><i class="fa fa-user-plus"></i> Inscrições</a>
             <a href="edit_course.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
-             <a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
+             <a href="#" class="btn btn-sm btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
                 <i class="fa fa-trash"></i> Excluir
             </a>
         </td>
