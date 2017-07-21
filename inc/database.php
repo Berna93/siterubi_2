@@ -342,8 +342,6 @@ function update($table = null, $id = 0, $data = null) {
   $sql .= " SET $items";
   $sql .= " WHERE id=" . $id . ";";
 
-
-
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro atualizado com sucesso.';
@@ -383,16 +381,13 @@ function remove( $table = null, $id = null ) {
  */
 function removeInterests($idCustomer = null ) {
 
-  try {
+
       $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $stmt = $conn->prepare('DELETE FROM tbl_customer_interests WHERE tbl_customers_id=:term');
       $stmt->execute(array('term' => $idCustomer));
 
-  } catch(PDOException $e) {
-      echo 'ERROR: ' . $e->getMessage();
-  }
 
 }
 

@@ -4,6 +4,7 @@ include('../session.php');
 <?php
   require_once('functions.php');
   edit();
+  getInterests();
 ?>
 <?php require_once DBAPI; ?>
 
@@ -61,37 +62,18 @@ include('../session.php');
 
                                 <div class="form-group">
                                     <label>Interesses</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" <?php if ($customer['tarot_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['tarot_tni']" >Tarot
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                           <input type="checkbox" <?php if ($customer['cabala_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['cabala_tni']">Kabbalah
-                                       </label>
-                                   </div>
-                                   <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" <?php if ($customer['astrologia_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['astrologia_tni']">Astrologia
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" <?php if ($customer['umbanda_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['umbanda_tni']">Umbanda
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" <?php if ($customer['hermetismo_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['hermetismo_tni']">Hermetismo
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" <?php if ($customer['reiki_tni'] == 1) echo "checked='checked'"; ?> value="1" name="customer['reiki_tni']">Reiki
-                                    </label>
-                                </div>
-                            </div>
+                                            <?php if ($customerInterests) : ?>
+                                                <?php foreach ($customerInterests as $value) : ?>
+
+                                                    <div class="checkbox">
+                                                <label>
+                                                    <input type="hidden" name="interest['<?php echo $value['tbl_interests_id']; ?>']" value="0">
+                                                    <input type="checkbox" value="1" <?php if($value['isinterest_tni']==1) echo "checked"; ?> name="interest['<?php echo $value['tbl_interests_id']; ?>']"><?php echo $value['tbl_interests_id']; ?>
+                                                </label>
+                                            </div>
+
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
 
 
 
