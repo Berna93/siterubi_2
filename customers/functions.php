@@ -129,6 +129,7 @@ function edit() {
       $foundInterest = false;
 
       foreach($interests as $globalInt) {
+        $foundInterest = false;
         foreach($localInterests as $localInt) {
 
         //Caso o interesse ja esteja na tabela tbl_customer_interests, apenas copia todos os valores de
