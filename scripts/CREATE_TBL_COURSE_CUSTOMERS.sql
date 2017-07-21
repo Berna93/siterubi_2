@@ -8,8 +8,15 @@ CREATE TABLE tbl_course_customers (
   payment_date_dt date NULL DEFAULT NULl,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL,
-  FOREIGN KEY (tbl_courses_id) REFERENCES tbl_courses(id),
+  FOREIGN KEY (tbl_courses_id) REFERENCES tbl_courses(id)
+	 ON DELETE CASCADE
+         ON UPDATE CASCADE,
   FOREIGN KEY (tbl_customers_id) REFERENCES tbl_customers(id)
+ 	 ON DELETE CASCADE
+         ON UPDATE CASCADE,
+  FOREIGN KEY (tbl_customers_name_var) REFERENCES tbl_customers(name_var)
+ 	 ON DELETE CASCADE
+         ON UPDATE CASCADE
   
 );
 

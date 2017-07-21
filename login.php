@@ -17,14 +17,16 @@
       $count = mysqli_num_rows($result);
 
       // If result matched $myusername and $mypassword, table row must be 1 row
-
       if($count == 1) {
-
          $_SESSION['login_user'] = $myusername;
-
          header("location: index.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         if(!empty($myusername) && !empty($mypassword)) {
+           $error = "Usuário ou senha inválidos. Por favor, tente novamente.";
+         } else {
+           $error = "";
+         }
+
       }
    }
 ?>
@@ -41,27 +43,23 @@
             <h1>Seja bem vindo (a)</h1>
             <span>Mansão Rubi - Desenvolvimento Humano e Sustentável</span>
         </div>
-        <div class="col-md-6 col-xs-6 follow line" align="center">
-            <h3>
-                 125651 <br/> <span>SEGUIDORES</span>
-            </h3>
-        </div>
 
         <div class="col-md-12 col-xs-12 login_control">
             <form role="form" action="" method="post">
                 <div class="control">
                     <div class="label">Usuário</div>
-                    <input type="text" class="form-control" name="username" value="mansao"/>
+                    <input type="text" class="form-control" name="username"/>
                 </div>
 
                 <div class="control">
                      <div class="label">Senha</div>
-                    <input type="password" class="form-control" name="password" value="123456"/>
+                    <input type="password" class="form-control" name="password"/>
                 </div>
                 <div align="center">
                      <button class="btn btn-orange">LOGIN</button>
                 </div>
             </form>
+            <div style = "font-size:14px; color:#cc0000; margin-top:10px"><?php if(isset($error)) echo $error; ?></div>
         </div>
 
 

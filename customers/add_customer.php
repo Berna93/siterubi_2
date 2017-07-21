@@ -4,6 +4,7 @@ include('../session.php');
 <?php
   require_once('functions.php');
   add();
+  getInterests();
 ?>
 <?php require_once DBAPI; ?>
 
@@ -53,7 +54,7 @@ include('../session.php');
                                             <label>RG</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="text" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
+                                            <input type="number" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
                                                   data-error="Por favor, informe um RG válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -62,7 +63,7 @@ include('../session.php');
                                             <label>CPF</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="text" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..." type="text"
+                                            <input type="text" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..."
                                                   data-error="Por favor, informe um CPF válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -91,7 +92,7 @@ include('../session.php');
                                             <label>Data de Nascimento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="customer['birthday_var']" placeholder="Digite a data de nascimento do cliente..." type="text"
+                                            <input type="text" class="form-control" name="customer['birthday_dt']" placeholder="Digite a data de nascimento do cliente..." type="text"
                                                   data-error="Por favor, informe um telefone válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -99,39 +100,18 @@ include('../session.php');
 
                                         <div class="form-group">
                                             <label>Interesses</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="1" name="customer['tarot_tni']">Tarot
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                   <input type="checkbox" value="1" name="customer['cabala_tni']">Kabbalah
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="1" name="customer['astrologia_tni']">Astrologia
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="1" name="customer['umbanda_tni']">Umbanda
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="1" name="customer['hermetismo_tni']">Hermetismo
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="1" name="customer['reiki_tni']">Reiki
-                                                </label>
-                                            </div>
-                                        </div>
+                                            <?php if ($interests) : ?>
+                                                <?php foreach ($interests as $value) : ?>
 
+                                                    <div class="checkbox">
+                                                <label>
+                                                    <input type="hidden" name="interest['<?php echo $value['id']; ?>']" value="0">
+                                                    <input type="checkbox" value="1" name="interest['<?php echo $value['id']; ?>']"><?php echo $value['name_var']; ?>
+                                                </label>
+                                            </div>
 
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
 
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>

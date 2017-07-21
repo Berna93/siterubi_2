@@ -96,6 +96,7 @@ function findByString ($table = null, $column = null, $value = null) {
     } catch (Exception $e) {
       $_SESSION['message'] = $e->GetMessage();
       $_SESSION['type'] = 'danger';
+
   }
 
     close_database($database);
@@ -273,7 +274,7 @@ function find_all( $table ) {
 /**
 *  Insere um registro no BD
 */
-function save($table = null, $data = null) {
+/*function save($table = null, $data = null) {
   $database = open_database();
   $columns = null;
   $values = null;
@@ -288,15 +289,7 @@ function save($table = null, $data = null) {
 
   $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
 
-  // GRAVAR SAIDA EM ARQUIVO
-/*  ob_start();
-  echo $sql;
 
-  $content = ob_get_contents();
-
-  $f = fopen("file.txt", "w");
-  fwrite($f, $content);
-  fclose($f);*/
   try {
     $database->query($sql);
     $_SESSION['message'] = 'Registro cadastrado com sucesso.';
@@ -306,8 +299,31 @@ function save($table = null, $data = null) {
 
     $_SESSION['message'] = 'Nao foi possivel realizar a operacao.';
     $_SESSION['type'] = 'danger';
+    throw new Exception("Erro ao cadastrar cliente. Mensagem de erro: " . $e->GetMessage());
   }
   close_database($database);
+}*/
+
+function save($table = null, $data = null) {
+  $database = open_database();
+  $columns = null;
+  $values = null;
+  //print_r($data);
+  foreach ($data as $key => $value) {
+    $columns .= trim($key, "'") . ",";
+    $values .= "'$value',";
+  }
+  // remove a ultima virgula
+  $columns = rtrim($columns, ',');
+  $values = rtrim($values, ',');
+
+  $sql = "INSERT INTO " . $table . "($columns)" . " VALUES " . "($values);";
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+
 }
 
 /**
@@ -361,3 +377,31 @@ function remove( $table = null, $id = null ) {
   }
   close_database($database);
 }
+
+/**
+ *  Deleta interesses dos clientes
+ */
+function removeInterests($idCustomer = null ) {
+
+  try {
+      $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      $stmt = $conn->prepare('DELETE FROM tbl_customer_interests WHERE tbl_customers_id=:term');
+      $stmt->execute(array('term' => $idCustomer));
+
+  } catch(PDOException $e) {
+      echo 'ERROR: ' . $e->getMessage();
+  }
+
+}
+
+  // GRAVAR SAIDA EM ARQUIVO
+/*  ob_start();
+  echo $sql;
+
+  $content = ob_get_contents();
+
+  $f = fopen("file.txt", "w");
+  fwrite($f, $content);
+  fclose($f);*/
