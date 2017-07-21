@@ -187,7 +187,7 @@ function delete($id = null) {
   try {
 
      global $customer;
-     $customer = remove('tbl_customers', $id);
+     $customer = remove_customer($id);
      $_SESSION['message'] = "Cliente excluído com sucesso!";
      $_SESSION['type'] = 'success';
      header('location: view_customer.php');
