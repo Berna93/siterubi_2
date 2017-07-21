@@ -21,12 +21,12 @@ include('../session.php');
 <br><br><br>
 <div class="container">
         <div class="row">
-          <?php if (!empty($_SESSION['message'])) : ?>
+            <?php if (!empty($_SESSION['message'])) : ?>
                               <div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <?php echo $_SESSION['message']; ?>
                               </div>
-                              <?php unset($_SESSION['message']); ?>
+
                             <?php endif; ?>
             <div class="col-lg-12">
 
@@ -50,7 +50,7 @@ include('../session.php');
         <td><?php echo $customer['email_var']; ?></td>
         <td class="actions text-right">
             <a href="edit_customer.php?id=<?php echo $customer['id']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
-            <a href="#" class="btn btn-sm btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?> data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $customer['id']; ?>">
+            <a href="#" class="btn btn-sm btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $customer['id']; ?>">
                 <i class="fa fa-trash"></i> Excluir
             </a>
         </td>

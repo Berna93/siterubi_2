@@ -20,7 +20,8 @@ function search($id = null) {
 
 function getInterests() {
    global $interests;
-   $interests = find('tbl_interests');
+   //$interests = find('tbl_interests');
+   $interests = find_interest_all();
 }
 
 /**
@@ -171,7 +172,19 @@ function edit() {
  *  Exclusão de um Cliente
  */
 function delete($id = null) {
-  global $customer;
-  $customer = remove('tbl_customers', $id);
-  header('location: view_customer.php');
+  try {
+
+     global $customer;
+     $customer = remove('tbl_customers', $id);
+     $_SESSION['message'] = "Cliente excluído com sucesso!";
+     $_SESSION['type'] = 'success';
+     header('location: view_customer.php');
+     die();
+  } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
 }

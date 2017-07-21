@@ -24,14 +24,6 @@ function getCashFlow() {
 
     }
 
-    ob_start();
-  echo var_dump(date('Y'));
-
-  $content = ob_get_contents();
-
-  $f = fopen("file.txt", "w");
-  fwrite($f, $content);
-  fclose($f);
 }
 
 function calculate() {
