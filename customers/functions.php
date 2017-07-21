@@ -139,6 +139,7 @@ function edit() {
                 'isinterest_tni' => $localInt['isinterest_tni'],
                 'creation_date_dt' => $localInt['creation_date_dt'],
                 'modification_date_dt' => $localInt['modification_date_dt'],
+                'name_var' => $globalInt['name_var'],
               );
             $customerInterests[] = $auxArray;
             //Se encontrar o registro, ja sai do segundo foreach
@@ -155,6 +156,7 @@ function edit() {
                 'isinterest_tni' => 0,
                 'creation_date_dt' => $now->format("Y-m-d H:i:s"),
                 'modification_date_dt' => $now->format("Y-m-d H:i:s"),
+                'name_var' => $globalInt['name_var'],
               );
          $customerInterests[] = $auxArray;
       }

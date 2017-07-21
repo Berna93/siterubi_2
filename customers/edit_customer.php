@@ -68,7 +68,7 @@ include('../session.php');
                                                     <div class="checkbox">
                                                 <label>
                                                     <input type="hidden" name="interest['<?php echo $value['tbl_interests_id']; ?>']" value="0">
-                                                    <input type="checkbox" value="1" <?php if($value['isinterest_tni']==1) echo "checked"; ?> name="interest['<?php echo $value['tbl_interests_id']; ?>']"><?php echo $value['tbl_interests_id']; ?>
+                                                    <input type="checkbox" value="1" <?php if($value['isinterest_tni']==1) echo "checked"; ?> name="interest['<?php echo $value['tbl_interests_id']; ?>']"><?php echo $value['name_var']; ?>
                                                 </label>
                                             </div>
 
