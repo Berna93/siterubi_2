@@ -1,6 +1,26 @@
 <?php
 
 
+function insert_customer($customer = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_customers(name_var,cpf_var,rg_var,birthday_dt,address_var, email_var, phone_var, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8,:field9)");
+  $stmt->execute(array(
+    ':field1' => $customer["'name_var'"],
+    ':field2' => $customer["'cpf_var'"],
+    ':field3' => $customer["'rg_var'"],
+    ':field4' => $customer["'birthday_dt'"],
+    ':field5' => $customer["'address_var'"],
+    ':field6' => $customer["'email_var'"],
+    ':field7' => $customer["'phone_var'"],
+    ':field8' => $customer['creation_date_dt'],
+    ':field9' => $customer['modification_date_dt']));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
 /**
 *  Seleciona os dez cursos em aberto mais proximos para exibicao no Dashboard
 */

@@ -39,7 +39,8 @@ function add() {
       $interest = $_POST['interest'];
       //$interest['modification_date_dt'] = $interest['creation_date_dt'] = $today->format("Y-m-d H:i:s");
 
-      save('tbl_customers', $customer);
+      //save('tbl_customers', $customer);
+      insert_customer($customer);
       //reset($customer) retorna o primeiro valor do array, no caso o nome do cliente
       //$savedCustomer = findByColumn('tbl_customers', 'name_var', reset($customer));
       $results = find_customer_by_name(reset($customer));
