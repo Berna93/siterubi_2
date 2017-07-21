@@ -72,7 +72,7 @@ include('../session.php');
                                             <label>E-mail</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-floppy-disk"></span></span>
-                                            <input id="inputEmail" class="form-control" name="customer['email'" placeholder="Digite o e-mail..." type="email"
+                                            <input id="inputEmail" class="form-control" name="customer['email_var']" placeholder="Digite o e-mail..." type="email"
                                                   data-error="Por favor, informe um e-mail válido." required>
 
                                             </div>
