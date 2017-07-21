@@ -96,7 +96,7 @@ function edit() {
           $interest = $_POST['interest'];
           update('tbl_customers', $id, $customer);
 
-          removeInterests($id);
+          remove_interests($id);
 
           foreach($interest as $key => $value)
           {
@@ -129,9 +129,14 @@ function edit() {
 
     } else {
       global $customer, $interests, $customerInterests;
-      $customer = find('tbl_customers', $id);
-      $interests = find_all('tbl_interests');
-      $localInterests = findByColumnNumber('tbl_customer_interests', 'tbl_customers_id', $id);
+      $results = find_customer_by_id($id);
+
+      foreach ($results as $result) {
+        $customer = $result;
+      }
+
+      $interests = find_interest_all('tbl_interests');
+      $localInterests = find_customer_interests($id);
 
       $customerInterests = array();
       $foundInterest = false;

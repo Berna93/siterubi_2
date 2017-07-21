@@ -88,6 +88,18 @@ function find_interest_all() {
 
 }
 
+function find_customer_interests($idCustomer = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_customer_interests WHERE tbl_customers_id=:id");
+   $stmt->execute(array(':id' => $idCustomer));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
 /**
 *  Seleciona todas as despesas cadastradas, somando seus valores
 */
