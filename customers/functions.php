@@ -10,12 +10,13 @@ $customerInterests = null;
  */
 function index() {
     global $customers;
-    $customers = find_all('tbl_customers');
+    //$customers = find_all('tbl_customers');
+    $customers = find_customer_all();
 }
 
 function search($id = null) {
     global $customers;
-    $customers = find('tbl_customers', $id);
+    $customers = find_customer_by_id($id);
 }
 
 function getInterests() {
@@ -40,14 +41,20 @@ function add() {
 
       save('tbl_customers', $customer);
       //reset($customer) retorna o primeiro valor do array, no caso o nome do cliente
-      $savedCustomer = findByColumn('tbl_customers', 'name_var', reset($customer));
+      //$savedCustomer = findByColumn('tbl_customers', 'name_var', reset($customer));
+      $results = find_customer_by_name(reset($customer));
+
+      foreach($results as $result) {
+        $savedCustomer = $result;
+      }
+
 
       foreach($interest as $key => $value)
       {
         $mykey = $key;
         $keyInt = str_replace("'", "", $mykey);
         $customerInterest = array(
-        'tbl_customers_id' => $savedCustomer['id'],
+        'tbl_customers_id' => $savedCustomer["id"],
         'tbl_interests_id' =>  intval($keyInt),
         'isinterest_tni' => intval($value),
         'creation_date_dt' => $today->format("Y-m-d H:i:s"),
