@@ -61,7 +61,8 @@ function add() {
         'creation_date_dt' => $today->format("Y-m-d H:i:s"),
         'modification_date_dt' => $today->format("Y-m-d H:i:s"),
         );
-        save('tbl_customer_interests', $customerInterest);
+        //save('tbl_customer_interests', $customerInterest);
+        insert_customer_interests($customerInterest);
       }
 
       $_SESSION['message'] = "Cliente cadastrado com sucesso!";

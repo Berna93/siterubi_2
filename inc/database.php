@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+*  Insere um cliente no banco de dados
+*/
 function insert_customer($customer = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -16,6 +18,26 @@ function insert_customer($customer = null) {
     ':field7' => $customer["'phone_var'"],
     ':field8' => $customer['creation_date_dt'],
     ':field9' => $customer['modification_date_dt']));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
+*  Insere um interesses do cliente no banco de dados
+*/
+function insert_customer_interests($customerInterests = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_customer_interests(tbl_customers_id,tbl_interests_id,isinterest_tni,creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5)");
+  $stmt->execute(array(
+    ':field1' => $customerInterests['tbl_customers_id'],
+    ':field2' => $customerInterests['tbl_interests_id'],
+    ':field3' => $customerInterests['isinterest_tni'],
+    ':field4' => $customerInterests['creation_date_dt'],
+    ':field5' => $customerInterests['modification_date_dt']
+    ));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;
