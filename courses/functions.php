@@ -15,12 +15,12 @@ function index() {
     $courses = find_course_all();
 }
 
-function indexCourseCustomers($column = null, $value = null) {
+/*function indexCourseCustomers($column = null, $value = null) {
   global $courseCustomers;
   $courseCustomers = findByColumnNumber('tbl_course_customers', $column, $value);
-}
+}*/
 
-function searchByCourseId($id = null) {
+function searchCustomersByCourseId($id = null) {
   global $courseCustomers;
   $results = find_course_customers_by_courseid($id);
 
@@ -29,6 +29,7 @@ function searchByCourseId($id = null) {
     $courseCustomers[] = $result;
   }
 }
+
 
 function findCustomerByName($name = null) {
   global $element;
@@ -39,7 +40,7 @@ function findCustomerByName($name = null) {
   }
 }
 
-function findElementByColumn($table = null , $column = null, $value = null) {
+/*function findElementByColumn($table = null , $column = null, $value = null) {
   global $element;
   $element  = findByColumn($table, $column, $value);
 }
@@ -47,7 +48,7 @@ function findElementByColumn($table = null , $column = null, $value = null) {
 function findElementByColumnNumber($table = null , $column = null, $value = null) {
   global $elements;
   $elements  = findByColumnNumber($table, $column, $value);
-}
+}*/
 
 function search($id = null) {
     global $courses;
@@ -55,6 +56,15 @@ function search($id = null) {
 
     foreach($results as $result) {
         $courses = $result;
+    }
+}
+
+function searchCourseCustomer($id) {
+    global $element;
+    $results = find_course_customers_by_id($id);
+
+    foreach($results as $result) {
+        $element = $result;
     }
 }
 
@@ -279,10 +289,22 @@ function close($id = null) {
 }
 
 /**
- *  Exclusão de um Cliente
+ *  Exclusão de um Cliente no Curso
  */
 function deleteCustomer($id = null, $courseId = null) {
-  global $customer;
-  $customer = remove('tbl_course_customers', $id);
-  header('location: view_course_customers.php?id=' . $courseId);
+    try {
+        global $customer;
+        //$customer = remove('tbl_course_customers', $id);
+        $customer = remove_course_customer($id);
+        $_SESSION['message'] = "Cliente excluído com sucesso do curso!";
+        $_SESSION['type'] = 'success';
+        header('location: view_course_customers.php?id=' . $courseId);
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente do curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir  o cliente do curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
 }

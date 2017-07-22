@@ -4,7 +4,7 @@ include('../session.php');
 <?php
     require_once('functions.php');
     //indexCourseCustomers('tbl_courses_id', $_GET['id']);
-    searchByCourseId($_GET['id']);
+    searchCustomersByCourseId($_GET['id']);
     search($_GET['id']);
 ?>
 <?php include(HEADER_TEMPLATE); ?>

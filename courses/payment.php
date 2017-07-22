@@ -1,7 +1,8 @@
 <?php
   require_once('functions.php');
   if (isset($_GET['id']) && isset($_GET['payment'])){
-    searchById('tbl_course_customers', $_GET['id']);
+    //searchById('tbl_course_customers', $_GET['id']);
+    searchCourseCustomer($_GET['id']);
     $customer = $element;
     if($_GET['payment']==0) {
       $customer['payment_tni'] = 1;
