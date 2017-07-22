@@ -24,6 +24,30 @@ function insert_customer($customer = null) {
 }
 
 /**
+*  Insere um curso no banco de dados
+*/
+function insert_course($course = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_courses(name_var,professor_var,numSlots_int,numSlotsTaken_int,price_int, event_date_dt, event_hour_var, status_var, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8,:field9,:field10)");
+  $stmt->execute(array(
+    ':field1' => $course["'name_var'"],
+    ':field2' => $course["'professor_var'"],
+    ':field3' => $course["'numSlots_int'"],
+    ':field4' => $course['numSlotsTaken_int'],
+    ':field5' => $course["'price_int'"],
+    ':field6' => $course["'event_date_dt'"],
+    ':field7' => $course["'event_hour_var'"],
+    ':field8' => $course['status_var'],
+    ':field9' => $course['creation_date_dt'],
+    ':field10' => $course['modification_date_dt']));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
 *  Atualiza um cliente no banco de dados
 */
 function update_customer($idCustomer = null, $customer = null) {

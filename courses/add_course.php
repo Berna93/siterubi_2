@@ -90,9 +90,17 @@ include('../session.php');
                                          <div class="help-block with-errors"></div>
 
                                     </div>
+                                     <div class="form-group">
+                                            <label>Horário do Curso</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
+                                            <input type="number" class="form-control" name="course['event_hour_var']" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required>
+                                             </div>
+                                              <div class="help-block with-errors"></div>
+                                         </div>
 
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer Alterações</button>
 
 
                                     </div>
@@ -124,7 +132,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd/mm/yyyy'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field

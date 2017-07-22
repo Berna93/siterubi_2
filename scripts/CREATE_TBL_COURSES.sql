@@ -7,7 +7,6 @@ CREATE TABLE tbl_courses (
   price_int int NOT NULL,
   event_date_dt date NOT NULL,
   event_hour_var varchar(10) NOT NULL,
-  contract_var varchar(5000) NOT NULL,
   status_var varchar(10) NOT NULL DEFAULT 'Aberto',
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL

@@ -68,15 +68,40 @@ function searchById($table = null, $id = null) {
  */
 function add() {
   if (!empty($_POST['course'])) {
+    try {
+
 
     $today =
       date_create('now', new DateTimeZone('America/Sao_Paulo'));
     $course = $_POST['course'];
     $course['modification_date_dt'] = $course['creation_date_dt'] = $today->format("Y-m-d H:i:s");
+    $course['numSlotsTaken_int'] = 0;
+    $course['status_var'] = 'Aberto';
 
-    save('tbl_courses', $course);
+    //Formatando a data para insercao no banco
+    foreach ($course as $key => $value) {
+        if($key=="'event_date_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $course["'event_date_dt'"] = date('Y-m-d',$date);
+        }
+      }
+
+    //save('tbl_courses', $course);
+    insert_course($course);
+
+      $_SESSION['message'] = "Curso cadastrado com sucesso!";
+      $_SESSION['type'] = 'success';
     header('location: add_course.php');
     die();
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível adicionar curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
   }
 }
 
@@ -161,7 +186,6 @@ function delete($id = null) {
 function close($id = null) {
   $course = find('tbl_courses', $id);
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
-  var_dump($course);
   if(isset($course)) {
     $course['status_var'] = 'Fechado';
     $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
