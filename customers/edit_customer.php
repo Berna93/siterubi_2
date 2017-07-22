@@ -59,6 +59,15 @@ include('../session.php');
                                     <input type="text" class="form-control" name="customer['phone_var']" value="<?php echo $customer['phone_var']; ?>" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
+                                 <div class="form-group">
+                                            <label>Data de Nascimento</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input type="text" class="form-control" name="customer['birthday_dt']" value="<?php echo date('d/m/Y', strtotime($customer['birthday_dt']));  ?>" placeholder="Digite a data de nascimento do cliente..." type="text"
+                                                  data-error="Por favor, informe um telefone válido." required>
+                                             </div>
+                                             <div class="help-block with-errors"></div>
+                                         </div>
 
                                 <div class="form-group">
                                     <label>Interesses</label>

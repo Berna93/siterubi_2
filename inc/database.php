@@ -24,6 +24,29 @@ function insert_customer($customer = null) {
 }
 
 /**
+*  Atualiza um cliente no banco de dados
+*/
+function update_customer($idCustomer = null, $customer = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_customers SET name_var=:field1,cpf_var=:field2,rg_var=:field3,birthday_dt=:field4,address_var=:field5, email_var=:field6, phone_var=:field7, modification_date_dt=:field8) WHERE id=:idCustomer');
+  $stmt->execute(array(
+    ':field1' => $customer["'name_var'"],
+    ':field2' => $customer["'cpf_var'"],
+    ':field3' => $customer["'rg_var'"],
+    ':field4' => $customer["'birthday_dt'"],
+    ':field5' => $customer["'address_var'"],
+    ':field6' => $customer["'email_var'"],
+    ':field7' => $customer["'phone_var'"],
+    ':field8' => $customer['modification_date_dt'],
+    ':idCustomer' => $idCustomer));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
 *  Insere um interesses do cliente no banco de dados
 */
 function insert_customer_interests($customerInterests = null) {

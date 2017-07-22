@@ -39,6 +39,15 @@ function add() {
       $interest = $_POST['interest'];
       //$interest['modification_date_dt'] = $interest['creation_date_dt'] = $today->format("Y-m-d H:i:s");
 
+      //Formatando a data para insercao no banco
+      foreach ($customer as $key => $value) {
+        if($key=="'birthday_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $customer["'birthday_dt'"] = date('Y-m-d',$date);
+        }
+      }
+
       //save('tbl_customers', $customer);
       insert_customer($customer);
       //reset($customer) retorna o primeiro valor do array, no caso o nome do cliente
@@ -96,7 +105,17 @@ function edit() {
          $customer = $_POST['customer'];
           $customer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
           $interest = $_POST['interest'];
-          update('tbl_customers', $id, $customer);
+
+          //Formatando a data para insercao no banco
+      foreach ($customer as $key => $value) {
+        if($key=="'birthday_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $customer["'birthday_dt'"] = date('Y-m-d',$date);
+        }
+      }
+          //update('tbl_customers', $id, $customer);
+          update_customer($id, $customer);
 
           remove_interests($id);
 
