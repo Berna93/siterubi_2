@@ -232,12 +232,23 @@ function editPayment($courseCustomer) {
 }
 
 /**
- *  Exclusão de um Cliente
+ *  Exclusão de um Curso
  */
 function delete($id = null) {
-  global $course;
-  $course = remove('tbl_courses', $id);
-  header('location: view_course.php');
+    try {
+      global $course;
+      //$course = remove('tbl_courses', $id);
+      remove_course($id);
+      $_SESSION['message'] = "Curso excluído com sucesso!";
+      $_SESSION['type'] = 'success';
+      header('location: view_course.php');
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente do curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente do curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
 }
 
 /**
