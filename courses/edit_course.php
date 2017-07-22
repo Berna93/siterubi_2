@@ -97,7 +97,7 @@ include('../session.php');
                                             <label>Horário do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" name="course['event_hour_var']" value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required>
+                                            <input type="number" class="form-control" name="course['event_hour_var']" value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
