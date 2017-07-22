@@ -16,7 +16,13 @@ function initFunctions() {
 // Conta a quantidade de clientes existentes na base
 function countCustomers() {
     global $counterCustomers;
-    $customers = find_all('tbl_customers');
+    //$customers = find_all('tbl_customers');
+    $results = find_customer_all();
+
+    $customers = array();
+    foreach($results as $result) {
+        $customers[] = $result;
+    }
     $count = 0;
     foreach($customers as $customer) {
         $count +=1;
@@ -26,7 +32,14 @@ function countCustomers() {
 // Conta a quantidade de cursos em aberto
 function countCoursesOpen() {
     global $coursesOpen;
-    $courses = findByString('tbl_courses', 'status_var', 'Aberto');
+    //$courses = findByString('tbl_courses', 'status_var', 'Aberto');
+    $results = find_course_by_status('Aberto');
+
+    $courses = array();
+    foreach($results as $result) {
+        $courses[] = $result;
+    }
+
     $count = 0;
     foreach($courses as $course) {
         $count +=1;
@@ -36,12 +49,28 @@ function countCoursesOpen() {
 // Conta a quantidade de clientes existentes na base
 function coursesFill() {
     global $coursesFill;
-    $coursesFill = findCoursesFill();
+    $results = find_courses_fill();
+
+    $coursesFill = array();
+    foreach($results as $result) {
+        $coursesFill[] = $result;
+    }
+
+   /*  global $coursesFill;
+    $coursesFill = findCoursesFill();*/
+
 }
 
 function getBalance() {
     global $currentBalance;
-    $allBalance = find_all('tbl_cash_flow');
+    $results = find_cash_flow_all();
+
+    $allBalance = array();
+    foreach($results as $result) {
+        $allBalance[] = $result;
+    }
+
+    //$allBalance = find_all('tbl_cash_flow');
 
     foreach($allBalance as $balance) {
         if($balance['month_int']==intval(date('m')) && $balance['year_int']==date('Y')) {

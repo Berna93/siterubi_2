@@ -193,6 +193,7 @@ function find_courses_fill() {
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    $stmt = $conn->prepare("SELECT * FROM tbl_courses WHERE status_var='Aberto' ORDER BY event_date_dt ASC LIMIT 10;");
+   $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    return $results;
@@ -230,6 +231,18 @@ function find_customer_by_id($id = null) {
 
    return $results;
 
+}
+
+function find_course_by_status($status = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_courses WHERE status_var LIKE ?");
+   $stmt->bindValue(1, "%$status%", PDO::PARAM_STR);
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
 }
 
 function find_customer_by_name($name = null) {
@@ -275,6 +288,19 @@ function find_interest_all() {
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    $stmt = $conn->prepare("SELECT * FROM tbl_interests");
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
+function find_cash_flow_all() {
+
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_cash_flow");
    $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

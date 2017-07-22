@@ -68,10 +68,10 @@ function searchCourseCustomer($id) {
     }
 }
 
-function searchById($table = null, $id = null) {
+/*function searchById($table = null, $id = null) {
    global $element;
    $element = find($table, $id);
-}
+}*/
 
 /**
  *  Cadastro de Cursos
