@@ -47,7 +47,7 @@ $(function() {
                                            <input type="hidden" name="courseId" class="form-control" value="<?php echo $_GET['id']; ?>">
                                             <input type="text" name='includeCustomer' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>
+                                                <button class="btn btn-default" type="submit"><i class="fa fa-check"></i>
                                                 </button>
                                             </span>
                                         </div>

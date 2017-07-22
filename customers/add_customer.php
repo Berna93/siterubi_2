@@ -36,7 +36,7 @@ include('../session.php');
                                             <label>Nome</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
+                                            <input type="text" maxlength="50" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
                                                   data-error="Por favor, informe um nome válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -45,7 +45,7 @@ include('../session.php');
                                             <label>Endereço</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-home"></span></span>
-                                            <input type="text" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
+                                            <input type="text" maxlength="50" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
                                                   data-error="Por favor, informe um endereço válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -54,7 +54,7 @@ include('../session.php');
                                             <label>RG</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="number" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
+                                            <input type="number" min="111111111" max="999999999" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
                                                   data-error="Por favor, informe um RG válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -63,7 +63,7 @@ include('../session.php');
                                             <label>CPF</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="text" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..."
+                                            <input type="number" min="11111111111" max="99999999999" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..."
                                                   data-error="Por favor, informe um CPF válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -72,7 +72,7 @@ include('../session.php');
                                             <label>E-mail</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-floppy-disk"></span></span>
-                                            <input id="inputEmail" class="form-control" name="customer['email_var']" placeholder="Digite o e-mail..." type="email"
+                                            <input id="inputEmail" maxlength="30" class="form-control" name="customer['email_var']" placeholder="Digite o e-mail..." type="email"
                                                   data-error="Por favor, informe um e-mail válido." required>
 
                                             </div>
@@ -82,7 +82,7 @@ include('../session.php');
                                             <label>Telefone</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-phone"></span></span>
-                                            <input type="text" class="form-control" name="customer['phone_var']" placeholder="Digite o telefone do cliente..." type="text"
+                                            <input type="number" min="111111111" max="99999999999" class="form-control" name="customer['phone_var']" placeholder="Digite o telefone do cliente..." type="text"
                                                   data-error="Por favor, informe um telefone válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
