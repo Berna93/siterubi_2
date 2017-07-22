@@ -12,7 +12,8 @@
         );
     search($_POST['courseId']);
     $customer['tbl_courses_name_var'] = $courses['name_var'];
-    indexCourseCustomers('tbl_courses_id', $customer['tbl_courses_id']);
+    //indexCourseCustomers('tbl_courses_id', $customer['tbl_courses_id']);
+    searchByCourseId($customer['tbl_courses_id']);
     $foundKey = array_search($customer['tbl_customers_name_var'],array_column($courseCustomers, 'tbl_customers_name_var'));
     $course = $courses;
     $newSlots = intval($courses['numSlotsTaken_int'])+1;
