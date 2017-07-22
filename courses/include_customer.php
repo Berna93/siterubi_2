@@ -2,7 +2,8 @@
   require_once('functions.php');
   require_once('../session.php');
   if (isset($_POST['includeCustomer']) && isset($_POST['courseId'])){
-    findElementByColumn('tbl_customers', 'name_var', $_POST['includeCustomer']);
+    //findElementByColumn('tbl_customers', 'name_var', $_POST['includeCustomer']);
+    findCustomerByName($_POST['includeCustomer']);
     $customer = array(
         'tbl_courses_id' => $_POST['courseId'],
         'tbl_courses_name_var' =>  '',

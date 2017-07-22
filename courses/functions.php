@@ -30,6 +30,15 @@ function searchByCourseId($id = null) {
   }
 }
 
+function findCustomerByName($name = null) {
+  global $element;
+  $results = find_customer_by_name($name);
+
+  foreach($results as $result) {
+    $element = $result;
+  }
+}
+
 function findElementByColumn($table = null , $column = null, $value = null) {
   global $element;
   $element  = findByColumn($table, $column, $value);
