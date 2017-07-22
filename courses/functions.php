@@ -12,7 +12,7 @@ $elements = null;
  */
 function index() {
     global $courses;
-    $courses = find_all('tbl_courses');
+    $courses = find_course_all();
 }
 
 function indexCourseCustomers($column = null, $value = null) {
@@ -32,7 +32,11 @@ function findElementByColumnNumber($table = null , $column = null, $value = null
 
 function search($id = null) {
     global $courses;
-    $courses = find('tbl_courses', $id);
+    $results = find_course_by_id($id);
+
+    foreach($results as $result) {
+        $courses = $result;
+    }
 }
 
 function searchById($table = null, $id = null) {
