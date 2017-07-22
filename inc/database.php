@@ -131,6 +131,23 @@ function update_course_slotstaken($idCourse= null, $course = null) {
 }
 
 /**
+*  Atualiza o pagamento de um cliente
+*/
+function update_course_customer_payment($idCourseCustomer= null, $courseCustomer = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_course_customers SET payment_tni=:field1,payment_date_dt=:field2 WHERE id=:id');
+  $stmt->execute(array(
+    ':field1' => $courseCustomer['payment_tni'],
+    ':field2' => $courseCustomer['payment_date_dt'],
+    ':id' => $idCourseCustomer));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
 *  Insere um interesses do cliente no banco de dados
 */
 function insert_customer_interests($customerInterests = null) {

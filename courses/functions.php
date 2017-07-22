@@ -210,9 +210,22 @@ function editPayment($courseCustomer) {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 
   if (!empty($courseCustomer)) {
-      $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
-      update('tbl_course_customers', $courseCustomer['id'], $courseCustomer);
-      header('location: view_course_customers.php?id=' . $courseCustomer['tbl_courses_id']);
+    try {
+         $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+         //update('tbl_course_customers', $courseCustomer['id'], $courseCustomer);
+         update_course_customer_payment($courseCustomer['id'], $courseCustomer);
+         $_SESSION['message'] = "Pagamento atualizado com sucesso!";
+         $_SESSION['type'] = 'success';
+
+         header('location: view_course_customers.php?id=' . $courseCustomer['tbl_courses_id']);
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível atualizar o pagamento do cliente. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível atualizar  o pagamento do cliente. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
     } else {
 
     }
