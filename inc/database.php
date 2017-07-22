@@ -176,6 +176,17 @@ function find_customer_interests($idCustomer = null) {
 
 }
 
+function find_course_customers_by_courseid($idCourse = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_course_customers WHERE tbl_courses_id=:id");
+   $stmt->execute(array(':id' => $idCourse));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+}
+
 /**
 *  Seleciona todas as despesas cadastradas, somando seus valores
 */

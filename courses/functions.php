@@ -20,6 +20,16 @@ function indexCourseCustomers($column = null, $value = null) {
   $courseCustomers = findByColumnNumber('tbl_course_customers', $column, $value);
 }
 
+function searchByCourseId($id = null) {
+  global $courseCustomers;
+  $results = find_course_customers_by_courseid($id);
+
+  $courseCustomers = array();
+  foreach($results as $result) {
+    $courseCustomers[] = $result;
+  }
+}
+
 function findElementByColumn($table = null , $column = null, $value = null) {
   global $element;
   $element  = findByColumn($table, $column, $value);
