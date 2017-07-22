@@ -188,8 +188,18 @@ function edit() {
 function editNumSlots($course = null) {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
   if (isset($course)) {
-      $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
-      update('tbl_courses', $course['id'], $course);
+    try {
+         $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+         //update('tbl_courses', $course['id'], $course);
+         update_course_slotstaken($course['id'], $course);
+  } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível atualizar a quantidade de vagas preenchidas no curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível atualizar  a quantidade de vagas preenchidas no curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
   }
 }
 

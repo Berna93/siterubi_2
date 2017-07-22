@@ -114,6 +114,23 @@ function update_course($idCourse= null, $course = null) {
 }
 
 /**
+*  Atualiza quantidade de vagas preenchidas em curso
+*/
+function update_course_slotstaken($idCourse= null, $course = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_courses SET numSlotsTaken_int=:field1,modification_date_dt=:field2 WHERE id=:idCourse');
+  $stmt->execute(array(
+    ':field1' => $course['numSlotsTaken_int'],
+    ':field2' => $course['modification_date_dt'],
+    ':idCourse' => $idCourse));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
 *  Insere um interesses do cliente no banco de dados
 */
 function insert_customer_interests($customerInterests = null) {
