@@ -23,6 +23,27 @@ function insert_customer($customer = null) {
   return $affected_rows;
 }
 
+function insert_course_customer($customer = null) {
+
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_course_customers(tbl_courses_id,tbl_courses_name_var,tbl_customers_id,tbl_customers_name_var,payment_tni, payment_date_dt, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8)");
+  $stmt->execute(array(
+    ':field1' => $customer['tbl_courses_id'],
+    ':field2' => $customer['tbl_courses_name_var'],
+    ':field3' => $customer['tbl_customers_id'],
+    ':field4' => $customer['tbl_customers_name_var'],
+    ':field5' => $customer['payment_tni'],
+    ':field6' => $customer['payment_date_dt'],
+    ':field7' => $customer['creation_date_dt'],
+    ':field8' => $customer['modification_date_dt']));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+
+}
+
 /**
 *  Insere um curso no banco de dados
 */

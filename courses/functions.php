@@ -111,12 +111,25 @@ function add() {
 function addCourseCustomer($customer = null) {
   if (!empty($customer)) {
 
-    $today =
-      date_create('now', new DateTimeZone('America/Sao_Paulo'));
-    $customer['modification_date_dt'] = $customer['creation_date_dt'] = $today->format("Y-m-d H:i:s");
+    try {
+         $today =
+        date_create('now', new DateTimeZone('America/Sao_Paulo'));
+        $customer['modification_date_dt'] = $customer['creation_date_dt'] = $today->format("Y-m-d H:i:s");
 
-    save('tbl_course_customers', $customer);
-    header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
+        //save('tbl_course_customers', $customer);
+        insert_course_customer($customer);
+        $_SESSION['message'] = "Cliente inserido com sucesso!";
+        $_SESSION['type'] = 'success';
+        header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o cliente no curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o cliente no curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
   }
 }
 
