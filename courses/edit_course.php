@@ -88,11 +88,19 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="course['event_date_dt']" value="<?php echo $course['event_date_dt']; ?>"  <?php if($course['status_var']=='Fechado') echo "disabled"; ?>/>
+                                            <input type="text" class="form-control" name="course['event_date_dt']" value="<?php echo date('d/m/Y', strtotime($course['event_date_dt']));  ?>"  <?php if($course['status_var']=='Fechado') echo "disabled"; ?>/>
 
                                         </div>
 
                                     </div>
+                                      <div class="form-group">
+                                            <label>Horário do Curso</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
+                                            <input type="number" class="form-control" name="course['event_hour_var']" value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required>
+                                             </div>
+                                              <div class="help-block with-errors"></div>
+                                         </div>
 
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
@@ -131,7 +139,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd/mm/yyyy'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field

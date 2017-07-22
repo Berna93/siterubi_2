@@ -130,12 +130,36 @@ function edit() {
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
     if (isset($_POST['course'])) {
-      $course = $_POST['course'];
-      $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
-      update('tbl_courses', $id, $course);
-      //header('location: edit_course.php?id=' + $id);
-      header('location: view_course.php');
+
+     try {
+        $course = $_POST['course'];
+        $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+
+         //Formatando a data para insercao no banco
+        foreach ($course as $key => $value) {
+        if($key=="'event_date_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $course["'event_date_dt'"] = date('Y-m-d',$date);
+            }
+        }
+
+        //update('tbl_courses', $id, $course);
+        update_course($id, $course);
+        $_SESSION['message'] = "Curso atualizado com sucesso!";
+        $_SESSION['type'] = 'success';
+        //header('location: edit_course.php?id=' + $id);
+        header('location: view_course.php');
+        //header('location: edit_course.php?id=' + $id);
       die();
+      } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível atualizar o curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível atualizar o curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
     } else {
       global $course;
       $course = find('tbl_courses', $id);

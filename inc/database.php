@@ -54,7 +54,7 @@ function update_customer($idCustomer = null, $customer = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_customers SET name_var=:field1,cpf_var=:field2,rg_var=:field3,birthday_dt=:field4,address_var=:field5, email_var=:field6, phone_var=:field7, modification_date_dt=:field8) WHERE id=:idCustomer');
+  $stmt = $conn->prepare('UPDATE tbl_customers SET name_var=:field1,cpf_var=:field2,rg_var=:field3,birthday_dt=:field4,address_var=:field5, email_var=:field6, phone_var=:field7, modification_date_dt=:field8 WHERE id=:idCustomer');
   $stmt->execute(array(
     ':field1' => $customer["'name_var'"],
     ':field2' => $customer["'cpf_var'"],
@@ -65,6 +65,28 @@ function update_customer($idCustomer = null, $customer = null) {
     ':field7' => $customer["'phone_var'"],
     ':field8' => $customer['modification_date_dt'],
     ':idCustomer' => $idCustomer));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
+*  Atualiza um curso no banco de dados
+*/
+function update_course($idCourse= null, $course = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_courses SET name_var=:field1,professor_var=:field2,numSlots_int=:field3,price_int=:field4,event_date_dt=:field5, event_hour_var=:field6, modification_date_dt=:field7 WHERE id=:idCourse');
+  $stmt->execute(array(
+    ':field1' => $course["'name_var'"],
+    ':field2' => $course["'professor_var'"],
+    ':field3' => $course["'numSlots_int'"],
+    ':field4' => $course["'price_int'"],
+    ':field5' => $course["'event_date_dt'"],
+    ':field6' => $course["'event_hour_var'"],
+    ':field7' => $course['modification_date_dt'],
+    ':idCourse' => $idCourse));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;
