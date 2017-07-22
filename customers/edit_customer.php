@@ -49,8 +49,7 @@ include('../session.php');
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="text" class="form-control" name="customer['email_var']" value="<?php echo $customer['email_var']; ?>" placeholder="Digite um e-mail válido..." data-error="Formato de email incorreto."  required>
-                                    <p class="help-block">Por exemplo: email@email.com</p>
+                                    <input type="email" class="form-control" name="customer['email_var']" value="<?php echo $customer['email_var']; ?>" placeholder="Digite um e-mail válido..." data-error="Por favor, informe um e-mail válido."  required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
