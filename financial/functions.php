@@ -113,13 +113,35 @@ function add() {
 
   if (!empty($_POST['cost'])) {
 
-    $today =
+    try {
+         $today =
       date_create('now', new DateTimeZone('America/Sao_Paulo'));
     $cost = $_POST['cost'];
     $cost['modification_date_dt'] = $cost['creation_date_dt'] = $today->format("Y-m-d H:i:s");
-    save('tbl_costs', $cost);
+
+     //Formatando a data para insercao no banco
+      foreach ($cost as $key => $value) {
+        if($key=="'deadline_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $cost["'deadline_dt'"] = date('Y-m-d',$date);
+        }
+      }
+    //save('tbl_costs', $cost);
+    insert_cost($cost);
+
+      $_SESSION['message'] = "Despesa cadastrada com sucesso!";
+      $_SESSION['type'] = 'success';
     header('location: add_cost.php');
     die();
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível inserir a despesa. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível inserir a despesa. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
   }
 }
 

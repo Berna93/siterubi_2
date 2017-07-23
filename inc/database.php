@@ -185,6 +185,27 @@ function insert_customer_interests($customerInterests = null) {
 }
 
 /**
+*  Insere uma despesa no banco de dados
+*/
+function insert_cost($cost = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_costs(type_var,value_int,payment_tni,deadline_dt, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
+  $stmt->execute(array(
+    ':field1' => $cost["'type_var'"],
+    ':field2' => $cost["'value_int'"],
+    ':field3' => $cost["'payment_tni'"],
+    ':field4' => $cost["'deadline_dt'"],
+    ':field5' => $cost['creation_date_dt'],
+    ':field6' => $cost['modification_date_dt']
+    ));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
 *  Seleciona os dez cursos em aberto mais proximos para exibicao no Dashboard
 */
 function find_courses_fill() {

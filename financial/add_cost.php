@@ -42,10 +42,10 @@ include('../session.php');
 
                                           <label for="sel1">Selecione o tipo de despesa:</label>
                                           <select class="form-control " id="costType" name="cost['type_var']">
-                                            <option value="professor">Professor</option>
-                                            <option value="materiais">Materiais</option>
-                                            <option value="energia">Energia </option>
-                                            <option value="agua"> Agua </option>
+                                            <option value="Professor">Professor</option>
+                                            <option value="Materiais">Materiais</option>
+                                            <option value="Energia">Energia </option>
+                                            <option value="Agua"> Água </option>
                                           </select>
 
                                          </div>
@@ -64,7 +64,7 @@ include('../session.php');
                                             <label>Valor da Despesa</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="cost['value_int']" placeholder="Digite o valor da despesa..." type="text"
+                                            <input type="number" class="form-control" min="5" max="10000" name="cost['value_int']" placeholder="Digite o valor da despesa..." type="text"
                                                   data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -75,7 +75,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="cost[deadline_dt]" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
+                                            <input type="text" class="form-control" name="cost['deadline_dt']" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
 
                                         </div>
                                         <div class="help-block with-errors"></div>
@@ -112,7 +112,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd/mm/yyyy'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field
