@@ -212,7 +212,7 @@ function delete($id = null) {
      $_SESSION['message'] = "Cliente excluído com sucesso!";
      $_SESSION['type'] = 'success';
      header('location: view_customer.php');
-     die();
+     //die();
   } catch (PDOException $e) {
        $_SESSION['message'] = "Não foi possível excluir o cliente. Erro no banco de dados. Exceção: " . $e->GetMessage();
        $_SESSION['type'] = 'danger';
