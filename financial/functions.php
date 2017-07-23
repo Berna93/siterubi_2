@@ -8,13 +8,16 @@ $month_flow = null;
 
 function index() {
     global $costs;
-    $costs = find_all('tbl_costs');
+    //$costs = find_all('tbl_costs');
+    $costs = find_cost_all();
 }
 
 function getCashFlow() {
     global $cash_flow;
     global $month_flow;
-    $cash_flow = find_all('tbl_cash_flow');
+    //$cash_flow = find_all('tbl_cash_flow');
+    $cash_flow = find_cash_flow_all();
+
     $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 
     foreach($cash_flow as $flow) {
@@ -27,25 +30,80 @@ function getCashFlow() {
 }
 
 function calculate() {
-    $groupedCosts = getCosts();
-    $groupedIncomes = getIncomes();
+    #$groupedCosts = getCosts();
+    #$groupedIncomes = getIncomes();
 
-    deleteCashFlows();
+    try {
+
+         $groupedCosts = get_costs();
+    $groupedIncomes = get_incomes();
+
+    #deleteCashFlows();
+    remove_cash_flow();
 
     foreach($groupedCosts as $cost) {
-        foreach($groupedIncomes as $income) {
-            if($cost['month']==$income['month'] && $cost['year']==$income['year']) {
-                 $insert = array(
+         $results = find_cashflow_by_month_year($cost['month'], $cost['year']);
+
+         foreach ($results as $result) {
+            $searchIncome = $result;
+         }
+
+         //Se ja existir um ganho com o mesmo mes e ano, precisa atualizar o registro
+         if(!empty($searchIncome)) {
+
+            $searchIncome['costs_int'] += $cost['value'];
+            $searchIncome['balance_int'] -= $cost['value'];
+
+            update_cash_flow_costs($searchIncome['id'], $searchIncome);
+
+         } else {
+              $insert = array(
                     'month_int' => $cost['month'],
                     'year_int' =>  $cost['year'],
                     'costs_int' => $cost['value'],
-                    'income_int' => $income['value'],
-                    'balance_int' => intval($income['value'])-intval($cost['value']),
+                    'income_int' => 0,
+                    'balance_int' => -(intval($cost['value'])),
                     );
-                 addCashFlow($insert);
-            }
-        }
+              insert_cash_flow($insert);
+         }
     }
+
+    foreach($groupedIncomes as $income) {
+         $results = find_cashflow_by_month_year($cost['month'], $cost['year']);
+
+         foreach ($results as $result) {
+            $searchCost = $result;
+         }
+
+         //Se ja existir um gasto com o mesmo mes e ano, precisa atualizar o registro
+         if(!empty($searchCost)) {
+
+            $searchCost['income_int'] += $income['value'];
+            $searchCost['balance_int'] += $income['value'];
+
+            update_cash_flow_incomes($searchCost['id'], $searchCost);
+
+         } else {
+              $insert = array(
+                    'month_int' => $income['month'],
+                    'year_int' =>  $income['year'],
+                    'costs_int' => 0,
+                    'income_int' => $income['value'],
+                    'balance_int' => (intval($income['value'])),
+                    );
+              insert_cash_flow($insert);
+         }
+    }
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível calcular o fluxo de caixa. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o fluxo de caixa. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+
 }
 
 /**

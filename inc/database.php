@@ -210,6 +210,17 @@ function find_customer_all() {
    return $results;
 }
 
+function find_cost_all() {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_costs");
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+}
+
 function find_course_all() {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -351,11 +362,75 @@ function get_costs() {
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    $stmt = $conn->prepare("SELECT SUM(value_int) as 'value', MONTH(deadline_dt) as 'month', YEAR(deadline_dt) as 'year' FROM tbl_costs GROUP BY MONTH(deadline_dt)");
+   $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    return $results;
 
 }
+
+function find_cashflow_by_month_year($month = null, $year =null) {
+    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_cash_flow WHERE month_int=:month and year_int=:year");
+   $stmt->execute(array(
+    ':month' => $month,
+    ':year' => $year));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+}
+
+
+
+function update_cash_flow_costs($idCashFlow= null, $cashflow = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET costs_int=:field1,balance_int=:field2 WHERE id=:idCashFlow');
+  $stmt->execute(array(
+    ':field1' => $cashflow['costs_int'],
+    ':field2' => $cashflow['balance_int'],
+    ':idCashFlow' => $idCashFlow));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+function update_cash_flow_incomes($idCashFlow= null, $cashflow = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET income_int=:field1,balance_int=:field2 WHERE id=:idCashFlow');
+  $stmt->execute(array(
+    ':field1' => $cashflow['income_int'],
+    ':field2' => $cashflow['balance_int'],
+    ':idCashFlow' => $idCashFlow));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
+*  Insere um registro de fluxo de caixa
+*/
+function insert_cash_flow($cashflow = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_cash_flow(month_int,year_int,costs_int,income_int,balance_int) VALUES(:field1,:field2,:field3,:field4,:field5)");
+  $stmt->execute(array(
+    ':field1' => $cashflow['month_int'],
+    ':field2' => $cashflow['year_int'],
+    ':field3' => $cashflow['costs_int'],
+    ':field4' => $cashflow['income_int'],
+    ':field5' => $cashflow['balance_int']));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
 
 
 /**
@@ -370,6 +445,7 @@ function get_incomes() {
           INNER JOIN tbl_course_customers on tbl_courses.id = tbl_course_customers.tbl_courses_id
           WHERE tbl_course_customers.payment_date_dt is not null and tbl_course_customers.payment_date_dt!='0000-00-00'
           GROUP BY MONTH(tbl_course_customers.payment_date_dt)");
+   $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    return $results;
