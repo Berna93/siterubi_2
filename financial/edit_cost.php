@@ -35,16 +35,16 @@ include('../session.php');
                             <?php endif; ?>
                                 <div class="col-lg-6">
 
-                                    <form role="form" action="edit_cost.php?id=<?php echo $course['id']; ?>"  data-toggle="validator" method="post">
+                                    <form role="form" action="edit_cost.php?id=<?php echo $cost['id']; ?>"  data-toggle="validator" method="post">
 
                                        <div class="form-group">
 
                                           <label for="sel1">Selecione o tipo de despesa:</label>
                                           <select class="form-control " id="costType" name="cost['type_var']" value="<?php echo $cost['type_var']; ?>">
-                                            <option value="professor">Pagamento de Professor</option>
-                                            <option value="materiais">Materiais de Construção</option>
-                                            <option value="energia">Luz e Energia </option>
-                                            <option value="agua"> Água </option>
+                                            <option value="Professor">Pagamento de Professor</option>
+                                            <option value="Materiais">Materiais de Construção</option>
+                                            <option value="Energia">Luz e Energia </option>
+                                            <option value="Agua"> Água </option>
                                           </select>
 
                                          </div>
@@ -74,7 +74,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="cost['deadline_dt']" value="<?php echo $cost['deadline_dt']; ?>" />
+                                            <input type="text" class="form-control" name="cost['deadline_dt']" value="<?php echo date('d/m/Y', strtotime($cost['deadline_dt']));  ?>" />
 
                                         </div>
                                         <br>
@@ -107,7 +107,7 @@ include('../session.php');
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'dd/mm/yyyy'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field

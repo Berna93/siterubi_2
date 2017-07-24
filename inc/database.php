@@ -164,6 +164,24 @@ function update_course_customer_payment($idCourseCustomer= null, $courseCustomer
   return $affected_rows;
 }
 
+function update_cost($idCost= null, $cost = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+  $stmt = $conn->prepare('UPDATE tbl_costs SET type_var=:field1,value_int=:field2,payment_tni=:field3,deadline_dt=:field4,modification_date_dt=:field5 WHERE id=:id');
+  $stmt->execute(array(
+    ':field1' => $cost["'type_var'"],
+    ':field2' => $cost["'value_int'"],
+    ':field3' => $cost["'payment_tni'"],
+    ':field4' => $cost["'deadline_dt'"],
+    ':field5' => $cost['modification_date_dt'],
+    ':id' => $idCost));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
 /**
 *  Insere um interesses do cliente no banco de dados
 */
@@ -240,6 +258,18 @@ function find_cost_all() {
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    return $results;
+}
+
+function find_cost_by_id($id = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_costs WHERE id=:id");
+   $stmt->execute(array(':id' => $id));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
 }
 
 function find_course_all() {

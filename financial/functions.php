@@ -145,14 +145,14 @@ function add() {
   }
 }
 
-function addCashFlow($data = null) {
+/*function addCashFlow($data = null) {
 
   if (!empty($data)) {
     save('tbl_cash_flow', $data);
     //header('location: add_cost.php');
     //die();
   }
-}
+}*/
 
 /**
  *  Atualizacao/Edicao de Despesa
@@ -162,15 +162,43 @@ function edit() {
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
     if (isset($_POST['cost'])) {
-      $cost = $_POST['cost'];
-      $cost['modification_date_dt'] = $now->format("Y-m-d H:i:s");
-      update('tbl_costs', $id, $cost);
-      //header('location: edit_course.php?id=' + $id);
-      header('location: view_cost.php');
-      die();
+        try {
+             $cost = $_POST['cost'];
+              $cost['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+               //Formatando a data para insercao no banco
+              foreach ($cost as $key => $value) {
+                if($key=="'deadline_dt'") {
+                   $valueReplace = str_replace('/', '-', $value);
+                   $date = strtotime($valueReplace);
+                   $cost["'deadline_dt'"] = date('Y-m-d',$date);
+                }
+              }
+               //update('tbl_costs', $id, $cost);
+              update_cost($id, $cost);
+               $_SESSION['message'] = "Despesa atualizada com sucesso!";
+               $_SESSION['type'] = 'success';
+                  //header('location: edit_course.php?id=' + $id);
+                  header('location: view_cost.php');
+                  die();
+
+        } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível editar a despesa. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível editar a despesa. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+
+
     } else {
-      global $cost;
-      $cost = find('tbl_costs', $id);
+        global $cost;
+        $results = find_cost_by_id($id);
+
+        foreach($results as $result) {
+            $cost = $result;
+        }
+
     }
   } else {
 

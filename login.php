@@ -41,7 +41,7 @@
             <div class="line"><h3><?php date_default_timezone_set('America/Sao_Paulo'); echo date("H:i"); ?></h3></div>
             <div class="outter"><img src="imgs/logo.jpg" class="image-circle"/></div>
             <h1>Seja bem vindo (a)</h1>
-            <span>Mansão Rubi - Desenvolvimento Humano e Sustentável</span>
+            <span>Mansão Rubi - Crescimento Humano e Sustentável</span>
         </div>
 
         <div class="col-md-12 col-xs-12 login_control">
