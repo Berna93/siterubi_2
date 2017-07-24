@@ -2,7 +2,34 @@
    include("config.php");
    session_start();
 
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
 
+     $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $myusername = $_POST['username'];
+     $mypassword = $_POST['password'];
+
+     $stmt = $conn->prepare("SELECT id FROM tbl_users WHERE username_var=:field1 and password_var=:field2");
+     $stmt->execute(array(
+      ':field1' => $myusername,
+      ':field2' => $mypassword));
+     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+     if(!empty($results)) {
+         $_SESSION['login_user'] = $_POST['username'];
+         header("location: index.php");
+     } else {
+      if(!empty($myusername) && !empty($mypassword)) {
+           $error = "Usuário ou senha inválidos. Por favor, tente novamente.";
+         } else {
+           $error = "";
+         }
+     }
+
+   }
+
+
+/*
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form
 
@@ -28,7 +55,7 @@
          }
 
       }
-   }
+   }*/
 ?>
 
 
