@@ -9,7 +9,7 @@ include('../session.php');
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
-<?php $db = open_database(); ?>
+
 
 <!-- Include Bootstrap Datepicker -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
@@ -17,7 +17,7 @@ include('../session.php');
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
-<?php if ($db) : ?>
+
 
  <div class="row">
                 <div class="col-lg-12">
@@ -101,12 +101,6 @@ include('../session.php');
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-<?php else : ?>
-     <div class="alert alert-danger" role="alert">
-                <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
-            </div>
-
-        <?php endif; ?>
 
         <script>
 $(document).ready(function() {

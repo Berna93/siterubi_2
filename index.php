@@ -9,7 +9,7 @@ include('session.php');
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
-<?php $db = open_database(); ?>
+
 
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -58,7 +58,7 @@ include('session.php');
 
     </script>
 
-<?php if ($db) : ?>
+
 
 <div id="page-wrapper">
         <div class="container-fluid">
@@ -160,13 +160,5 @@ include('session.php');
         <!-- /.container -->
     </section>
     </div>
-
-
-<?php else : ?>
-    <div class="alert alert-danger" role="alert">
-        <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
-    </div>
-
-<?php endif; ?>
 
 <?php include(FOOTER_TEMPLATE); ?>

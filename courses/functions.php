@@ -185,7 +185,12 @@ function edit() {
 
     } else {
       global $course;
-      $course = find('tbl_courses', $id);
+      //$course = find('tbl_courses', $id);
+      $results = find_course_by_id($id);
+
+      foreach($results as $result) {
+        $course = $result;
+      }
 
     }
   } else {

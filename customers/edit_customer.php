@@ -9,10 +9,6 @@ include('../session.php');
 <?php require_once DBAPI; ?>
 
 <?php include(HEADER_TEMPLATE); ?>
-<?php $db = open_database(); ?>
-
-
-<?php if ($db) : ?>
 
 <div class="row">
                 <div class="col-lg-12">
@@ -115,11 +111,5 @@ include('../session.php');
 </div>
 <!-- /#wrapper -->
 
-<?php else : ?>
-    <div class="alert alert-danger" role="alert">
-        <p><strong>ERRO:</strong> Não foi possível Conectar ao Banco de Dados!</p>
-    </div>
-
-<?php endif; ?>
 <?php include('modal.php'); ?>
 <?php include(FOOTER_TEMPLATE); ?>
