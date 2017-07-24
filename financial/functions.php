@@ -209,7 +209,18 @@ function edit() {
  *  Exclusão de uma Despesa
  */
 function delete($id = null) {
-  global $cost;
-  $cost = remove('tbl_costs', $id);
-  header('location: view_cost.php');
+    try {
+          //$cost = remove('tbl_costs', $id);
+         remove_cost($id);
+            $_SESSION['message'] = "Despesa excluída com sucesso!";
+            $_SESSION['type'] = 'success';
+          header('location: view_cost.php');
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir a despesa. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir a despesa. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
 }
