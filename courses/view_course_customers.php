@@ -6,6 +6,7 @@ include('../session.php');
     //indexCourseCustomers('tbl_courses_id', $_GET['id']);
     searchCustomersByCourseId($_GET['id']);
     search($_GET['id']);
+    calculateNumSlotsTaken($_GET['id']);
 ?>
 <?php include(HEADER_TEMPLATE); ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />

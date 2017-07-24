@@ -52,6 +52,7 @@ function findElementByColumnNumber($table = null , $column = null, $value = null
 
 function search($id = null) {
     global $courses;
+    calculateNumSlotsTaken($id);
     $results = find_course_by_id($id);
 
     foreach($results as $result) {
@@ -185,6 +186,7 @@ function edit() {
 
     } else {
       global $course;
+
       //$course = find('tbl_courses', $id);
       $results = find_course_by_id($id);
 
@@ -304,6 +306,36 @@ function deleteCustomer($id = null, $courseId = null) {
         $_SESSION['message'] = "Cliente excluído com sucesso do curso!";
         $_SESSION['type'] = 'success';
         header('location: view_course_customers.php?id=' . $courseId);
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente do curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir  o cliente do curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+}
+
+function calculateNumSlotsTaken($idCourse = null) {
+
+   try {
+        //$results = find_course_by_id($idCourse);
+        $results = count_course_slotstaken($idCourse);
+        foreach ($results as $result => $value) {
+          $count = intval($value['counter']);
+        }
+
+
+        $resultsCourse = find_course_by_id($idCourse);
+
+        foreach ($resultsCourse as $key) {
+          $course = $key;
+        }
+
+        $course['numSlotsTaken_int'] = $count;
+        //$customer = remove('tbl_course_customers', $id);
+        update_course_slotstaken($course['id'], $course);
+
     } catch (PDOException $e) {
        $_SESSION['message'] = "Não foi possível excluir o cliente do curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
        $_SESSION['type'] = 'danger';

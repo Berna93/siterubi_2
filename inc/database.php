@@ -23,6 +23,19 @@ function insert_customer($customer = null) {
   return $affected_rows;
 }
 
+function search_customer_names($term = null) {
+    $conn = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      $stmt = $conn->prepare('SELECT name_var FROM tbl_customers WHERE name_var LIKE :term');
+      $stmt->execute(array('term' => '%'.$term.'%'));
+      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      return $results;
+
+
+}
+
 function insert_course_customer($customer = null) {
 
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
@@ -325,6 +338,18 @@ function find_course_by_id($id = null) {
 
    $stmt = $conn->prepare("SELECT * FROM tbl_courses WHERE id=:id");
    $stmt->execute(array(':id' => $id));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
+function count_course_slotstaken($idCourse = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT COUNT(tbl_customers_name_var) as 'counter' FROM tbl_course_customers WHERE tbl_courses_id=:id");
+   $stmt->execute(array(':id' => $idCourse));
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    return $results;
