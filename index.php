@@ -54,6 +54,23 @@ include('session.php');
       // Instantiate and draw our chart, passing in some options.
       var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
       chart2.draw(data2, options2);
+
+      var data3 = google.visualization.arrayToDataTable([
+          ['Year', 'Receitas', 'Despesas'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      540]
+        ]);
+
+        var options3 = {
+          title: 'Performance da Compania',
+          hAxis: {title: 'Ano',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+        chart3.draw(data3, options3);
     }
 
     </script>
@@ -148,6 +165,9 @@ include('session.php');
 
             </div>
              <div class="row">
+             <div class="col-sm-12 col-md-10 well">
+                        <div id="chart_div3"  style="width: 100%; height: 500px;"></div>
+                    </div>
                     <div class="col-sm-12 col-md-10 well">
                         <div id="chart_div"></div>
                     </div>

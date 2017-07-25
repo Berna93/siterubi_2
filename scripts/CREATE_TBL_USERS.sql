@@ -1,6 +1,7 @@
 CREATE TABLE tbl_users (
   id int UNSIGNED NOT NULL,
-  username_var varchar(50) NOT NULL,
+  name_var varchar(50) UNIQUE NOT NULL,
+  username_var varchar(50) UNIQUE NOT NULL,
   password_var varchar(255) NOT NULL,
   userType_var varchar(15) NOT NULL,
   creation_date_dt date NOT NULL,

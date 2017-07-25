@@ -2,6 +2,14 @@
 require_once('../config.php');
 require_once(DBAPI);
 
+$users = null;
+
+function index() {
+    global $users;
+    //$customers = find_all('tbl_customers');
+    $users = find_user_all();
+}
+
 function add() {
 
   if (!empty($_POST['user'])) {
@@ -34,6 +42,27 @@ function add() {
     }
 
   }
+}
+
+/**
+ *  Exclusão de um usuário
+ */
+function delete($id = null) {
+  try {
+
+     global $customer;
+     $customer = remove_user($id);
+     $_SESSION['message'] = "Usuário excluído com sucesso!";
+     $_SESSION['type'] = 'success';
+     header('location: view_user.php');
+     //die();
+  } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o usuário. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir o usuário. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
 }
 
 ?>

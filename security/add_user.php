@@ -47,6 +47,15 @@ include('../session.php');
                                           </select>
 
                                          </div>
+                                           <div class="form-group">
+                                            <label>Nome do Usuário</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                            <input type="text" class="form-control" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
+                                                  data-error="Por favor, informe um nome válido." required>
+                                             </div>
+                                             <div class="help-block with-errors"></div>
+                                         </div>
 
                                          <div class="form-group">
                                             <label>Login</label>
