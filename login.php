@@ -9,13 +9,16 @@
      $myusername = $_POST['username'];
      $mypassword = $_POST['password'];
 
-     $stmt = $conn->prepare("SELECT id FROM tbl_users WHERE username_var=:field1 and password_var=:field2");
+     $stmt = $conn->prepare("SELECT password_var FROM tbl_users WHERE username_var=:field1");
      $stmt->execute(array(
-      ':field1' => $myusername,
-      ':field2' => $mypassword));
+      ':field1' => $myusername));
      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-     if(!empty($results)) {
+     foreach ($results as $result) {
+      $dbUser = $result;
+     }
+
+     if(!empty($results) && password_verify($mypassword,$dbUser['password_var'])) {
          $_SESSION['login_user'] = $_POST['username'];
          header("location: index.php");
      } else {

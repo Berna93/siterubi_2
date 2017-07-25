@@ -85,6 +85,13 @@
                          <li><a href="<?php echo BASEURL; ?>financial/view_cost.php"><i class="fa fa-angle-double-right"></i> Visualizar despesa</a></li>
                     </ul>
                 </li>
+                 <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-4"><i class="fa fa-fw fa-lock"></i>  Segurança <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <ul id="submenu-4" class="collapse">
+                        <li><a href="<?php echo BASEURL; ?>security/add_user.php"><i class="fa fa-angle-double-right"></i> Cadastrar Usuário</a></li>
+                         <li><a href="<?php echo BASEURL; ?>financial/view_cost.php"><i class="fa fa-angle-double-right"></i> Visualizar Usuário</a></li>
+                    </ul>
+                </li>
 
                  <li>
                     <a href="https://mailchimp.com/" target="_blank"><i class="fa fa-fw fa-envelope"></i>  MailChimp</a>
