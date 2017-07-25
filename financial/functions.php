@@ -6,10 +6,18 @@ $cost = null;
 $cash_flow = null;
 $month_flow = null;
 
+
 function index() {
     global $costs;
     //$costs = find_all('tbl_costs');
     $costs = find_cost_all();
+}
+
+function getAllFlows() {
+
+   $all_cashflow = find_cash_flow_all();
+
+   return $all_cashflow;
 }
 
 function getCashFlow() {
