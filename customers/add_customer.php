@@ -12,7 +12,7 @@ include('../session.php');
 
 
 
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
  <div class="row">
                 <div class="col-lg-12">
@@ -54,7 +54,7 @@ include('../session.php');
                                             <label>RG</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="number" min="111111111" max="999999999" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
+                                            <input type="text" id="rg" class="form-control" name="customer['rg_var']" placeholder="Digite o RG do cliente..." type="text"
                                                   data-error="Por favor, informe um RG válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -63,7 +63,7 @@ include('../session.php');
                                             <label>CPF</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon glyphicon-duplicate"></span></span>
-                                            <input type="number" min="11111111111" max="99999999999" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..."
+                                            <input type="text" id="cpf" class="form-control" name="customer['cpf_var']" placeholder="Digite o CPF do cliente..."
                                                   data-error="Por favor, informe um CPF válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -82,7 +82,7 @@ include('../session.php');
                                             <label>Telefone</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-phone"></span></span>
-                                            <input type="number" min="111111111" max="99999999999" class="form-control" name="customer['phone_var']" placeholder="Digite o telefone do cliente..." type="text"
+                                            <input type="text" id="phone" class="form-control" name="customer['phone_var']" placeholder="Digite o telefone do cliente..." type="text"
                                                   data-error="Por favor, informe um telefone válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -92,7 +92,7 @@ include('../session.php');
                                             <label>Data de Nascimento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="customer['birthday_dt']" placeholder="Digite a data de nascimento do cliente..." type="text"
+                                            <input type="text" id="birthday" class="form-control" name="customer['birthday_dt']" placeholder="Digite a data de nascimento do cliente..." type="text"
                                                   data-error="Por favor, informe um telefone válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -133,3 +133,14 @@ include('../session.php');
             </div>
 
         <?php include(FOOTER_TEMPLATE); ?>
+
+        <script type="text/javascript">
+            jQuery(function($){
+
+   $("#phone").mask("(99) 99999-9999");
+    $("#rg").mask("99.999.999-9");
+     $("#cpf").mask("999.999.999-99");
+      $("#birthday").mask("99/99/9999");
+
+});
+        </script>

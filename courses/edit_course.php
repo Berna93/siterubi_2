@@ -64,7 +64,7 @@ include('../session.php');
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="text" class="form-control" name="course['numSlots_int']" value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                          </div>
                                          <div class="form-group">
@@ -78,7 +78,7 @@ include('../session.php');
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="course['price_int']" value="<?php echo $course['price_int']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="number" class="form-control" name="course['price_int']" value="<?php echo $course['price_int']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                          </div>
 
@@ -102,6 +102,8 @@ include('../session.php');
                                               <div class="help-block with-errors"></div>
                                          </div>
 
+
+
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
                                         <button type="reset" class="btn btn-warning">Limpar</button>
 
@@ -114,6 +116,15 @@ include('../session.php');
 
                                     </div>
                                     </form>
+
+                                    <form id="maskForm" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-xs-3 control-label">IP address</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="ipAddress" />
+        </div>
+    </div>
+</form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 </div>
@@ -138,7 +149,10 @@ $(document).ready(function() {
             // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
+
+
 });
+
 </script>
 <?php include('modal.php'); ?>
 <?php include(FOOTER_TEMPLATE); ?>
