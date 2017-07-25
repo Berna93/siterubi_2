@@ -77,7 +77,7 @@
                         <li><a href="<?php echo BASEURL; ?>customers/view_customer.php"><i class="fa fa-angle-double-right"></i> Visualizar cliente</a></li>
                     </ul>
                 </li>
-                 <li>
+                 <li style="<?php if ($_SESSION['usertype']!='admin') echo "display:none;"; ?>">
                     <a href="#" data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-dollar"></i>  Financeiro <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-3" class="collapse">
                         <li><a href="<?php echo BASEURL; ?>financial/view_cash_flow.php"><i class="fa fa-angle-double-right"></i> Fluxo de Caixa</a></li>
@@ -85,7 +85,7 @@
                          <li><a href="<?php echo BASEURL; ?>financial/view_cost.php"><i class="fa fa-angle-double-right"></i> Visualizar despesa</a></li>
                     </ul>
                 </li>
-                 <li>
+                 <li style="<?php if ($_SESSION['usertype']!='admin') echo "display:none;"; ?>">
                     <a href="#" data-toggle="collapse" data-target="#submenu-4"><i class="fa fa-fw fa-lock"></i>  Segurança <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-4" class="collapse">
                         <li><a href="<?php echo BASEURL; ?>security/add_user.php"><i class="fa fa-angle-double-right"></i> Cadastrar Usuário</a></li>
