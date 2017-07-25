@@ -33,13 +33,13 @@ include('../session.php');
                                 </div>
                                 <div class="form-group">
                                     <label>RG</label>
-                                    <input type="text" class="form-control" name="customer['rg_var']" value="<?php echo $customer['rg_var']; ?>" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
+                                    <input type="text" id="rg" class="form-control" name="customer['rg_var']" value="<?php echo $customer['rg_var']; ?>" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
                                     <div class="help-block with-errors"></div>
                                     <p class="help-block">Apenas números</p>
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" class="form-control" name="customer['cpf_var']" value="<?php echo $customer['cpf_var']; ?>" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                    <input type="text" id="cpf" class="form-control" name="customer['cpf_var']" value="<?php echo $customer['cpf_var']; ?>" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
                                     <div class="help-block with-errors"></div>
                                     <p class="help-block">Apenas números.</p>
                                 </div>
@@ -51,14 +51,14 @@ include('../session.php');
                                 <div class="form-group">
                                     <label>Telefone</label>
 
-                                    <input type="text" class="form-control" name="customer['phone_var']" value="<?php echo $customer['phone_var']; ?>" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
+                                    <input type="text" id="phone" class="form-control" name="customer['phone_var']" value="<?php echo $customer['phone_var']; ?>" data-error="Por favor, informe um telefone válido."  data-mask="(00) 00000-0000" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                  <div class="form-group">
                                             <label>Data de Nascimento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="customer['birthday_dt']" value="<?php echo date('d/m/Y', strtotime($customer['birthday_dt']));  ?>" placeholder="Digite a data de nascimento do cliente..." type="text"
+                                            <input type="text" id="birthday" class="form-control" name="customer['birthday_dt']" value="<?php echo date('d/m/Y', strtotime($customer['birthday_dt']));  ?>" placeholder="Digite a data de nascimento do cliente..." type="text"
                                                   data-error="Por favor, informe um telefone válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -113,3 +113,14 @@ include('../session.php');
 
 <?php include('modal.php'); ?>
 <?php include(FOOTER_TEMPLATE); ?>
+
+        <script type="text/javascript">
+            jQuery(function($){
+
+   $("#phone").mask("(99) 99999-9999");
+    $("#rg").mask("99.999.999-9");
+     $("#cpf").mask("999.999.999-99");
+      $("#birthday").mask("99/99/9999");
+
+});
+        </script>
