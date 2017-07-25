@@ -67,6 +67,7 @@ include('../session.php');
                                             <input type="number" class="form-control" min="5" max="10000" name="cost['value_dec']" placeholder="Digite o valor da despesa..." type="text"
                                                   data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
+                                             <p class="help-block">Valores permitidos: entre 5 e 10000. Para adicionar casas decimais, utilizar o ponto (.) Ex: O valor "3.000,70"  deve ser inserido como "3000.70" (sem as aspas).</p>
                                              <div class="help-block with-errors"></div>
                                          </div>
 

@@ -68,6 +68,7 @@ include('../session.php');
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
                                             <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe uma quantidade válida." value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
+                                             <p class="help-block">Valores permitidos: entre 1 e 100. </p>
                                               <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group">
@@ -84,6 +85,7 @@ include('../session.php');
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
                                             <input type="number" min="1" max="3000" step="0.1" class="form-control" name="course['price_dec']" data-error="Por favor, informe um valor válido." value="<?php echo $course['price_dec']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
+                                              <p class="help-block">Valores permitidos: entre 1 e 3000. Para adicionar casas decimais, utilizar o ponto (.) Ex: O valor "3.000,70"  deve ser inserido como "3000.70" (sem as aspas).</p>
                                              <div class="help-block with-errors"></div>
                                          </div>
 

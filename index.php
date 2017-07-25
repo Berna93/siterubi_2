@@ -109,7 +109,7 @@ include('session.php');
                      <i class="fa fa-fw fa-dollar"></i>
                 </div>
                 <div class="text">
-                    <var>R$ <?php if(isset($currentBalance)) { echo $currentBalance['balance_int']; } else { echo 0;} ?></var>
+                    <var>R$ <?php if(isset($currentBalance)) { echo $currentBalance['balance_dec']; } else { echo 0;} ?></var>
                     <label class="text-muted">lucro previsto (mês)</label>
                 </div>
 

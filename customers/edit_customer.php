@@ -59,7 +59,7 @@ include('../session.php');
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                             <input type="text" id="birthday" class="form-control" name="customer['birthday_dt']" value="<?php echo date('d/m/Y', strtotime($customer['birthday_dt']));  ?>" placeholder="Digite a data de nascimento do cliente..." type="text"
-                                                  data-error="Por favor, informe um telefone válido." required>
+                                                  data-error="Por favor, informe uma data de nascimento válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
