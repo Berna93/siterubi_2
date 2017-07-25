@@ -75,7 +75,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="cost['deadline_dt']" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
+                                            <input type="text" id="deadline" class="form-control" name="cost['deadline_dt']" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
 
                                         </div>
                                         <div class="help-block with-errors"></div>
@@ -112,6 +112,12 @@ $(document).ready(function() {
             // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
+});
+
+jQuery(function($){
+
+   $("#deadline").mask("99/99/9999");
+
 });
 </script>
 

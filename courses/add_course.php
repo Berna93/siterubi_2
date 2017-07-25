@@ -73,7 +73,7 @@ include('../session.php');
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" name="course['price_dec']" placeholder="Digite o valor (individual) do curso ..."  data-error="Por favor, informe um valor válido." required>
+                                            <input type="number" min="1" max="3000" step="0.1"  class="form-control" name="course['price_dec']" placeholder="Digite o valor (individual) do curso ..."  data-error="Por favor, informe um valor válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
