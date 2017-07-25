@@ -3,7 +3,7 @@ include('../session.php');
 ?>
 <?php
   require_once('functions.php');
-  add();
+  edit();
 ?>
 
 <?php require_once DBAPI; ?>
@@ -23,7 +23,7 @@ include('../session.php');
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" align="center">
-                            <h4>Cadastro de Usuário</h4>
+                            <h4>Edição de Usuário</h4>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -36,12 +36,12 @@ include('../session.php');
                             <?php endif; ?>
                                 <div class="col-lg-6">
 
-                                    <form role="form" action="add_user.php" data-toggle="validator" method="post">
+                                    <form role="form" action="edit_user.php?id=<?php echo $user['id']; ?>" data-toggle="validator" method="post">
 
                                        <div class="form-group">
 
                                           <label for="sel1">Selecione o tipo de usuário:</label>
-                                          <select class="form-control " name="user['userType_var']">
+                                          <select class="form-control " name="user['userType_var']" value="<?php echo $cost['userType_var']; ?>">
                                             <option value="admin">Administrador</option>
                                             <option value="operator">Operador</option>
                                           </select>
@@ -51,8 +51,8 @@ include('../session.php');
                                             <label>Nome do Usuário</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                            <input type="text" class="form-control" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
-                                                  data-error="Por favor, informe um nome válido." required>
+                                            <input type="text" class="form-control" minlength="5" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
+                                                  data-error="Por favor, informe um nome válido." value="<?php echo $user['name_var']; ?>" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -62,7 +62,7 @@ include('../session.php');
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
                                             <input type="text" class="form-control" minlength="5" maxlength="30" name="user['username_var']" placeholder="Digite o login do usuário..." type="text"
-                                                  data-error="Por favor, informe um login válido." required>
+                                                  data-error="Por favor, informe um login válido." value="<?php echo $user['username_var']; ?>" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -75,13 +75,14 @@ include('../session.php');
                                             <input type="password" minlength="4" maxlength="20" class="form-control" name="user['password_var']" placeholder="Informe a senha do usuário..." data-error="Por favor, informe uma senha válida." required/>
 
                                         </div>
+                                          <p class="help-block"> IMPORTANTE: Pelos padrões de segurança e criptografia de dados, não é possível visualizar ou recuperar uma senha armazenada no banco de dados. Caso a senha tenha sido perdida, insira uma nova neste campo e atualize o registro. Caso não deseje alterá-la, informe a MESMA senha utilizada atualmente, que a mesma permanecerá ativa.</p>
                                         <div class="help-block with-errors"></div>
 
                                     </div>
 
 
-                                        <button type="submit" class="btn btn-success">Cadastrar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
+                                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer alterações</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

@@ -372,6 +372,18 @@ function find_course_by_id($id = null) {
 
 }
 
+function find_user_by_id($id = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE id=:id");
+   $stmt->execute(array(':id' => $id));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
 function count_course_slotstaken($idCourse = null) {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -497,6 +509,23 @@ function update_cash_flow_costs($idCashFlow= null, $cashflow = null) {
     ':field1' => $cashflow['costs_dec'],
     ':field2' => $cashflow['balance_dec'],
     ':idCashFlow' => $idCashFlow));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+function update_user($idUser= null, $user = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_users SET name_var=:field1,username_var=:field2, password_var=:field3, userType_var=:field4, modification_date_dt=:field5 WHERE id=:id');
+  $stmt->execute(array(
+    ':field1' => $user["'name_var'"],
+    ':field2' => $user["'username_var'"],
+     ':field3' => $user["'password_var'"],
+    ':field4' => $user["'userType_var'"],
+    ':field5' => $user['modification_date_dt'],
+    ':id' => $idUser));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;

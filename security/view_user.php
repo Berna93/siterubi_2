@@ -47,7 +47,7 @@ include('../session.php');
         <td><?php if(isset($user['id'])) { echo $user['id']; }  ?></td>
         <td><?php echo $user['name_var']; ?></td>
         <td><?php echo $user['username_var']; ?></td>
-        <td><?php echo $user['userType_var']; ?></td>
+        <td><?php if($user['userType_var']=="admin") { echo "Administrador";} else { echo "Operador";} ?></td>
         <td class="actions text-right">
             <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
             <a href="#" class="btn btn-sm btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $user['id']; ?>">
