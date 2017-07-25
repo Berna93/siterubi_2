@@ -88,7 +88,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="course['event_date_dt']" value="<?php echo date('d/m/Y', strtotime($course['event_date_dt']));  ?>"  <?php if($course['status_var']=='Fechado') echo "disabled"; ?>/>
+                                            <input type="text" id="event_date" class="form-control" name="course['event_date_dt']" value="<?php echo date('d/m/Y', strtotime($course['event_date_dt']));  ?>"  <?php if($course['status_var']=='Fechado') echo "disabled"; ?>/>
 
                                         </div>
 
@@ -97,7 +97,7 @@ include('../session.php');
                                             <label>Horário do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" name="course['event_hour_var']" value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="text" id="event_hour" class="form-control" name="course['event_hour_var']" value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -116,15 +116,6 @@ include('../session.php');
 
                                     </div>
                                     </form>
-
-                                    <form id="maskForm" method="post" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-xs-3 control-label">IP address</label>
-        <div class="col-xs-5">
-            <input type="text" class="form-control" name="ipAddress" />
-        </div>
-    </div>
-</form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 </div>
@@ -149,6 +140,14 @@ $(document).ready(function() {
             // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
+
+
+});
+
+jQuery(function($){
+
+   $("#event_hour").mask("99:99");
+    $("#event_date").mask("99/99/9999");
 
 
 });

@@ -49,7 +49,7 @@ include('../session.php');
                                             <label>Nome do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" name="course['name_var']" placeholder="Digite o nome do curso..." data-error="Por favor, informe um nome de curso válido." required>
+                                            <input type="text" maxlength="100" class="form-control" name="course['name_var']" placeholder="Digite o nome do curso..." data-error="Por favor, informe um nome de curso válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -57,7 +57,7 @@ include('../session.php');
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" name="course['professor_var']" placeholder="Digite o nome do professor..."  data-error="Por favor, informe um nome válido." required>
+                                            <input type="text" maxlength="100" class="form-control" name="course['professor_var']" placeholder="Digite o nome do professor..."  data-error="Por favor, informe um nome válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -65,7 +65,7 @@ include('../session.php');
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="number" class="form-control" name="course['numSlots_int']" placeholder="Digite a quantidade de vagas ..."  data-error="Por favor, informe uma quantidade válida." required>
+                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" placeholder="Digite a quantidade de vagas ..."  data-error="Por favor, informe uma quantidade válida." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -84,7 +84,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" class="form-control" name="course['event_date_dt']" placeholder="Informe a data do curso ..."  data-error="Por favor, informe uma data válida." required/>
+                                            <input type="text" id="event_date" class="form-control" name="course['event_date_dt']" placeholder="Informe a data do curso ..."  data-error="Por favor, informe uma data válida." required/>
                                         </div>
                                          <div class="help-block with-errors"></div>
 
@@ -93,7 +93,7 @@ include('../session.php');
                                             <label>Horário do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" name="course['event_hour_var']" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required>
+                                            <input type="text" id="event_hour" class="form-control" name="course['event_hour_var']" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -130,6 +130,13 @@ $(document).ready(function() {
             // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
+});
+
+jQuery(function($){
+
+   $("#event_hour").mask("99:99");
+    $("#event_date").mask("99/99/9999");
+
 });
 </script>
 
