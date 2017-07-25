@@ -51,8 +51,8 @@ function calculate() {
          //Se ja existir um ganho com o mesmo mes e ano, precisa atualizar o registro
          if(!empty($searchIncome)) {
 
-            $searchIncome['costs_int'] += $cost['value'];
-            $searchIncome['balance_int'] -= $cost['value'];
+            $searchIncome['costs_dec'] += $cost['value'];
+            $searchIncome['balance_dec'] -= $cost['value'];
 
             update_cash_flow_costs($searchIncome['id'], $searchIncome);
 
@@ -60,9 +60,9 @@ function calculate() {
               $insert = array(
                     'month_int' => $cost['month'],
                     'year_int' =>  $cost['year'],
-                    'costs_int' => $cost['value'],
-                    'income_int' => 0,
-                    'balance_int' => -(intval($cost['value'])),
+                    'costs_dec' => $cost['value'],
+                    'income_dec' => 0,
+                    'balance_dec' => -(intval($cost['value'])),
                     );
               insert_cash_flow($insert);
          }
@@ -78,8 +78,8 @@ function calculate() {
          //Se ja existir um gasto com o mesmo mes e ano, precisa atualizar o registro
          if(!empty($searchCost)) {
 
-            $searchCost['income_int'] += $income['value'];
-            $searchCost['balance_int'] += $income['value'];
+            $searchCost['income_dec'] += $income['value'];
+            $searchCost['balance_dec'] += $income['value'];
 
             update_cash_flow_incomes($searchCost['id'], $searchCost);
 
@@ -87,9 +87,9 @@ function calculate() {
               $insert = array(
                     'month_int' => $income['month'],
                     'year_int' =>  $income['year'],
-                    'costs_int' => 0,
-                    'income_int' => $income['value'],
-                    'balance_int' => (intval($income['value'])),
+                    'costs_dec' => 0,
+                    'income_dec' => $income['value'],
+                    'balance_dec' => (intval($income['value'])),
                     );
               insert_cash_flow($insert);
          }

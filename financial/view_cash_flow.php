@@ -33,7 +33,7 @@ include('../session.php');
                      <i class="glyphicon glyphicon-minus"></i>
                 </div>
                 <div class="text">
-                    <var style="color: #ffffff">R$ <?php if(isset($month_flow)) { echo $month_flow['costs_int']; } ?></var>
+                    <var style="color: #ffffff">R$ <?php if(isset($month_flow)) { echo $month_flow['costs_dec']; } ?></var>
                     <label class="text-muted" style="color: #ffffff">Despesas (mês)</label>
                 </div>
 
@@ -46,7 +46,7 @@ include('../session.php');
                      <i class="glyphicon glyphicon-plus"></i>
                 </div>
                 <div class="text" >
-                    <var style="color: #ffffff">R$ <?php if(isset($month_flow)) { echo $month_flow['income_int']; } ?></var>
+                    <var style="color: #ffffff">R$ <?php if(isset($month_flow)) { echo $month_flow['income_dec']; } ?></var>
                     <label class="text-muted" style="color: #ffffff">Receita (mês)</label>
                 </div>
 
@@ -58,7 +58,7 @@ include('../session.php');
                      <i class="glyphicon glyphicon-usd"></i>
                 </div>
                 <div class="text" >
-                    <var style="color: #ffffff"> R$ <?php if(isset($month_flow)) { echo $month_flow['balance_int']; } ?></var>
+                    <var style="color: #ffffff"> R$ <?php if(isset($month_flow)) { echo $month_flow['balance_dec']; } ?></var>
                     <label class="text-muted" style="color: #ffffff">Saldo Previsto (mês)</label>
                 </div>
 

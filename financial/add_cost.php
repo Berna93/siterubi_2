@@ -64,7 +64,7 @@ include('../session.php');
                                             <label>Valor da Despesa</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" min="5" max="10000" name="cost['value_int']" placeholder="Digite o valor da despesa..." type="text"
+                                            <input type="number" class="form-control" min="5" max="10000" name="cost['value_dec']" placeholder="Digite o valor da despesa..." type="text"
                                                   data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
                                              <div class="help-block with-errors"></div>

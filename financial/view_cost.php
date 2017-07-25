@@ -49,7 +49,7 @@ include('../session.php');
     <tr>
         <td><?php if(isset($cost['id'])) { echo $cost['id']; }  ?></td>
         <td><?php echo $cost['type_var']; ?></td>
-        <td><?php echo $cost['value_int']; ?></td>
+        <td><?php echo $cost['value_dec']; ?></td>
         <td><?php if($cost['payment_tni']==1) { echo "Pagamento Realizado"; } else { echo "Aguardando Pagamento"; } ?></td>
         <td><?php $date = date_create($cost['deadline_dt']); echo date_format($date, 'd/m/Y'); ?></td>
         <td class="actions text-right">

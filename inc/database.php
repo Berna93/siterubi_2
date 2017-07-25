@@ -64,13 +64,13 @@ function insert_course($course = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare("INSERT INTO tbl_courses(name_var,professor_var,numSlots_int,numSlotsTaken_int,price_int, event_date_dt, event_hour_var, status_var, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8,:field9,:field10)");
+  $stmt = $conn->prepare("INSERT INTO tbl_courses(name_var,professor_var,numSlots_int,numSlotsTaken_int,price_dec, event_date_dt, event_hour_var, status_var, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8,:field9,:field10)");
   $stmt->execute(array(
     ':field1' => $course["'name_var'"],
     ':field2' => $course["'professor_var'"],
     ':field3' => $course["'numSlots_int'"],
     ':field4' => $course['numSlotsTaken_int'],
-    ':field5' => $course["'price_int'"],
+    ':field5' => $course["'price_dec'"],
     ':field6' => $course["'event_date_dt'"],
     ':field7' => $course["'event_hour_var'"],
     ':field8' => $course['status_var'],
@@ -111,12 +111,12 @@ function update_course($idCourse= null, $course = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_courses SET name_var=:field1,professor_var=:field2,numSlots_int=:field3,price_int=:field4,event_date_dt=:field5, event_hour_var=:field6, modification_date_dt=:field7 WHERE id=:idCourse');
+  $stmt = $conn->prepare('UPDATE tbl_courses SET name_var=:field1,professor_var=:field2,numSlots_int=:field3,price_dec=:field4,event_date_dt=:field5, event_hour_var=:field6, modification_date_dt=:field7 WHERE id=:idCourse');
   $stmt->execute(array(
     ':field1' => $course["'name_var'"],
     ':field2' => $course["'professor_var'"],
     ':field3' => $course["'numSlots_int'"],
-    ':field4' => $course["'price_int'"],
+    ':field4' => $course["'price_dec'"],
     ':field5' => $course["'event_date_dt'"],
     ':field6' => $course["'event_hour_var'"],
     ':field7' => $course['modification_date_dt'],
@@ -182,10 +182,10 @@ function update_cost($idCost= null, $cost = null) {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-  $stmt = $conn->prepare('UPDATE tbl_costs SET type_var=:field1,value_int=:field2,payment_tni=:field3,deadline_dt=:field4,modification_date_dt=:field5 WHERE id=:id');
+  $stmt = $conn->prepare('UPDATE tbl_costs SET type_var=:field1,value_dec=:field2,payment_tni=:field3,deadline_dt=:field4,modification_date_dt=:field5 WHERE id=:id');
   $stmt->execute(array(
     ':field1' => $cost["'type_var'"],
-    ':field2' => $cost["'value_int'"],
+    ':field2' => $cost["'value_dec'"],
     ':field3' => $cost["'payment_tni'"],
     ':field4' => $cost["'deadline_dt'"],
     ':field5' => $cost['modification_date_dt'],
@@ -222,10 +222,10 @@ function insert_cost($cost = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare("INSERT INTO tbl_costs(type_var,value_int,payment_tni,deadline_dt, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
+  $stmt = $conn->prepare("INSERT INTO tbl_costs(type_var,value_dec,payment_tni,deadline_dt, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
   $stmt->execute(array(
     ':field1' => $cost["'type_var'"],
-    ':field2' => $cost["'value_int'"],
+    ':field2' => $cost["'value_dec'"],
     ':field3' => $cost["'payment_tni'"],
     ':field4' => $cost["'deadline_dt'"],
     ':field5' => $cost['creation_date_dt'],
@@ -437,7 +437,7 @@ function get_costs() {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-   $stmt = $conn->prepare("SELECT SUM(value_int) as 'value', MONTH(deadline_dt) as 'month', YEAR(deadline_dt) as 'year' FROM tbl_costs GROUP BY MONTH(deadline_dt)");
+   $stmt = $conn->prepare("SELECT SUM(value_dec) as 'value', MONTH(deadline_dt) as 'month', YEAR(deadline_dt) as 'year' FROM tbl_costs GROUP BY YEAR(deadline_dt), MONTH(deadline_dt)");
    $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -464,10 +464,10 @@ function update_cash_flow_costs($idCashFlow= null, $cashflow = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET costs_int=:field1,balance_int=:field2 WHERE id=:idCashFlow');
+  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET costs_dec=:field1,balance_dec=:field2 WHERE id=:idCashFlow');
   $stmt->execute(array(
-    ':field1' => $cashflow['costs_int'],
-    ':field2' => $cashflow['balance_int'],
+    ':field1' => $cashflow['costs_dec'],
+    ':field2' => $cashflow['balance_dec'],
     ':idCashFlow' => $idCashFlow));
   $affected_rows = $stmt->rowCount();
 
@@ -478,10 +478,10 @@ function update_cash_flow_incomes($idCashFlow= null, $cashflow = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET income_int=:field1,balance_int=:field2 WHERE id=:idCashFlow');
+  $stmt = $conn->prepare('UPDATE tbl_cash_flow SET income_dec=:field1,balance_dec=:field2 WHERE id=:idCashFlow');
   $stmt->execute(array(
-    ':field1' => $cashflow['income_int'],
-    ':field2' => $cashflow['balance_int'],
+    ':field1' => $cashflow['income_dec'],
+    ':field2' => $cashflow['balance_dec'],
     ':idCashFlow' => $idCashFlow));
   $affected_rows = $stmt->rowCount();
 
@@ -495,13 +495,13 @@ function insert_cash_flow($cashflow = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare("INSERT INTO tbl_cash_flow(month_int,year_int,costs_int,income_int,balance_int) VALUES(:field1,:field2,:field3,:field4,:field5)");
+  $stmt = $conn->prepare("INSERT INTO tbl_cash_flow(month_int,year_int,costs_dec,income_dec,balance_dec) VALUES(:field1,:field2,:field3,:field4,:field5)");
   $stmt->execute(array(
     ':field1' => $cashflow['month_int'],
     ':field2' => $cashflow['year_int'],
-    ':field3' => $cashflow['costs_int'],
-    ':field4' => $cashflow['income_int'],
-    ':field5' => $cashflow['balance_int']));
+    ':field3' => $cashflow['costs_dec'],
+    ':field4' => $cashflow['income_dec'],
+    ':field5' => $cashflow['balance_dec']));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;
@@ -517,10 +517,7 @@ function get_incomes() {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-   $stmt = $conn->prepare("SELECT SUM(price_int) as 'value', MONTH(payment_date_dt) as 'month', YEAR(payment_date_dt) as 'year' FROM tbl_courses
-          INNER JOIN tbl_course_customers on tbl_courses.id = tbl_course_customers.tbl_courses_id
-          WHERE tbl_course_customers.payment_date_dt is not null and tbl_course_customers.payment_date_dt!='0000-00-00'
-          GROUP BY MONTH(tbl_course_customers.payment_date_dt)");
+   $stmt = $conn->prepare("SELECT SUM(price_dec) as 'value', MONTH(payment_date_dt) as 'month', YEAR(payment_date_dt) as 'year' FROM tbl_courses INNER JOIN tbl_course_customers on tbl_courses.id = tbl_course_customers.tbl_courses_id WHERE tbl_course_customers.payment_date_dt is not null and tbl_course_customers.payment_date_dt!='0000-00-00' GROUP BY YEAR(tbl_course_customers.payment_date_dt), MONTH(tbl_course_customers.payment_date_dt)");
    $stmt->execute();
    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
