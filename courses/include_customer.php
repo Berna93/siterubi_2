@@ -12,6 +12,8 @@
         'tbl_customers_id' => $element['id'],
         'tbl_customers_name_var' => $element['name_var'],
         'payment_tni' => 0,
+        'payment_type_var' => "none",
+        'payment_info_var' => "Reserva Inicial",
         );
     search($_POST['courseId']);
     $customer['tbl_courses_name_var'] = $courses['name_var'];

@@ -41,7 +41,7 @@ function insert_course_customer($customer = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare("INSERT INTO tbl_course_customers(tbl_courses_id,tbl_courses_name_var,tbl_customers_id,tbl_customers_name_var,payment_tni, payment_date_dt, creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8)");
+  $stmt = $conn->prepare("INSERT INTO tbl_course_customers(tbl_courses_id,tbl_courses_name_var,tbl_customers_id,tbl_customers_name_var,payment_tni, payment_date_dt, creation_date_dt, modification_date_dt, payment_type_var, payment_info_var) VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8, :field9,:field10)");
   $stmt->execute(array(
     ':field1' => $customer['tbl_courses_id'],
     ':field2' => $customer['tbl_courses_name_var'],
@@ -50,7 +50,9 @@ function insert_course_customer($customer = null) {
     ':field5' => $customer['payment_tni'],
     ':field6' => $customer['payment_date_dt'],
     ':field7' => $customer['creation_date_dt'],
-    ':field8' => $customer['modification_date_dt']));
+    ':field8' => $customer['modification_date_dt'],
+    ':field9' => $customer['payment_type_var'],
+    ':field10' => $customer['payment_info_var']));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;
@@ -121,6 +123,23 @@ function update_course($idCourse= null, $course = null) {
     ':field6' => $course["'event_hour_var'"],
     ':field7' => $course['modification_date_dt'],
     ':idCourse' => $idCourse));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+function update_course_customers_payment($idCourseCustomer= null, $courseCustomer = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_course_customers SET payment_tni=:field1,payment_type_var=:field2,payment_info_var=:field3,payment_date_dt=:field4, modification_date_dt=:field5 WHERE id=:idCourseCustomer');
+  $stmt->execute(array(
+    ':field1' => $courseCustomer["'payment_tni'"],
+    ':field2' => $courseCustomer["'payment_type_var'"],
+    ':field3' => $courseCustomer["'payment_info_var'"],
+    ':field4' => $courseCustomer['payment_date_dt'],
+    ':field5' => $courseCustomer['modification_date_dt'],
+    ':idCourseCustomer' => $idCourseCustomer));
   $affected_rows = $stmt->rowCount();
 
   return $affected_rows;

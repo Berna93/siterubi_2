@@ -78,10 +78,11 @@ $(function() {
 <table id="tableCourseCustomers" class="table table-striped table-bordered" cellspacing="0" width="100%">
        <thead>
     <tr>
+        <th>ID</th>
+        <th width="30%">Nome do Curso</th>
         <th>Nome do Inscrito</th>
-        <th>Situação de Pagamento</th>
-        <th>Tipo de Pagamento</th>
-        <th>Info. de Pagamento</th>
+        <th>Pagamento</th>
+        <th> Data de Pagamento </th>
         <th>Incluído em</th>
         <th>Opções</th>
     </tr>
@@ -91,43 +92,25 @@ $(function() {
 <?php if ($courseCustomers) : ?>
 <?php foreach ($courseCustomers as $courseCustomer) : ?>
     <tr>
+        <td><?php if(isset($courseCustomer['id'])) { echo $courseCustomer['id']; }  ?></td>
+        <td><?php echo $courseCustomer['tbl_courses_name_var']; ?></td>
         <td><?php echo $courseCustomer['tbl_customers_name_var']; ?></td>
-        <td><?php if($courseCustomer['payment_tni']==0) { echo "Vaga Reservada"; } else { echo "Pagamento Realizado"; } ?></td>
         <td>
-        <?php
+         <?php if ($courseCustomer['payment_tni']==0) : ?>
+             <a href="#" class="btn btn-success <?php if ($courseCustomer['payment_tni']==1) echo "disabled"; ?>"" data-toggle="modal" data-target="#payment-modal-customer" data-payment="<?php echo $courseCustomer['payment_tni']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>">
+                                            <i class="fa fa-dollar"></i> Pagar
+              </a>
+        <?php else : ?>
+               <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#payment-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-payment="<?php echo $courseCustomer['payment_tni']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>">
+                                            <i class="fa fa-close"></i> Cancelar Pagamento
+              </a>
 
-            switch($courseCustomer['payment_type_var']) {
-              case "none":
-                echo "";
-                break;
-              case "check":
-                echo "Cheque";
-                break;
-              case "debit":
-                echo "Cartão de Débito";
-                break;
-              case "credit":
-                echo "Cartão de Crédito";
-                break;
-              case "bankslip":
-                echo "Boleto Bancário";
-                break;
-              case "money":
-                echo "Dinheiro";
-                break;
-              default:
-                echo "";
-                break;
-            }
-
-        ?>
+        <?php endif; ?>
 
         </td>
-        <td><?php echo $courseCustomer['payment_info_var']; ?></td>
+        <td><?php if($courseCustomer['payment_date_dt']=="0000-00-00" || $courseCustomer['payment_date_dt']==NULL) { echo ""; } else { $date = date_create($courseCustomer['payment_date_dt']); echo date_format($date, 'd/m/Y'); } ?></td>
         <td><?php $date = date_create($courseCustomer['creation_date_dt']); echo date_format($date, 'd/m/Y'); ?></td>
-        <td>
-              <a href="edit_payment.php?id=<?php echo $courseCustomer['id']; ?>" target="_blank" class="btn btn-success"><i class="fa fa-dollar"></i> Pagamento</a>
-        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
+        <td> <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
 

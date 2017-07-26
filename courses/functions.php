@@ -30,6 +30,15 @@ function searchCustomersByCourseId($id = null) {
   }
 }
 
+function searchCustomersById($id = null) {
+  global $courseCustomer;
+  $results = find_course_customers_by_id($id);
+
+  foreach($results as $result) {
+    $courseCustomer = $result;
+  }
+}
+
 
 function findCustomerByName($name = null) {
   global $element;
@@ -173,7 +182,7 @@ function edit() {
         $_SESSION['message'] = "Curso atualizado com sucesso!";
         $_SESSION['type'] = 'success';
         //header('location: edit_course.php?id=' + $id);
-        header('location: view_course.php');
+        header('location:  edit_course.php?id=' . $id);
         //header('location: edit_course.php?id=' + $id);
       die();
       } catch (PDOException $e) {
@@ -192,6 +201,56 @@ function edit() {
 
       foreach($results as $result) {
         $course = $result;
+      }
+
+    }
+  } else {
+  }
+}
+
+/**
+ *  Atualizacao de Pagamento
+ */
+function editPayment()  {
+  $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if (isset($_POST['courseCustomer'])) {
+
+     try {
+        $courseCustomer = $_POST['courseCustomer'];
+        $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
+
+        foreach ($courseCustomer as $key => $value) {
+        if($key=="'payment_date_dt'") {
+           $valueReplace = str_replace('/', '-', $value);
+           $date = strtotime($valueReplace);
+           $courseCustomer["'payment_date_dt'"] = date('Y-m-d',$date);
+            }
+        }
+
+        //update('tbl_courses', $id, $course);
+        update_course_customers_payment($id, $courseCustomer);
+        $_SESSION['message'] = "Informações de pagamento atualizadas com sucesso!";
+        $_SESSION['type'] = 'success';
+        //header('location: edit_course.php?id=' + $id);
+        header('location: edit_payment.php?id=' . $id);
+        //header('location: edit_course.php?id=' + $id);
+      die();
+      } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível atualizar as informações de pagamento. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível atualizar as informações de pagamento. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+    } else {
+     global $courseCustomer;
+      $results = find_course_customers_by_id($id);
+
+      foreach($results as $result) {
+        $courseCustomer = $result;
       }
 
     }
@@ -223,7 +282,7 @@ function editNumSlots($course = null) {
 /**
  *  Atualizacao/Edicao de Cliente
  */
-function editPayment($courseCustomer) {
+/*function editPayment($courseCustomer) {
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 
   if (!empty($courseCustomer)) {
@@ -246,7 +305,7 @@ function editPayment($courseCustomer) {
     } else {
 
     }
-}
+}*/
 
 /**
  *  Exclusão de um Curso

@@ -41,10 +41,10 @@ include('../session.php');
 
                                           <label for="sel1">Selecione o tipo de despesa:</label>
                                           <select class="form-control " id="costType" name="cost['type_var']" value="<?php echo $cost['type_var']; ?>">
-                                            <option value="Professor">Pagamento de Professor</option>
-                                            <option value="Materiais">Materiais de Construção</option>
-                                            <option value="Energia">Luz e Energia </option>
-                                            <option value="Agua"> Água </option>
+                                            <option value="Professor"  <?php if($cost['type_var']=="Professor") echo 'selected="selected"'; ?> >Pagamento de Professor</option>
+                                            <option value="Materiais" <?php if($cost['type_var']=="Materiais") echo 'selected="selected"'; ?> >Materiais de Construção</option>
+                                            <option value="Energia"<?php if($cost['type_var']=="Energia") echo 'selected="selected"'; ?> >Luz e Energia </option>
+                                            <option value="Agua"<?php if($cost['type_var']=="Agua") echo 'selected="selected"'; ?> > Água </option>
                                           </select>
 
                                          </div>
@@ -53,8 +53,8 @@ include('../session.php');
 
                                           <label for="sel1">Depesa paga:</label>
                                           <select class="form-control " id="payment" name="cost['payment_tni']" value="<?php echo $cost['payment_tni']; ?>">
-                                            <option value="1">Pagamento Realizado</option>
-                                            <option value="0">Aguardando Pagamento</option>
+                                            <option value="1" <?php if($cost['payment_tni']==1) echo 'selected="selected"'; ?>>Pagamento Realizado</option>
+                                            <option value="0" <?php if($cost['payment_tni']==0) echo 'selected="selected"'; ?>>Aguardando Pagamento</option>
                                           </select>
 
                                          </div>

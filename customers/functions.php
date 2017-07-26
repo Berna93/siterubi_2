@@ -130,14 +130,14 @@ function edit() {
             'creation_date_dt' => $now->format("Y-m-d H:i:s"),
             'modification_date_dt' => $now->format("Y-m-d H:i:s"),
             );
-            save('tbl_customer_interests', $customerInterest);
+            insert_customer_interests($customerInterest);
           }
 
           $_SESSION['message'] = "Cliente atualizado com sucesso!";
           $_SESSION['type'] = 'success';
 
           //header('location: add_customer.php');
-          header('location: view_customer.php');
+          header('location: edit_customer.php?id=' . $id);
           die();
 
       } catch (PDOException $e) {
