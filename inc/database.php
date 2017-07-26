@@ -356,6 +356,18 @@ function find_customer_by_id($id = null) {
 
 }
 
+function find_waitinglist_by_courseid($id = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT * FROM tbl_waiting_list WHERE tbl_courses_id=:id");
+   $stmt->execute(array(':id' => $id));
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
 function find_course_by_status($status = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

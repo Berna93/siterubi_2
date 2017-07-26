@@ -7,6 +7,7 @@ $courseCustomers = null;
 $courseCustomer = null;
 $element = null;
 $elements = null;
+$customersWaiting = null;
 /**
  *  Listagem de Clientes
  */
@@ -27,6 +28,16 @@ function searchCustomersByCourseId($id = null) {
   $courseCustomers = array();
   foreach($results as $result) {
     $courseCustomers[] = $result;
+  }
+}
+
+function searchWaitingListByCourseId($id = null) {
+  global $customersWaiting;
+  $results = find_waitinglist_by_courseid($id);
+
+  $customersWaiting = array();
+  foreach($results as $result) {
+    $customersWaiting[] = $result;
   }
 }
 
