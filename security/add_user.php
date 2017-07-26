@@ -42,8 +42,8 @@ include('../session.php');
 
                                           <label for="sel1">Selecione o tipo de usuário:</label>
                                           <select class="form-control " name="user['userType_var']">
-                                            <option value="admin">Administrador</option>
                                             <option value="operator">Operador</option>
+                                             <option value="admin">Administrador</option>
                                           </select>
 
                                          </div>

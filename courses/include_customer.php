@@ -4,7 +4,9 @@
   if (isset($_POST['includeCustomer']) && isset($_POST['courseId'])){
     //findElementByColumn('tbl_customers', 'name_var', $_POST['includeCustomer']);
     findCustomerByName($_POST['includeCustomer']);
-    $customer = array(
+
+    if(!empty($element)) {
+         $customer = array(
         'tbl_courses_id' => $_POST['courseId'],
         'tbl_courses_name_var' =>  '',
         'tbl_customers_id' => $element['id'],
@@ -36,6 +38,12 @@
        $_SESSION['type'] = 'danger';
        header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
     }
+} else {
+         $_SESSION['message'] = 'Não foi possível realizar esta operação. Cliente não encontrado.';
+       $_SESSION['type'] = 'danger';
+       header('location: view_course_customers.php?id=' . $_POST['courseId']);
+}
+
 
   } else {
     die("ERRO: ID não definido.");

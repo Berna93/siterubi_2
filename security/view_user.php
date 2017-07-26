@@ -12,8 +12,8 @@ include('../session.php');
             <h2>Busca e edição de Usuários</h2>
         </div>
         <div class="col-sm-6 text-right h2">
-            <a class="btn btn-primary" href="add_customer.php"><i class="fa fa-plus"></i> Novo Cliente</a>
-            <a class="btn btn-default" href="view_customer.php"><i class="fa fa-refresh"></i> Atualizar</a>
+            <a class="btn btn-primary" href="add_user.php"><i class="fa fa-plus"></i> Novo Usuário</a>
+            <a class="btn btn-default" href="view_user.php"><i class="fa fa-refresh"></i> Atualizar</a>
         </div>
 
     </div>

@@ -240,13 +240,14 @@ function insert_user($user = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare("INSERT INTO tbl_users(username_var,password_var,userType_var,creation_date_dt, modification_date_dt) VALUES(:field1,:field2,:field3,:field4,:field5)");
+  $stmt = $conn->prepare("INSERT INTO tbl_users(username_var,password_var,userType_var,creation_date_dt, modification_date_dt,name_var) VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
   $stmt->execute(array(
     ':field1' => $user["'username_var'"],
     ':field2' => $user["'password_var'"],
     ':field3' => $user["'userType_var'"],
     ':field4' => $user['creation_date_dt'],
-    ':field5' => $user['modification_date_dt']
+    ':field5' => $user['modification_date_dt'],
+    ':field6' => $user["'name_var'"]
     ));
   $affected_rows = $stmt->rowCount();
 
