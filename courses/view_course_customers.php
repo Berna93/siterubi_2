@@ -27,7 +27,7 @@ $(function() {
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" align="center">
-                            <h4>Inscrições de Curso</h4>
+                            <h4>Inscrições para o curso de <?php If(!empty($courses['name_var'])) echo $courses['name_var']; ?> </h4>
                         </div>
                         <div class="panel-body">
                             <div class="row">

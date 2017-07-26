@@ -221,6 +221,8 @@ function editPayment()  {
         $courseCustomer = $_POST['courseCustomer'];
         $courseCustomer['modification_date_dt'] = $now->format("Y-m-d H:i:s");
 
+
+         //Formatando a data para insercao no banco
         foreach ($courseCustomer as $key => $value) {
         if($key=="'payment_date_dt'") {
            $valueReplace = str_replace('/', '-', $value);

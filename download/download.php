@@ -1,11 +1,12 @@
 <?php
 require_once('functions.php');
 require_once('../courses/functions.php');
-findElementByColumnNumber('tbl_course_customers', 'tbl_courses_id', $_GET['courseId']);
+#findElementByColumnNumber('tbl_course_customers', 'tbl_courses_id', $_GET['courseId']);
+searchCustomersByCourseId($_GET['courseId']);
 
-if ($elements) {
-    $headings = array('ID da Inscricao', 'IDdoCurso', 'NomeDoCurso', 'IDdoCliente', 'NomeDoCliente', 'Pagamento', 'DataDeCriacao', 'DatadeModificacao');
-    echo outputCSV($elements, $headings);
+if ($courseCustomers) {
+    $headings = array('ID da Inscricao', 'IDdoCurso', 'NomeDoCurso', 'IDdoCliente', 'NomeDoCliente', 'SituacaoPagamento', 'TipoPagamento', 'InformacoesPagamento', 'DataPagamento', 'DataCriacao', 'DatadeModificacao');
+    echo outputCSV($courseCustomers, $headings);
     die();
 } else {
 
