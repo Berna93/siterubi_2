@@ -1,13 +1,15 @@
 <?php
   require_once('functions.php');
   require_once('../session.php');
-  if (isset($_POST['includeCustomer']) && isset($_POST['courseId'])){
+
+
+  if (isset($_GET['idCustomer']) && isset($_GET['courseId'])){
     //findElementByColumn('tbl_customers', 'name_var', $_POST['includeCustomer']);
-    findCustomerByName($_POST['includeCustomer']);
+    searchCustomerById($_GET['idCustomer']);
 
     if(!empty($element)) {
          $customer = array(
-        'tbl_courses_id' => $_POST['courseId'],
+        'tbl_courses_id' => $_GET['courseId'],
         'tbl_courses_name_var' =>  '',
         'tbl_customers_id' => $element['id'],
         'tbl_customers_name_var' => $element['name_var'],
@@ -15,7 +17,7 @@
         'payment_type_var' => "none",
         'payment_info_var' => "Reserva Inicial",
         );
-    search($_POST['courseId']);
+    search($_GET['courseId']);
     $customer['tbl_courses_name_var'] = $courses['name_var'];
     //indexCourseCustomers('tbl_courses_id', $customer['tbl_courses_id']);
     searchCustomersByCourseId($customer['tbl_courses_id']);
@@ -29,15 +31,10 @@
           $course['numSlotsTaken_int'] = $newSlots;
           editNumSlots($course);
           addCourseCustomer($customer);
+          deleteCustomerFromWaitingList($customer['tbl_customers_id']);
        } else {
-          $customerWaiting = array(
-            'tbl_courses_id' => $customer['tbl_courses_id'],
-            'tbl_customers_id' => $customer['tbl_customers_id'],
-            'tbl_customers_name_var' => $customer['tbl_customers_name_var'],
-            );
-          addCustomerWaitingList($customerWaiting);
-          $_SESSION['message'] = 'Não foi possível adicionar o cliente no curso, pois o mesmo encontra-se lotado. O cliente foi inserido automaticamente na lista de espera.';
-          $_SESSION['type'] = 'warning';
+          $_SESSION['message'] = 'Não foi possível adicionar o cliente no curso, pois o mesmo ainda encontra-se lotado.';
+          $_SESSION['type'] = 'danger';
           header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
        }
 
@@ -47,9 +44,9 @@
        header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
     }
 } else {
-         $_SESSION['message'] = 'Não foi possível realizar esta operação. Cliente não encontrado.';
+         $_SESSION['message'] =  var_dump($_GET['idCustomer']);#'Não foi possível realizar esta operação. Cliente não encontrado.';
        $_SESSION['type'] = 'danger';
-       header('location: view_course_customers.php?id=' . $_POST['courseId']);
+       header('location: view_course_customers.php?id=' . $_GET['courseId']);
 }
 
 

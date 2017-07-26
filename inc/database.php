@@ -255,6 +255,25 @@ function insert_cost($cost = null) {
   return $affected_rows;
 }
 
+/**
+*  Insere um cliente na lista de espera de um curso
+*/
+function insert_customer_waitinglist($waiting = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare("INSERT INTO tbl_waiting_list(tbl_courses_id,tbl_customers_id,tbl_customers_name_var,creation_date_dt) VALUES(:field1,:field2,:field3,:field4)");
+  $stmt->execute(array(
+    ':field1' => $waiting['tbl_courses_id'],
+    ':field2' => $waiting['tbl_customers_id'],
+    ':field3' => $waiting['tbl_customers_name_var'],
+    ':field4' => $waiting['creation_date_dt']
+    ));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
 function insert_user($user = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -631,6 +650,16 @@ function remove_cost($id = null) {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare('DELETE FROM tbl_costs WHERE id=:term');
+    $stmt->execute(array('term' => $id));
+
+}
+
+function remove_customer_from_waitinglist($id = null) {
+
+    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->prepare('DELETE FROM tbl_waiting_list WHERE tbl_customers_id=:term');
     $stmt->execute(array('term' => $id));
 
 }

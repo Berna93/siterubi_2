@@ -158,6 +158,7 @@ $(function() {
 
 
 </div>
+
                                         </div>
                                         <br><br>
 <div class="row" align="center" style="border: 1px solid;border-color: #ddd">
@@ -180,8 +181,8 @@ $(function() {
         <td><?php echo $waiting['id']; ?></td>
         <td><?php echo $waiting['tbl_customers_name_var']; ?></td>
         <td>
-              <a href="edit_payment.php?id=<?php echo $courseCustomer['id']; ?>" target="_blank" class="btn btn-success"><i class="fa fa-dollar"></i> Pagamento</a>
-        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
+              <a href="include_customer_fromlist.php?idCustomer=<?php echo $waiting['tbl_customers_id']; ?>&courseId=<?php echo $waiting['tbl_courses_id']; ?>" class="btn btn-success"><i class="fa fa-dollar"></i> Adicionar ao Curso</a>
+        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer-waiting" data-course="<?php echo $waiting['tbl_courses_id']; ?>" data-customer="<?php echo $waiting['tbl_customers_id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
 
@@ -202,6 +203,7 @@ $(function() {
 
 </div>
 </div>
+
                                         </div>
 
                                         </div>

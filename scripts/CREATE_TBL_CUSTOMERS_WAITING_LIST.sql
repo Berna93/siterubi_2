@@ -3,6 +3,7 @@ CREATE TABLE tbl_waiting_list(
   tbl_courses_id int UNSIGNED NOT NULL,
   tbl_customers_id int UNSIGNED NOT NULL,
   tbl_customers_name_var varchar(255) NOT NULL UNIQUE,
+  creation_date_dt date NOT NULL,
   FOREIGN KEY (tbl_courses_id) REFERENCES tbl_courses(id)
 	 ON DELETE CASCADE
          ON UPDATE CASCADE,

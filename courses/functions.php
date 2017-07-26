@@ -89,6 +89,15 @@ function searchCourseCustomer($id) {
     }
 }
 
+function searchCustomerById($id) {
+    global $element;
+    $results = find_customer_by_id($id);
+
+    foreach($results as $result) {
+        $element = $result;
+    }
+}
+
 /*function searchById($table = null, $id = null) {
    global $element;
    $element = find($table, $id);
@@ -152,6 +161,32 @@ function addCourseCustomer($customer = null) {
         $_SESSION['message'] = "Cliente inserido com sucesso!";
         $_SESSION['type'] = 'success';
         header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o cliente no curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível adicionar o cliente no curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+  }
+}
+
+function addCustomerWaitingList($customer = null) {
+  if (!empty($customer)) {
+
+
+    try {
+         $today =
+        date_create('now', new DateTimeZone('America/Sao_Paulo'));
+        $customer['creation_date_dt'] = $today->format("Y-m-d H:i:s");
+
+        //save('tbl_course_customers', $customer);
+        insert_customer_waitinglist($customer);
+        $_SESSION['message'] = "Cliente inserido com sucesso!";
+        $_SESSION['type'] = 'success';
+        #header('location: view_course_customers.php?id=' . $customer['tbl_courses_id']);
 
     } catch (PDOException $e) {
        $_SESSION['message'] = "Não foi possível adicionar o cliente no curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
@@ -383,6 +418,33 @@ function deleteCustomer($id = null, $courseId = null) {
        $_SESSION['type'] = 'danger';
     } catch (Exception $e) {
        $_SESSION['message'] = "Não foi possível excluir  o cliente do curso. Erro na aplicação. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+}
+
+/**
+ *  Exclusão de um Cliente da Lista de Espera
+ */
+function deleteCustomerFromWaitingList($id = null, $courseId = null) {
+    try {
+        //$customer = remove('tbl_course_customers', $id);
+      if(isset($courseId)) {
+         remove_customer_from_waitinglist($id);
+         $_SESSION['message'] = "Cliente excluído com sucesso da lista de espera!";
+         $_SESSION['type'] = 'success';
+         header('location: view_course_customers.php?id=' . $courseId);
+       } else {
+         remove_customer_from_waitinglist($id);
+       }
+
+
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível excluir o cliente da lista de espera. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    } catch (Exception $e) {
+       $_SESSION['message'] = "Não foi possível excluir  o cliente da lista de espera. Erro na aplicação. Exceção: " . $e->GetMessage();
        $_SESSION['type'] = 'danger';
     }
 
