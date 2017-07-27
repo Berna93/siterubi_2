@@ -1,7 +1,7 @@
 CREATE TABLE tbl_courses (
   id int UNSIGNED NOT NULL,
   name_var varchar(255) NOT NULL,
-  professor_var varchar(14) NOT NULL,
+  professor_var varchar(255) NOT NULL,
   numSlots_int int NOT NULL,
   numSlotsTaken_int int NOT NULL,
   price_dec decimal(6,2) UNSIGNED NOT NULL,
