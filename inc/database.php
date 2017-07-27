@@ -190,10 +190,11 @@ function update_course_status($idCourse= null, $course = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_courses SET status_var=:field1,modification_date_dt=:field2 WHERE id=:idCourse');
+  $stmt = $conn->prepare('UPDATE tbl_courses SET status_var=:field1,modification_date_dt=:field2, justification_var=:field3 WHERE id=:idCourse');
   $stmt->execute(array(
     ':field1' => $course['status_var'],
     ':field2' => $course['modification_date_dt'],
+    ':field3' => $course['justification_var'],
     ':idCourse' => $idCourse));
   $affected_rows = $stmt->rowCount();
 

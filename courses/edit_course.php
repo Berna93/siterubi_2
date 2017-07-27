@@ -124,7 +124,7 @@ include('../session.php');
                                             <label>Justificativa de Cancelamento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" id="inputJustification" name="course['justification_var']" data-error="Por favor, informe um horário válido." placeholder="Digite o horário do curso ..."  value="<?php echo $course['justification_var']; ?>" data-error="Por favor, informe um horário válido." >
+                                            <input type="text" minlength="10" maxlength="90" class="form-control" id="inputJustification" name="course['justification_var']" data-error="Por favor, informe uma justificativa válida." placeholder="Digite a justificativa de cancelamento."  value="<?php echo $course['justification_var']; ?>" >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -132,12 +132,14 @@ include('../session.php');
 
 
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer</button>
 
                                         <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
-
+                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Aberto') echo "disabled"; ?> data-toggle="modal" data-target="#open-modal" data-customer="<?php echo $course['id']; ?>">
+                                            <i class="fa fa-folder-open-o"></i> Reabrir Curso
+                                        </a>
 
                                     </div>
                                     </form>

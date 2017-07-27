@@ -385,18 +385,23 @@ function delete($id = null) {
 /**
  *  Fechamento de um Curso
  */
-function close($id = null) {
-  $course = find('tbl_courses', $id);
+function open($id = null) {
+  $results = find_course_by_id($id);
+
+  foreach ($results as $result) {
+    $course = $result;
+  }
   $now = date_create('now', new DateTimeZone('America/Sao_Paulo'));
   if(isset($course)) {
     try {
-            $course['status_var'] = 'Fechado';
+            $course['status_var'] = 'Aberto';
+            $course['justification_var'] = '';
             $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
             //update('tbl_courses', $course['id'], $course);
             update_course_status($course['id'], $course);
-             $_SESSION['message'] = "Status do curso atualizado com sucesso!";
+            $_SESSION['message'] = "Status do curso atualizado com sucesso!";
             $_SESSION['type'] = 'success';
-            header('location: view_course.php');
+             header('location:  edit_course.php?id=' . $course['id']);
     } catch (PDOException $e) {
        $_SESSION['message'] = "Não foi possível atualizar o status do curso. Erro no banco de dados. Exceção: " . $e->GetMessage();
        $_SESSION['type'] = 'danger';
