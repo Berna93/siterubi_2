@@ -115,7 +115,7 @@ function update_course($idCourse= null, $course = null) {
   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $conn->prepare('UPDATE tbl_courses SET name_var=:field1,professor_var=:field2,numSlots_int=:field3,price_dec=:field4,event_date_dt=:field5, event_hour_var=:field6, modification_date_dt=:field7 WHERE id=:idCourse');
+  $stmt = $conn->prepare('UPDATE tbl_courses SET name_var=:field1,professor_var=:field2,numSlots_int=:field3,price_dec=:field4,event_date_dt=:field5, event_hour_var=:field6, modification_date_dt=:field7, justification_var=:field8, status_var=:field9 WHERE id=:idCourse');
   $stmt->execute(array(
     ':field1' => $course["'name_var'"],
     ':field2' => $course["'professor_var'"],
@@ -124,6 +124,25 @@ function update_course($idCourse= null, $course = null) {
     ':field5' => $course["'event_date_dt'"],
     ':field6' => $course["'event_hour_var'"],
     ':field7' => $course['modification_date_dt'],
+    ':field8' => $course["'justification_var'"],
+    ':field9' => $course["'status_var'"],
+    ':idCourse' => $idCourse));
+  $affected_rows = $stmt->rowCount();
+
+  return $affected_rows;
+}
+
+/**
+*  Atualiza um curso no banco de dados
+*/
+function update_course_justification($idCourse= null, $course = null) {
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $conn->prepare('UPDATE tbl_courses SET modification_date_dt=:field1, justification_var=:field2 WHERE id=:idCourse');
+  $stmt->execute(array(
+    ':field1' => $course['modification_date_dt'],
+    ':field2' => $course["'justification_var'"],
     ':idCourse' => $idCourse));
   $affected_rows = $stmt->rowCount();
 

@@ -214,7 +214,10 @@ function edit() {
         $course = $_POST['course'];
         $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
 
-         //Formatando a data para insercao no banco
+        //Se o nome e o professor nao estiverem em branco, quer dizer que pode atualizar o registro todo
+        //se nao precisa atualizar so a justificativa
+        if(!empty($course["'name_var'"]) && !empty($course["'professor_var'"])) {
+               //Formatando a data para insercao no banco
         foreach ($course as $key => $value) {
         if($key=="'event_date_dt'") {
            $valueReplace = str_replace('/', '-', $value);
@@ -222,9 +225,13 @@ function edit() {
            $course["'event_date_dt'"] = date('Y-m-d',$date);
             }
         }
-
         //update('tbl_courses', $id, $course);
         update_course($id, $course);
+        } else {
+          update_course_justification($id, $course);
+        }
+
+
         $_SESSION['message'] = "Curso atualizado com sucesso!";
         $_SESSION['type'] = 'success';
         //header('location: edit_course.php?id=' + $id);

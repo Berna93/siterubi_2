@@ -50,22 +50,15 @@ include('../session.php');
                                             <label>Nome do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" name="course['name_var']" data-error="Por favor, informe um nome de curso válido." value="<?php echo $course['name_var']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="text" class="form-control" name="course['name_var']" data-error="Por favor, informe um nome de curso válido." value="<?php echo $course['name_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <div class="help-block with-errors"></div>
-                                         </div>
-                                          <div class="form-group">
-                                            <label>Status</label>
-                                            <div class="input-group input-append">
-                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" name="course['status_var']" value="<?php echo $course['status_var']; ?>" disabled <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
-                                             </div>
                                          </div>
 
                                          <div class="form-group">
 
                                           <label for="sel1">Status</label>
-                                          <select class="form-control " id="status" name="course['status_var']">
+                                          <select class="form-control " id="status" name="course['status_var']" <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                             <option value="Aberto"  <?php if($course['status_var']=="Aberto") echo 'selected="selected"'; ?> >Aberto</option>
                                             <option value="Fechado" <?php if($course['status_var']=="Fechado") echo 'selected="selected"'; ?> >Fechado</option>
                                             <option value="Cancelado"<?php if($course['status_var']=="Cancelado") echo 'selected="selected"'; ?> > Cancelado </option>
@@ -76,7 +69,7 @@ include('../session.php');
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" name="course['professor_var']" data-error="Por favor, informe um nome válido." value="<?php echo $course['professor_var']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="text" class="form-control" name="course['professor_var']" data-error="Por favor, informe um nome válido." value="<?php echo $course['professor_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -84,7 +77,7 @@ include('../session.php');
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe uma quantidade válida." value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe uma quantidade válida." value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                              <p class="help-block">Valores permitidos: entre 1 e 100. </p>
                                               <div class="help-block with-errors"></div>
@@ -101,7 +94,7 @@ include('../session.php');
                                             <label>Valor do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" min="1" max="3000" step="0.1" class="form-control" name="course['price_dec']" data-error="Por favor, informe um valor válido." value="<?php echo $course['price_dec']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="number" min="1" max="3000" step="0.1" class="form-control" name="course['price_dec']" data-error="Por favor, informe um valor válido." value="<?php echo $course['price_dec']; ?>" data-error="Por favor, informe um CPF válido"  required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <p class="help-block">Valores permitidos: entre 1 e 3000. Para adicionar casas decimais, utilizar o ponto (.) Ex: O valor "3.000,70"  deve ser inserido como "3000.70" (sem as aspas).</p>
                                              <div class="help-block with-errors"></div>
@@ -113,7 +106,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" id="event_date" class="form-control" required name="course['event_date_dt']" data-error="Por favor, informe uma data válida." value="<?php echo date('d/m/Y', strtotime($course['event_date_dt']));  ?>"  <?php if($course['status_var']=='Fechado') echo "disabled"; ?>/>
+                                            <input type="text" id="event_date" class="form-control" required name="course['event_date_dt']" data-error="Por favor, informe uma data válida." value="<?php echo date('d/m/Y', strtotime($course['event_date_dt']));  ?>"  <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> />
 
                                         </div>
                                          <div class="help-block with-errors"></div>
@@ -123,15 +116,15 @@ include('../session.php');
                                             <label>Horário do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" id="event_hour" class="form-control" name="course['event_hour_var']" data-error="Por favor, informe um horário válido." required value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
+                                            <input type="text" id="event_hour" class="form-control" name="course['event_hour_var']" data-error="Por favor, informe um horário válido." required value="<?php echo $course['event_hour_var']; ?>" placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
-                                          <div class="form-group" id="justification" style="display:none;">
+                                          <div class="form-group" id="justification" style="<?php if($course['status_var']=='Aberto') echo "display: none;"; ?>">
                                             <label>Justificativa de Cancelamento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" id="inputJustification" name="course['justification_var']" data-error="Por favor, informe um horário válido." placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." >
+                                            <input type="text" class="form-control" id="inputJustification" name="course['justification_var']" data-error="Por favor, informe um horário válido." placeholder="Digite o horário do curso ..."  value="<?php echo $course['justification_var']; ?>" data-error="Por favor, informe um horário válido." >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -144,9 +137,7 @@ include('../session.php');
                                         <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#delete-modal" data-customer="<?php echo $course['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
-                                        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>" <?php if($course['status_var']=='Fechado') echo "disabled"; ?> data-toggle="modal" data-target="#close-modal" data-customer="<?php echo $course['id']; ?>">
-                                            <i class="fa fa-close"></i> Fechar Curso
-                                        </a>
+
 
                                     </div>
                                     </form>
