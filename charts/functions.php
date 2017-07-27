@@ -70,4 +70,37 @@ function getBetterCustomers() {
 
 }
 
+function getCompanyPerformance() {
+
+     try {
+        $results = find_cash_flow_all();
+        global $jsonTable;
+         $table = array();
+        $table['cols'] = array(
+        //Labels for the chart, these represent the column titles
+        array('id' => '', 'label' => 'Ano', 'type' => 'string'),
+        array('id' => '', 'label' => 'Receitas', 'type' => 'number'),
+        array('id' => '', 'label' => 'Despesas', 'type' => 'number')
+    );
+
+        $rows = array();
+        foreach($results as $row){
+            $temp = array();
+            //Values
+            $temp[] = array('v' => (string) $row['year_int']);
+            $temp[] = array('v' => (string) $row['income_dec']);
+            $temp[] = array('v' => (float) $row['costs_dec']);
+            $rows[] = array('c' => $temp);
+         }
+
+        $table['rows'] = $rows;
+
+        $jsonTable = json_encode($table, true);
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível recuperar os dados do gráfico de cursos mais procurados. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+}
+
 ?>

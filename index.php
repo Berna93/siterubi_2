@@ -35,6 +35,12 @@ include('session.php');
           async: false
           }).responseText;
 
+      var jsonData3 = $.ajax({
+          url: "charts/company_performance.php",
+          dataType:"json",
+          async: false
+          }).responseText;
+
       // Create our data table out of JSON data loaded from server.
       var data = new google.visualization.DataTable(jsonData);
        var options = {'title':'Os 10 cursos mais procurados na Mansão Rubi',
@@ -55,7 +61,7 @@ include('session.php');
       var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
       chart2.draw(data2, options2);
 
-      var data3 = google.visualization.arrayToDataTable([
+     /* var data3 = google.visualization.arrayToDataTable([
           ['Year', 'Receitas', 'Despesas'],
           ['2013',  1000,      400],
           ['2014',  1170,      460],
@@ -70,7 +76,19 @@ include('session.php');
         };
 
         var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+        chart3.draw(data3, options3);*/
+
+        var data3 = new google.visualization.DataTable(jsonData3);
+
+        var options3 = {
+          title: 'Performance da Compania',
+          hAxis: {title: 'Ano',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
         chart3.draw(data3, options3);
+
     }
 
     </script>
