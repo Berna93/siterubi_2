@@ -73,7 +73,7 @@ function getBetterCustomers() {
 function getCompanyPerformance() {
 
      try {
-        $results = find_cash_flow_all();
+        $results = find_cash_flow_performance();
         global $jsonTable;
          $table = array();
         $table['cols'] = array(

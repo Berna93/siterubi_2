@@ -43,7 +43,7 @@ include('session.php');
 
       // Create our data table out of JSON data loaded from server.
       var data = new google.visualization.DataTable(jsonData);
-       var options = {'title':'Os 10 cursos mais procurados na Mansão Rubi',
+       var options = {'title':'Os dez cursos mais procurados',
                      'width':800,
                      'height':400};
 
@@ -53,7 +53,7 @@ include('session.php');
 
       // Create our data table out of JSON data loaded from server.
       var data2 = new google.visualization.DataTable(jsonData2);
-       var options2 = {'title':'Maiores clientes',
+       var options2 = {'title':'Os dez maiores clientes',
                      'width':800,
                      'height':400};
 

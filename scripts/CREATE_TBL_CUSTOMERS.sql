@@ -7,6 +7,7 @@ CREATE TABLE tbl_customers (
   address_var varchar(255) NOT NULL,
   email_var varchar(100) NOT NULL,
   phone_var varchar(100) NOT NULL,
+  gender_tni tinyint(1) NOT NULL,
   creation_date_dt date NOT NULL,
   modification_date_dt date NOT NULL
 );

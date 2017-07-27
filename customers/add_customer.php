@@ -41,6 +41,14 @@ include('../session.php');
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
+                                                   <div class="form-group">
+                                         <label>Gênero</label> <br>
+                                         <label class="radio-inline"><input type="radio" value="1" name="customer['gender_tni']" data-error="Por favor, selecione um gênero." required>
+                                       Masculino</label>
+
+                                         <label class="radio-inline"><input type="radio" value="0" required name="customer['gender_tni']"> Feminino</label>
+                                          <div class="help-block with-errors"></div>
+                                        </div>
                                          <div class="form-group">
                                             <label>Endereço</label>
                                             <div class="input-group input-append">
@@ -87,6 +95,7 @@ include('../session.php');
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
+
 
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>

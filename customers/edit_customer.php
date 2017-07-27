@@ -32,6 +32,14 @@ include('../session.php');
                                         <input type="text" class="form-control" name="customer['name_var']" value="<?php echo $customer['name_var']; ?>" data-error="Por favor, informe um nome válido." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
+                                    <div class="form-group">
+                                         <label>Gênero</label> <br>
+                                         <label class="radio-inline"><input type="radio" value="1" <?php if($customer['gender_tni']==1) echo 'checked'; ?> name="customer['gender_tni']" data-error="Por favor, selecione um gênero." required>
+                                       Masculino</label>
+
+                                         <label class="radio-inline"><input type="radio" value="0" <?php if($customer['gender_tni']==0) echo 'checked'; ?> required name="customer['gender_tni']"> Feminino</label>
+                                          <div class="help-block with-errors"></div>
+                                        </div>
                                  <div class="form-group">
                                     <label>Endereço</label>
                                     <input type="text" class="form-control" name="customer['address_var']" value="<?php echo $customer['address_var']; ?>" data-error="Por favor, informe um endereço válido."  required>
@@ -40,13 +48,13 @@ include('../session.php');
                                 </div>
                                 <div class="form-group">
                                     <label>RG</label>
-                                    <input type="text" id="rg" class="form-control" name="customer['rg_var']" value="<?php echo $customer['rg_var']; ?>" data-error="Por favor, informe um RG válido."  data-mask="00.000.000-0" required>
+                                    <input type="text" id="rg" class="form-control" name="customer['rg_var']" value="<?php echo $customer['rg_var']; ?>" data-error="Por favor, informe um RG válido." required>
                                     <div class="help-block with-errors"></div>
                                     <p class="help-block">Apenas números</p>
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" id="cpf" class="form-control" name="customer['cpf_var']" value="<?php echo $customer['cpf_var']; ?>" data-error="Por favor, informe um CPF válido"  data-mask="000.000.000-00" required>
+                                    <input type="text" id="cpf" class="form-control" name="customer['cpf_var']" value="<?php echo $customer['cpf_var']; ?>" data-error="Por favor, informe um CPF válido"  required>
                                     <div class="help-block with-errors"></div>
                                     <p class="help-block">Apenas números.</p>
                                 </div>
