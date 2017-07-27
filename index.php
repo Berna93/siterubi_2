@@ -41,6 +41,12 @@ include('session.php');
           async: false
           }).responseText;
 
+      var jsonData4 = $.ajax({
+          url: "charts/gender.php",
+          dataType:"json",
+          async: false
+          }).responseText;
+
       // Create our data table out of JSON data loaded from server.
       var data = new google.visualization.DataTable(jsonData);
        var options = {'title':'Os dez cursos mais procurados',
@@ -88,6 +94,22 @@ include('session.php');
 
         var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
         chart3.draw(data3, options3);
+
+          var data4 = new google.visualization.DataTable(jsonData4);
+
+
+
+        var options4 = {
+          title: 'Clientes por Gênero',
+          'width':800,
+           'height':400,
+          is3D: true,
+
+        };
+
+        var chart4 = new google.visualization.PieChart(document.getElementById('chart_div4'));
+        chart4.draw(data4, options4);
+
 
     }
 
@@ -185,6 +207,9 @@ include('session.php');
              <div class="row">
              <div class="col-sm-12 col-md-10 well">
                         <div id="chart_div3"  style="width: 100%; height: 500px;"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-10 well">
+                        <div id="chart_div4"></div>
                     </div>
                     <div class="col-sm-12 col-md-10 well">
                         <div id="chart_div"></div>

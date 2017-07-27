@@ -309,6 +309,19 @@ function find_courses_fill() {
    return $results;
 }
 
+function find_gender_quantity() {
+
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT (CASE WHEN gender_tni = 0 THEN 'Feminino' ELSE 'Masculino' END) as 'gender', COUNT(gender_tni) as counter FROM tbl_customers GROUP BY gender_tni");
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+
+}
+
 /**
 *  Seleciona os dez cursos mais procurados
 */
