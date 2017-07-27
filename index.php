@@ -24,13 +24,13 @@ include('session.php');
 
     function drawChart() {
       var jsonData = $.ajax({
-          url: "charts/getData.php",
+          url: "charts/most_wanted_courses.php",
           dataType:"json",
           async: false
           }).responseText;
 
       var jsonData2 = $.ajax({
-          url: "charts/getData2.php",
+          url: "charts/better_customers.php",
           dataType:"json",
           async: false
           }).responseText;

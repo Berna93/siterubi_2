@@ -307,6 +307,36 @@ function find_courses_fill() {
    return $results;
 }
 
+/**
+*  Seleciona os dez cursos mais procurados
+*/
+function find_most_wanted_courses() {
+
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT name_var, COUNT(numSlotsTaken_int) as counter FROM tbl_courses GROUP BY name_var ORDER BY counter DESC LIMIT 10");
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+}
+
+/**
+*  Seleciona os dez melhores clientes
+*/
+function find_better_customers() {
+
+  $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT tbl_customers.name_var as 'name', COUNT(tbl_course_customers.tbl_customers_id) as 'counter' FROM tbl_customers INNER JOIN tbl_course_customers ON tbl_customers.id = tbl_course_customers.tbl_customers_id GROUP BY ( tbl_customers.name_var) ORDER BY COUNT(tbl_course_customers.tbl_customers_id) DESC LIMIT 10");
+   $stmt->execute();
+   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $results;
+}
+
 function find_customer_all() {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

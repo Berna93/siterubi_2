@@ -1,0 +1,73 @@
+<?php
+require_once('../config.php');
+require_once(DBAPI);
+
+$jsonTable = null;
+
+function getMostWantedCourses() {
+
+    try {
+        $results = find_most_wanted_courses();
+        global $jsonTable;
+         $table = array();
+        $table['cols'] = array(
+        //Labels for the chart, these represent the column titles
+        array('id' => '', 'label' => 'Nome do Curso', 'type' => 'string'),
+        array('id' => '', 'label' => 'Quantidade de Inscritos', 'type' => 'number')
+    );
+
+        $rows = array();
+        foreach($results as $row){
+            $temp = array();
+
+            //Values
+            $temp[] = array('v' => (string) $row['name_var']);
+            $temp[] = array('v' => (float) $row['counter']);
+            $rows[] = array('c' => $temp);
+         }
+
+        $table['rows'] = $rows;
+
+        $jsonTable = json_encode($table, true);
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível recuperar os dados do gráfico de cursos mais procurados. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+}
+
+function getBetterCustomers() {
+
+    try {
+        $results = find_better_customers();
+        global $jsonTable;
+         $table = array();
+        $table['cols'] = array(
+        //Labels for the chart, these represent the column titles
+        array('id' => '', 'label' => 'Nome do Cliente', 'type' => 'string'),
+        array('id' => '', 'label' => 'Quantidade de cursos inscritos', 'type' => 'number')
+    );
+
+        $rows = array();
+        foreach($results as $row){
+            $temp = array();
+
+            //Values
+            $temp[] = array('v' => (string) $row['name']);
+            $temp[] = array('v' => (float) $row['counter']);
+            $rows[] = array('c' => $temp);
+         }
+
+        $table['rows'] = $rows;
+
+        $jsonTable = json_encode($table, true);
+
+    } catch (PDOException $e) {
+       $_SESSION['message'] = "Não foi possível recuperar os dados do gráfico de cursos mais procurados. Erro no banco de dados. Exceção: " . $e->GetMessage();
+       $_SESSION['type'] = 'danger';
+    }
+
+}
+
+?>

@@ -33,7 +33,8 @@ $(function() {
                         <div class="panel-body">
                             <div class="row">
                               <div class="col-lg-12" align="right">
-                        <a href="<?php echo BASEURL; ?>download/download.php?courseId=<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download Inscritos</a>
+                               <a class="btn btn-default" href="view_course_customers.php?id=<?php echo $_GET['id']; ?>"><i class="fa fa-refresh"></i> Atualizar</a>
+                        <a href="<?php echo BASEURL; ?>download/download.php?courseId=<?php $aux; $aux = $courseCustomers[0]; echo $aux['tbl_courses_id']; ?>" class="btn  btn-primary"><i class="fa fa-download"></i> Download Inscritos</a>
                     </div>
                             <?php if (!empty($_SESSION['message'])) : ?>
                               <div class="alert alert-<?php echo $_SESSION['type']; ?> alert-dismissible" role="alert">
@@ -170,6 +171,7 @@ $(function() {
     <tr>
         <th>ID da Espera</th>
         <th>Nome do Cliente</th>
+        <th>Data de Inclusão na Lista</th>
         <th>Opções</th>
     </tr>
 </thead>
@@ -180,8 +182,9 @@ $(function() {
     <tr>
         <td><?php echo $waiting['id']; ?></td>
         <td><?php echo $waiting['tbl_customers_name_var']; ?></td>
+         <td><?php $date = date_create($waiting['creation_date_dt']); echo date_format($date, 'd/m/Y'); ?></td>
         <td>
-              <a href="include_customer_fromlist.php?idCustomer=<?php echo $waiting['tbl_customers_id']; ?>&courseId=<?php echo $waiting['tbl_courses_id']; ?>" class="btn btn-success"><i class="fa fa-dollar"></i> Adicionar ao Curso</a>
+              <a href="include_customer_fromlist.php?idCustomer=<?php echo $waiting['tbl_customers_id']; ?>&courseId=<?php echo $waiting['tbl_courses_id']; ?>" class="btn btn-primary"><i class="fa fa-user"></i> Adicionar ao Curso</a>
         <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer-waiting" data-course="<?php echo $waiting['tbl_courses_id']; ?>" data-customer="<?php echo $waiting['tbl_customers_id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
