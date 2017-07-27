@@ -61,6 +61,17 @@ include('../session.php');
                                             <input type="text" class="form-control" name="course['status_var']" value="<?php echo $course['status_var']; ?>" disabled <?php if($course['status_var']=='Fechado') echo "disabled"; ?>>
                                              </div>
                                          </div>
+
+                                         <div class="form-group">
+
+                                          <label for="sel1">Status</label>
+                                          <select class="form-control " id="status" name="course['status_var']">
+                                            <option value="Aberto"  <?php if($course['status_var']=="Aberto") echo 'selected="selected"'; ?> >Aberto</option>
+                                            <option value="Fechado" <?php if($course['status_var']=="Fechado") echo 'selected="selected"'; ?> >Fechado</option>
+                                            <option value="Cancelado"<?php if($course['status_var']=="Cancelado") echo 'selected="selected"'; ?> > Cancelado </option>
+                                          </select>
+
+                                         </div>
                                         <div class="form-group">
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
@@ -116,6 +127,14 @@ include('../session.php');
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
+                                          <div class="form-group" id="justification" style="display:none;">
+                                            <label>Justificativa de Cancelamento</label>
+                                            <div class="input-group input-append">
+                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
+                                            <input type="text" class="form-control" id="inputJustification" name="course['justification_var']" data-error="Por favor, informe um horário válido." placeholder="Digite o horário do curso ..."  data-error="Por favor, informe um horário válido." >
+                                             </div>
+                                              <div class="help-block with-errors"></div>
+                                         </div>
                                           <div class="help-block with-errors"></div>
 
 
@@ -166,6 +185,18 @@ jQuery(function($){
 
 
 });
+
+$('#status').on('change',function(){
+    if( $(this).val()==="Cancelado"){
+    $("#justification").show()
+    $('#inputJustification').prop('required',true);
+    }
+    else{
+    $("#justification").hide()
+    }
+});
+
+
 
 </script>
 <?php include('modal.php'); ?>
