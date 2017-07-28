@@ -46,11 +46,11 @@ $(function() {
                                 <div class="col-lg-4">
                                         <form action='include_customer.php' method='post'>
                                           <label>Incluir Cliente:</label>
-                                          <div class="form-group input-group">
+                                          <div class="form-group input-group" >
                                            <input type="hidden" name="courseId" class="form-control" value="<?php echo $_GET['id']; ?>">
                                             <input type="text" name='includeCustomer' value='' class='auto form-control' placeholder="Pesquise um cliente (por nome)...">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"><i class="fa fa-check"></i>
+                                                <button class="btn btn-default" type="submit" <?php if($courses['status_var']!='Aberto') echo "disabled"; ?>><i class="fa fa-check"></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -138,7 +138,7 @@ $(function() {
         <td><?php $date = date_create($courseCustomer['creation_date_dt']); echo date_format($date, 'd/m/Y'); ?></td>
         <td>
               <a href="edit_payment.php?id=<?php echo $courseCustomer['id']; ?>"  target="_blank" class="btn btn-success"><i class="fa fa-dollar"></i> Pagamento</a>
-        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
+        <a href="#" class="btn btn-danger <?php if($courses['status_var']!='Aberto') echo "disabled"; ?> <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer" data-course="<?php echo $courseCustomer['tbl_courses_id']; ?>" data-customer="<?php echo $courseCustomer['id']; ?>">
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
 
@@ -184,8 +184,8 @@ $(function() {
         <td><?php echo $waiting['tbl_customers_name_var']; ?></td>
          <td><?php $date = date_create($waiting['creation_date_dt']); echo date_format($date, 'd/m/Y'); ?></td>
         <td>
-              <a href="include_customer_fromlist.php?idCustomer=<?php echo $waiting['tbl_customers_id']; ?>&courseId=<?php echo $waiting['tbl_courses_id']; ?>" class="btn btn-primary"><i class="fa fa-user"></i> Adicionar ao Curso</a>
-        <a href="#" class="btn btn-danger <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer-waiting" data-course="<?php echo $waiting['tbl_courses_id']; ?>" data-customer="<?php echo $waiting['tbl_customers_id']; ?>">
+              <a href="include_customer_fromlist.php?idCustomer=<?php echo $waiting['tbl_customers_id']; ?>&courseId=<?php echo $waiting['tbl_courses_id']; ?>" class="btn btn-primary <?php if($courses['status_var']!='Aberto') echo "disabled"; ?>" ><i class="fa fa-user"></i> Adicionar ao Curso</a>
+        <a href="#" class="btn btn-danger <?php if($courses['status_var']!='Aberto') echo "disabled"; ?> <?php if ($_SESSION['usertype']!='admin') echo "disabled"; ?>"" data-toggle="modal" data-target="#delete-modal-customer-waiting" data-course="<?php echo $waiting['tbl_courses_id']; ?>" data-customer="<?php echo $waiting['tbl_customers_id']; ?>" >
                                             <i class="fa fa-trash"></i> Excluir
                                         </a>
 
