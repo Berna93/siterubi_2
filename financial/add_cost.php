@@ -64,7 +64,7 @@ include('../session.php');
                                             <label>Valor da Despesa</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="number" class="form-control" min="5" max="10000" name="cost['value_dec']" placeholder="Digite o valor da despesa..." type="text"
+                                            <input type="number" autocomplete="off" class="form-control" min="5" max="10000" name="cost['value_dec']" placeholder="Digite o valor da despesa..." type="text"
                                                   data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
                                              <p class="help-block">Valores permitidos: entre 5 e 10000. Para adicionar casas decimais, utilizar o ponto (.) Ex: O valor "3.000,70"  deve ser inserido como "3000.70" (sem as aspas).</p>
@@ -76,7 +76,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" id="deadline" class="form-control" name="cost['deadline_dt']" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
+                                            <input type="text" id="deadline" autocomplete="off" class="form-control" name="cost['deadline_dt']" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
 
                                         </div>
                                         <div class="help-block with-errors"></div>

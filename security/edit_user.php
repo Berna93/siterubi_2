@@ -51,7 +51,7 @@ include('../session.php');
                                             <label>Nome do Usuário</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                            <input type="text" class="form-control" minlength="5" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
+                                            <input type="text" autocomplete="off" class="form-control" minlength="5" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
                                                   data-error="Por favor, informe um nome válido." value="<?php echo $user['name_var']; ?>" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -61,7 +61,7 @@ include('../session.php');
                                             <label>Login</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                            <input type="text" class="form-control" minlength="5" maxlength="30" name="user['username_var']" placeholder="Digite o login do usuário..." type="text"
+                                            <input type="text" autocomplete="off" class="form-control" minlength="5" maxlength="30" name="user['username_var']" placeholder="Digite o login do usuário..." type="text"
                                                   data-error="Por favor, informe um login válido." value="<?php echo $user['username_var']; ?>" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -72,7 +72,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" >
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-qrcode"></span></span>
-                                            <input type="password" minlength="4" maxlength="20" class="form-control" name="user['password_var']" placeholder="Informe a senha do usuário..." data-error="Por favor, informe uma senha válida." required/>
+                                            <input type="password" autocomplete="off" minlength="4" maxlength="20" class="form-control" name="user['password_var']" placeholder="Informe a senha do usuário..." data-error="Por favor, informe uma senha válida." required/>
 
                                         </div>
                                           <p class="help-block"> IMPORTANTE: Pelos padrões de segurança e criptografia de dados, não é possível visualizar ou recuperar uma senha armazenada no banco de dados. Caso a senha tenha sido perdida, insira uma nova neste campo e atualize o registro. Caso não deseje alterá-la, informe a MESMA senha utilizada atualmente, que a mesma permanecerá ativa.</p>

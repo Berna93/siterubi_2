@@ -63,7 +63,7 @@ include('../session.php');
                                             <label>Valor da Despesa</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-usd"></span></span>
-                                            <input type="text" class="form-control" name="cost['value_dec']" value="<?php echo $cost['value_dec']; ?>" placeholder="Digite o valor da despesa..." type="text"
+                                            <input type="text" class="form-control" autocomplete="off" name="cost['value_dec']" value="<?php echo $cost['value_dec']; ?>" placeholder="Digite o valor da despesa..." type="text"
                                                   data-error="Por favor, informe um valor da despesa válido." required>
                                              </div>
                                              <p class="help-block">Valores permitidos: entre 1 e 3000. Para adicionar casas decimais, utilizar o ponto (.) Ex: O valor "3.000,70"  deve ser inserido como "3000.70" (sem as aspas).</p>
@@ -75,7 +75,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" id="deadline" class="form-control" name="cost['deadline_dt']" value="<?php echo date('d/m/Y', strtotime($cost['deadline_dt']));  ?>" />
+                                            <input type="text" id="deadline" autocomplete="off" class="form-control" name="cost['deadline_dt']" value="<?php echo date('d/m/Y', strtotime($cost['deadline_dt']));  ?>" />
 
                                         </div>
                                         <br>
