@@ -49,8 +49,10 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Opções <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
+                    <li align="center">Info. do Usuário </li>
+                    <li class="divider"></li>
                     <li><a href="#"><i class="fa fa-fw fa-user"></i> <?php echo $_SESSION['username'];?></a></li>
-                    <li><a href="#"><?php echo $_SESSION['usertype'];?></a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-lock"></i> <?php if($_SESSION['usertype']=="admin") { echo "Administrador"; } else { echo "Operador"; }?></a></li>
                     <li class="divider"></li>
                     <li><a href="<?php echo BASEURL; ?>logout.php"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                 </ul>

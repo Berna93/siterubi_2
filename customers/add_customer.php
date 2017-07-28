@@ -36,7 +36,7 @@ include('../session.php');
                                             <label>Nome</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" maxlength="50" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
+                                            <input type="text" maxlength="70" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
                                                   data-error="Por favor, informe um nome válido." autocomplete="off" required>
                                              </div>
                                               <div class="help-block with-errors"></div>
@@ -53,7 +53,7 @@ include('../session.php');
                                             <label>Endereço</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-home"></span></span>
-                                            <input type="text" maxlength="50" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
+                                            <input type="text" maxlength="100" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
                                                   data-error="Por favor, informe um endereço válido." autocomplete="off" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
@@ -101,8 +101,8 @@ include('../session.php');
                                             <label>Data de Nascimento</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" id="birthday" class="form-control" name="customer['birthday_dt']" placeholder="Digite a data de nascimento do cliente..." type="text"
-                                                  data-error="Por favor, informe um telefone válido." autocomplete="off" required>
+                                            <input type="text" id="birthday" class="form-control" name="customer['birthday_dt']" placeholder="Digite a data de nascimento do cliente..."
+                                                  data-error="Por favor, informe uma data de nascimento válida." autocomplete="off" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -123,7 +123,7 @@ include('../session.php');
                                             <?php endif; ?>
 
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -145,11 +145,11 @@ include('../session.php');
 
         <script type="text/javascript">
             jQuery(function($){
-
+   $("#birthday").mask("99/99/9999");
    $("#phone").mask("(99) 99999-9999");
     $("#rg").mask("99.999.999-9");
      $("#cpf").mask("999.999.999-99");
-      $("#birthday").mask("99/99/9999");
+
 
 });
         </script>

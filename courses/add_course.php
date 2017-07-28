@@ -102,7 +102,7 @@ include('../session.php');
                                          </div>
 
                                         <button type="submit" class="btn btn-success">Cadastrar</button>
-                                        <button type="reset" class="btn btn-warning">Desfazer Alterações</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer</button>
 
 
                                     </div>

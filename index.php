@@ -142,7 +142,7 @@ include('session.php');
                      <i class="glyphicon glyphicon-star"></i>
                 </div>
                 <div class="text">
-                    <var>614</var>
+                    <var>0</var>
                     <label class="text-muted">curtidas na página</label>
                 </div>
 

@@ -80,7 +80,7 @@ include('../session.php');
                                         </div>
                                         <br>
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
-                                        <button type="reset" class="btn btn-warning">Limpar</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
