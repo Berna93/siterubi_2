@@ -82,10 +82,13 @@ include('../session.php');
                                              <p class="help-block">Valores permitidos: entre 1 e 100. </p>
                                               <div class="help-block with-errors"></div>
                                          </div>
+
+
                                          <div class="form-group">
                                             <label>Quantidade de Vagas Preenchidas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
+                                             <input type="hidden" name="course['numSlotsTaken_int']" value="<?php echo $course['numSlotsTaken_int']; ?>">
                                             <input type="text" class="form-control" name="course['numSlotsTaken_int']" value="<?php echo $course['numSlotsTaken_int']; ?>" disabled>
                                              </div>
                                          </div>

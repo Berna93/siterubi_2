@@ -60,17 +60,17 @@ include('../session.php');
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
-                                           <div class="form-group">
+                                           <div class="form-group" >
 
                                           <label for="sel1">Selecione a situação de pagamento:</label>
-                                          <select class="form-control " name="courseCustomer['payment_tni']" value="<?php echo $courseCustomer['payment_tni']; ?>">
+                                          <select class="form-control " name="courseCustomer['payment_tni']" value="<?php echo $courseCustomer['payment_tni']; ?>" id="paymentSituation">
                                            <option value="0"  <?php if($courseCustomer['payment_tni']==0) echo 'selected="selected"'; ?>>Vaga Reservada</option>
                                            <option value="1"  <?php if($courseCustomer['payment_tni']==1) echo 'selected="selected"'; ?>>Pagamento Realizado</option>
                                           </select>
                                           </div>
-                                          <div class="form-group">
+                                          <div class="form-group" id="paymentType" style="<?php if($courseCustomer['payment_tni']==0) echo "display: none;"; ?>">
                                           <label for="sel1">Selecione o tipo de pagamento:</label>
-                                          <select class="form-control " name="courseCustomer['payment_type_var']">
+                                          <select class="form-control " name="courseCustomer['payment_type_var']" id="selectPaymentType" >
                                            <option value="none" <?php if($courseCustomer['payment_type_var']=="none") echo 'selected="selected"'; ?> >Não aplicável</option>
                                            <option value="check" <?php if($courseCustomer['payment_type_var']=="check") echo 'selected="selected"'; ?>>Cheque</option>
                                             <option value="bankslip" <?php if($courseCustomer['payment_type_var']=="bankslip") echo 'selected="selected"'; ?>>Boleto</option>
@@ -93,12 +93,12 @@ include('../session.php');
                                                <p class="help-block"> Campo para preenchimento de informações adicionais de pagamento. Se for uma reserva ou promoção, informar aqui o motivo. Se o pagamento for via Cartão, informar o número da fatura. Se o pagamento for via Boleto, informar o número do mesmo. Se for via Cheque, informar o número do cheque.</p>
                                          </div>
 
-                                           <div class="form-group" >
+                                           <div class="form-group" id="divPaymentDate" style="<?php if($courseCustomer['payment_tni']==0) echo "display: none;"; ?>">
                                         <label>Data de Pagamento</label>
 
                                         <div class="input-group input-append date" id="datePicker">
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            <input type="text" id="payment_date" class="form-control" name="courseCustomer['payment_date_dt']" value="<?php echo date('d/m/Y', strtotime($courseCustomer['payment_date_dt']));  ?>" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida." required/>
+                                            <input type="text" id="payment_date" class="form-control" name="courseCustomer['payment_date_dt']" value="<?php if($courseCustomer['payment_date_dt']==NULL || $courseCustomer['payment_date_dt']=='1970-01-01') { echo ""; } else { echo date('d/m/Y', strtotime($courseCustomer['payment_date_dt'])); }  ?>" placeholder="Informe o vencimento da despesa..." data-error="Por favor, informe uma data de vencimento válida."/>
 
                                         </div>
                                         <div class="help-block with-errors"></div>
@@ -108,7 +108,7 @@ include('../session.php');
 
 
                                          <button type="submit" class="btn btn-primary">Atualizar</button>
-                                        <button type="reset" class="btn btn-warning">Desfazer alterações</button>
+                                        <button type="reset" class="btn btn-warning">Desfazer</button>
 
 
                                     </div>
@@ -139,11 +139,26 @@ $(document).ready(function() {
             // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
+
+
 });
 
 jQuery(function($){
 
    $("#payment_date").mask("99/99/9999");
 
+});
+
+$('#paymentSituation').on('change',function(){
+    if( $(this).val()==="1"){
+    $("#paymentType").show()
+    $("#divPaymentDate").show()
+    $('#selectPaymentType').prop('required',true);
+    $('#payment_date').prop('required',true);
+    }
+    else{
+    $("#paymentType").hide()
+    $("#divPaymentDate").hide()
+    }
 });
 </script>

@@ -214,6 +214,14 @@ function edit() {
         $course = $_POST['course'];
         $course['modification_date_dt'] = $now->format("Y-m-d H:i:s");
 
+
+        if(intval($course["'numSlots_int'"]) < intval($course["'numSlotsTaken_int'"])) {
+           $_SESSION['message'] = "Erro ao editar curso. Não é possível atualizar a quantidade de vagas de um curso para um número inferior ao número de vagas já preenchidas.";
+           $_SESSION['type'] = 'danger';
+           header('location:  edit_course.php?id=' . $id);
+           die();
+        }
+
         //Se o nome e o professor nao estiverem em branco, quer dizer que pode atualizar o registro todo
         //se nao precisa atualizar so a justificativa
         if(!empty($course["'name_var'"]) && !empty($course["'professor_var'"])) {
