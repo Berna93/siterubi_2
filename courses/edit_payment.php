@@ -87,7 +87,7 @@ include('../session.php');
                                             <label>Informação de Pagamento/Reserva</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" autocomplete="off" name="courseCustomer['payment_info_var']" data-error="Por favor, informe um nome de curso válido." value="<?php echo $courseCustomer['payment_info_var']; ?>" required>
+                                            <input type="text" class="form-control" autocomplete="off" name="courseCustomer['payment_info_var']" data-error="Por favor, informe uma informação válida." value="<?php echo $courseCustomer['payment_info_var']; ?>" required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                                <p class="help-block"> Campo para preenchimento de informações adicionais de pagamento. Se for uma reserva ou promoção, informar aqui o motivo. Se o pagamento for via Cartão, informar o número da fatura. Se o pagamento for via Boleto, informar o número do mesmo. Se for via Cheque, informar o número do cheque.</p>

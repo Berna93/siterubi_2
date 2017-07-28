@@ -49,7 +49,7 @@ include('../session.php');
                                             <label>Nome do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" maxlength="100" class="form-control" name="course['name_var']" placeholder="Digite o nome do curso..." data-error="Por favor, informe um nome de curso válido." autocomplete="off" required>
+                                            <input type="text" minlength="10" maxlength="100" class="form-control" name="course['name_var']" placeholder="Digite o nome do curso..." data-error="Por favor, informe um nome de curso válido. Mínimo de 10 e máximo de 100 caracteres." autocomplete="off" required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -57,7 +57,7 @@ include('../session.php');
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" maxlength="100" class="form-control" name="course['professor_var']" placeholder="Digite o nome do professor..."  data-error="Por favor, informe um nome válido." autocomplete="off" required>
+                                            <input type="text" minlength="10" maxlength="100" class="form-control" name="course['professor_var']" placeholder="Digite o nome do professor..."  data-error="Por favor, informe um nome válido. Mínimo de 10 e máximo de 100 caracteres." autocomplete="off" required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -65,7 +65,7 @@ include('../session.php');
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" placeholder="Digite a quantidade de vagas ..."  data-error="Por favor, informe uma quantidade válida." autocomplete="off" required>
+                                            <input type="number" min="1" max="100" class="form-control" name="course['numSlots_int']" placeholder="Digite a quantidade de vagas ..."  data-error="Por favor, informe uma quantidade válida. Mínimo de 1 e máximo de 100 vagas." autocomplete="off" required>
                                              </div>
                                              <p class="help-block">Valores permitidos: entre 1 e 100. </p>
                                               <div class="help-block with-errors"></div>

@@ -50,7 +50,7 @@ include('../session.php');
                                             <label>Nome do Curso</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-book"></span></span>
-                                            <input type="text" class="form-control" autocomplete="off" name="course['name_var']" data-error="Por favor, informe um nome de curso válido." value="<?php echo $course['name_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
+                                            <input type="text" minlength="10" maxlength="100" class="form-control" autocomplete="off" name="course['name_var']" data-error="Por favor, informe um nome de curso válido. Mínimo de 10 e máximo de 100 caracteres." value="<?php echo $course['name_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -69,7 +69,7 @@ include('../session.php');
                                             <label>Nome do Professor/Palestrante</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" class="form-control" autocomplete="off" name="course['professor_var']" data-error="Por favor, informe um nome válido." value="<?php echo $course['professor_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
+                                            <input type="text" class="form-control" data-error="Por favor, informe um nome válido. Mínimo de 10 e máximo de 100 caracteres." autocomplete="off" name="course['professor_var']" value="<?php echo $course['professor_var']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -77,7 +77,7 @@ include('../session.php');
                                             <label>Quantidade de Vagas</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-tasks"></span></span>
-                                            <input type="number" min="1" max="100" autocomplete="off" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe uma quantidade válida." value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
+                                            <input type="number" min="1" max="100" autocomplete="off" class="form-control" name="course['numSlots_int']" data-error="Por favor, informe uma quantidade válida. Mínimo de 1 e máximo de 100 vagas." value="<?php echo $course['numSlots_int']; ?>" required <?php if($course['status_var']=='Fechado' || $course['status_var']=='Cancelado') echo "disabled"; ?> >
                                              </div>
                                              <p class="help-block">Valores permitidos: entre 1 e 100. </p>
                                               <div class="help-block with-errors"></div>

@@ -10,19 +10,11 @@ include('../session.php');
 
 <?php include(HEADER_TEMPLATE); ?>
 
-<style type="text/css">
-/**
- * Override feedback icon position
- * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
- */
-#eventForm .form-control-feedback {
-    top: 0;
-    right: -15px;
-}
-</style>
 
 
-<div class="row">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+ <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" align="center">
@@ -44,8 +36,8 @@ include('../session.php');
                                             <label>Nome</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="text" minlength="10" maxlength="70" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
-                                                  data-error="Por favor, informe um nome válido. Mínimo de 10 e máximo de 70 caracteres." autocomplete="off" required>
+                                            <input type="text" maxlength="70" class="form-control" name="customer['name_var']" placeholder="Digite o nome do cliente..." type="text"
+                                                  data-error="Por favor, informe um nome válido." autocomplete="off" required>
                                              </div>
                                               <div class="help-block with-errors"></div>
                                          </div>
@@ -61,8 +53,8 @@ include('../session.php');
                                             <label>Endereço</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-home"></span></span>
-                                            <input type="text" minlength="10" maxlength="100" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
-                                                  data-error="Por favor, informe um endereço válido. Mínimo de 10 e máximo de 100 caracteres." autocomplete="off" required>
+                                            <input type="text" maxlength="100" class="form-control" name="customer['address_var']" placeholder="Digite o endereco do cliente..." type="text"
+                                                  data-error="Por favor, informe um endereço válido." autocomplete="off" required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -88,8 +80,8 @@ include('../session.php');
                                             <label>E-mail</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-floppy-disk"></span></span>
-                                            <input id="inputEmail" minlength="5" maxlength="30" class="form-control" name="customer['email_var']" placeholder="Digite o e-mail..." type="email"
-                                                  data-error="Por favor, informe um e-mail válido. Mínimo de 5 e máximo de 30 caracteres." autocomplete="off" required>
+                                            <input id="inputEmail" maxlength="30" class="form-control" name="customer['email_var']" placeholder="Digite o e-mail..." type="email"
+                                                  data-error="Por favor, informe um e-mail válido." autocomplete="off" required>
 
                                             </div>
                                             <div class="help-block with-errors"></div>
@@ -149,9 +141,10 @@ include('../session.php');
                 <!-- /.col-lg-12 -->
             </div>
 
-<script>
+        <?php include(FOOTER_TEMPLATE); ?>
 
- jQuery(function($){
+        <script type="text/javascript">
+            jQuery(function($){
    $("#birthday").mask("99/99/9999");
    $("#phone").mask("(99) 99999-9999");
     $("#rg").mask("99.999.999-9");
@@ -159,6 +152,4 @@ include('../session.php');
 
 
 });
-</script>
-
-<?php include(FOOTER_TEMPLATE); ?>
+        </script>

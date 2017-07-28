@@ -29,7 +29,7 @@ include('../session.php');
                                 <form role="form" action="edit_customer.php?id=<?php echo $customer['id']; ?>" data-toggle="validator" method="post">
                                     <div class="form-group">
                                         <label>Nome</label>
-                                        <input type="text" class="form-control" name="customer['name_var']" value="<?php echo $customer['name_var']; ?>" data-error="Por favor, informe um nome válido." autocomplete="off" required>
+                                        <input type="text" minlength="10" maxlength="70" class="form-control" name="customer['name_var']" value="<?php echo $customer['name_var']; ?>" data-error="Por favor, informe um nome válido. Mínimo de 10 e máximo de 70 caracteres." autocomplete="off" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
@@ -42,7 +42,7 @@ include('../session.php');
                                         </div>
                                  <div class="form-group">
                                     <label>Endereço</label>
-                                    <input type="text" class="form-control" name="customer['address_var']" value="<?php echo $customer['address_var']; ?>" data-error="Por favor, informe um endereço válido."  autocomplete="off" required>
+                                    <input type="text" class="form-control" minlength="10" maxlength="100" name="customer['address_var']" value="<?php echo $customer['address_var']; ?>" data-error="Por favor, informe um endereço válido. Mínimo de 10 e máximo de 100 caracteres."  autocomplete="off" required>
                                     <div class="help-block with-errors"></div>
 
                                 </div>
@@ -60,7 +60,7 @@ include('../session.php');
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="email" class="form-control" name="customer['email_var']" value="<?php echo $customer['email_var']; ?>" placeholder="Digite um e-mail válido..." data-error="Por favor, informe um e-mail válido."  autocomplete="off" required>
+                                    <input type="email" class="form-control" minlength="5" maxlength="30" name="customer['email_var']" value="<?php echo $customer['email_var']; ?>" placeholder="Digite um e-mail válido..." data-error="Por favor, informe um e-mail válido. Mínimo de 5 e máximo de 30 caracteres."  autocomplete="off" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">

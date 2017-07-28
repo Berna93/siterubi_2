@@ -51,8 +51,8 @@ include('../session.php');
                                             <label>Nome do Usuário</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                            <input type="text" class="form-control" autocomplete="off" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
-                                                  data-error="Por favor, informe um nome válido." required>
+                                            <input type="text" minlength="10" max="100" class="form-control" autocomplete="off" maxlength="30" name="user['name_var']" placeholder="Digite o nome do usuário..." type="text"
+                                                  data-error="Por favor, informe um nome válido. Mínimo de 10 e máximo de 100 caracteres." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -61,8 +61,8 @@ include('../session.php');
                                             <label>Login</label>
                                             <div class="input-group input-append">
                                              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                            <input type="text" class="form-control" autocomplete="off" minlength="5" maxlength="30" name="user['username_var']" placeholder="Digite o login do usuário..." type="text"
-                                                  data-error="Por favor, informe um login válido." required>
+                                            <input type="text" minlength="10" maxlength="20" class="form-control" autocomplete="off" minlength="5" maxlength="30" name="user['username_var']" placeholder="Digite o login do usuário..." type="text"
+                                                  data-error="Por favor, informe um login válido. Mínimo de 10 e máximo de 20 caracteres." required>
                                              </div>
                                              <div class="help-block with-errors"></div>
                                          </div>
@@ -72,7 +72,7 @@ include('../session.php');
 
                                         <div class="input-group input-append date" >
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-qrcode"></span></span>
-                                            <input type="password" autocomplete="off" minlength="4" maxlength="20" class="form-control" name="user['password_var']" placeholder="Informe a senha do usuário..." data-error="Por favor, informe uma senha válida." required/>
+                                            <input type="password" autocomplete="off" minlength="4" maxlength="20" class="form-control" name="user['password_var']" placeholder="Informe a senha do usuário..." data-error="Por favor, informe uma senha válida. Mínimo de 4 e máximo de 20 caracteres." required/>
 
                                         </div>
                                         <div class="help-block with-errors"></div>
