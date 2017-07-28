@@ -478,6 +478,20 @@ function find_customer_by_name($name = null) {
    return $results;
 }
 
+function find_customer_name_search($name = null) {
+   $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   $stmt = $conn->prepare("SELECT name_var FROM tbl_customers WHERE name_var LIKE ?");
+   $stmt->bindValue(1, "%$name%", PDO::PARAM_STR);
+   $stmt->execute();
+   while($row = $stmt->fetch()) {
+            $return_arr[] =  $row['name_var'];
+        }
+
+   return $return_arr;
+}
+
 function find_course_by_id($id = null) {
    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

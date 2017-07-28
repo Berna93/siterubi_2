@@ -499,3 +499,14 @@ function calculateNumSlotsTaken($idCourse = null) {
     }
 
 }
+
+function searchCustomersNameSearch($name = null) {
+     try {
+        $return_arr = find_customer_name_search($name);
+
+        return $return_arr;
+     } catch (PDOException $e) {
+       $return_arr = "Erro ao pesquisar cliente. Exceção: " . $e->GetMessage();
+       return $return_arr;
+    }
+}
